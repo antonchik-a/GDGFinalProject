@@ -36,6 +36,11 @@ public class AppDelegate extends Application {
                 .build();
 
         ApiFactory.recreate();
+
+        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this)
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        Realm.setDefaultConfiguration(realmConfiguration);
     }
 
     @NonNull
