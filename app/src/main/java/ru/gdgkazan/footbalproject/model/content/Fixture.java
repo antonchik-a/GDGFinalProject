@@ -4,7 +4,9 @@ package ru.gdgkazan.footbalproject.model.content;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Fixture {
+import io.realm.RealmObject;
+
+public class Fixture extends RealmObject {
 
     @SerializedName("date")
     @Expose

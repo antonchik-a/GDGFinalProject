@@ -4,7 +4,9 @@ package ru.gdgkazan.footbalproject.model.content;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Result {
+import io.realm.RealmObject;
+
+public class Result extends RealmObject {
 
     @SerializedName("goalsHomeTeam")
     @Expose
