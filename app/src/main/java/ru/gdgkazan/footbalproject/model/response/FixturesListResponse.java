@@ -1,6 +1,8 @@
 
 package ru.gdgkazan.footbalproject.model.response;
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -11,10 +13,9 @@ import ru.gdgkazan.footbalproject.model.content.Fixture;
 public class FixturesListResponse {
 
     @SerializedName("count")
-    @Expose
     private Integer count;
+
     @SerializedName("fixtures")
-    @Expose
     private List<Fixture> fixtures = new ArrayList<>();
 
     /**
@@ -22,6 +23,7 @@ public class FixturesListResponse {
      * @return
      *     The count
      */
+    @NonNull
     public Integer getCount() {
         return count;
     }
@@ -31,7 +33,7 @@ public class FixturesListResponse {
      * @param count
      *     The count
      */
-    public void setCount(Integer count) {
+    public void setCount(@NonNull Integer count) {
         this.count = count;
     }
 
@@ -40,6 +42,7 @@ public class FixturesListResponse {
      * @return
      *     The fixtures
      */
+    @NonNull
     public List<Fixture> getFixtures() {
         return fixtures;
     }
@@ -49,7 +52,7 @@ public class FixturesListResponse {
      * @param fixtures
      *     The fixtures
      */
-    public void setFixtures(List<Fixture> fixtures) {
+    public void setFixtures(@NonNull List<Fixture> fixtures) {
         this.fixtures = fixtures;
     }
 

@@ -2,6 +2,8 @@
 package ru.gdgkazan.footbalproject.model.response;
 
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -13,10 +15,9 @@ import ru.gdgkazan.footbalproject.model.content.Player;
 public class PlayersResponse {
 
     @SerializedName("count")
-    @Expose
     private Integer count;
+
     @SerializedName("players")
-    @Expose
     private List<Player> players = new ArrayList<>();
 
     /**
@@ -24,6 +25,7 @@ public class PlayersResponse {
      * @return
      *     The count
      */
+    @NonNull
     public Integer getCount() {
         return count;
     }
@@ -33,7 +35,7 @@ public class PlayersResponse {
      * @param count
      *     The count
      */
-    public void setCount(Integer count) {
+    public void setCount(@NonNull Integer count) {
         this.count = count;
     }
 
@@ -42,6 +44,7 @@ public class PlayersResponse {
      * @return
      *     The players
      */
+    @NonNull
     public List<Player> getPlayers() {
         return players;
     }
@@ -51,7 +54,7 @@ public class PlayersResponse {
      * @param players
      *     The players
      */
-    public void setPlayers(List<Player> players) {
+    public void setPlayers(@NonNull List<Player> players) {
         this.players = players;
     }
 

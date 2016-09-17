@@ -1,6 +1,9 @@
 
 package ru.gdgkazan.footbalproject.model.content;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -9,22 +12,21 @@ import io.realm.RealmObject;
 public class Fixture extends RealmObject {
 
     @SerializedName("date")
-    @Expose
     private String date;
+
     @SerializedName("status")
-    @Expose
     private String status;
+
     @SerializedName("matchday")
-    @Expose
     private Integer matchday;
+
     @SerializedName("homeTeamName")
-    @Expose
     private String homeTeamName;
+
     @SerializedName("awayTeamName")
-    @Expose
     private String awayTeamName;
+
     @SerializedName("result")
-    @Expose
     private Result result;
 
     /**
@@ -32,6 +34,7 @@ public class Fixture extends RealmObject {
      * @return
      *     The date
      */
+    @NonNull
     public String getDate() {
         return date;
     }
@@ -41,7 +44,7 @@ public class Fixture extends RealmObject {
      * @param date
      *     The date
      */
-    public void setDate(String date) {
+    public void setDate(@NonNull String date) {
         this.date = date;
     }
 
@@ -50,6 +53,7 @@ public class Fixture extends RealmObject {
      * @return
      *     The status
      */
+    @NonNull
     public String getStatus() {
         return status;
     }
@@ -59,7 +63,7 @@ public class Fixture extends RealmObject {
      * @param status
      *     The status
      */
-    public void setStatus(String status) {
+    public void setStatus(@NonNull String status) {
         this.status = status;
     }
 
@@ -68,6 +72,7 @@ public class Fixture extends RealmObject {
      * @return
      *     The matchday
      */
+    @NonNull
     public Integer getMatchday() {
         return matchday;
     }
@@ -77,7 +82,7 @@ public class Fixture extends RealmObject {
      * @param matchday
      *     The matchday
      */
-    public void setMatchday(Integer matchday) {
+    public void setMatchday(@NonNull Integer matchday) {
         this.matchday = matchday;
     }
 
@@ -86,6 +91,7 @@ public class Fixture extends RealmObject {
      * @return
      *     The homeTeamName
      */
+    @NonNull
     public String getHomeTeamName() {
         return homeTeamName;
     }
@@ -95,7 +101,7 @@ public class Fixture extends RealmObject {
      * @param homeTeamName
      *     The homeTeamName
      */
-    public void setHomeTeamName(String homeTeamName) {
+    public void setHomeTeamName(@NonNull String homeTeamName) {
         this.homeTeamName = homeTeamName;
     }
 
@@ -104,6 +110,7 @@ public class Fixture extends RealmObject {
      * @return
      *     The awayTeamName
      */
+    @NonNull
     public String getAwayTeamName() {
         return awayTeamName;
     }
@@ -113,7 +120,7 @@ public class Fixture extends RealmObject {
      * @param awayTeamName
      *     The awayTeamName
      */
-    public void setAwayTeamName(String awayTeamName) {
+    public void setAwayTeamName(@NonNull String awayTeamName) {
         this.awayTeamName = awayTeamName;
     }
 
@@ -122,6 +129,7 @@ public class Fixture extends RealmObject {
      * @return
      *     The result
      */
+    @Nullable
     public Result getResult() {
         return result;
     }
@@ -131,7 +139,7 @@ public class Fixture extends RealmObject {
      * @param result
      *     The result
      */
-    public void setResult(Result result) {
+    public void setResult(@Nullable Result result) {
         this.result = result;
     }
 

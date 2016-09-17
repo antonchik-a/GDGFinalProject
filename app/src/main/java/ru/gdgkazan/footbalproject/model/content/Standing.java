@@ -1,6 +1,8 @@
 
 package ru.gdgkazan.footbalproject.model.content;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -9,37 +11,36 @@ import io.realm.RealmObject;
 public class Standing extends RealmObject {
 
     @SerializedName("position")
-    @Expose
     private Integer position;
+
     @SerializedName("teamName")
-    @Expose
     private String teamName;
+
     @SerializedName("crestURI")
-    @Expose
     private String crestURI;
+
     @SerializedName("playedGames")
-    @Expose
     private Integer playedGames;
+
     @SerializedName("points")
-    @Expose
     private Integer points;
+
     @SerializedName("goals")
-    @Expose
     private Integer goals;
+
     @SerializedName("goalsAgainst")
-    @Expose
     private Integer goalsAgainst;
+
     @SerializedName("goalDifference")
-    @Expose
     private Integer goalDifference;
+
     @SerializedName("wins")
-    @Expose
     private Integer wins;
+
     @SerializedName("draws")
-    @Expose
     private Integer draws;
+
     @SerializedName("losses")
-    @Expose
     private Integer losses;
 
     /**
@@ -47,6 +48,7 @@ public class Standing extends RealmObject {
      * @return
      *     The position
      */
+    @NonNull
     public Integer getPosition() {
         return position;
     }
@@ -56,7 +58,7 @@ public class Standing extends RealmObject {
      * @param position
      *     The position
      */
-    public void setPosition(Integer position) {
+    public void setPosition(@NonNull Integer position) {
         this.position = position;
     }
 
@@ -65,6 +67,7 @@ public class Standing extends RealmObject {
      * @return
      *     The teamName
      */
+    @NonNull
     public String getTeamName() {
         return teamName;
     }
@@ -74,7 +77,7 @@ public class Standing extends RealmObject {
      * @param teamName
      *     The teamName
      */
-    public void setTeamName(String teamName) {
+    public void setTeamName(@NonNull String teamName) {
         this.teamName = teamName;
     }
 
@@ -83,6 +86,7 @@ public class Standing extends RealmObject {
      * @return
      *     The crestURI
      */
+    @NonNull
     public String getCrestURI() {
         return crestURI;
     }
@@ -92,7 +96,7 @@ public class Standing extends RealmObject {
      * @param crestURI
      *     The crestURI
      */
-    public void setCrestURI(String crestURI) {
+    public void setCrestURI(@NonNull String crestURI) {
         this.crestURI = crestURI;
     }
 
@@ -101,6 +105,7 @@ public class Standing extends RealmObject {
      * @return
      *     The playedGames
      */
+    @NonNull
     public Integer getPlayedGames() {
         return playedGames;
     }
@@ -110,7 +115,7 @@ public class Standing extends RealmObject {
      * @param playedGames
      *     The playedGames
      */
-    public void setPlayedGames(Integer playedGames) {
+    public void setPlayedGames(@NonNull Integer playedGames) {
         this.playedGames = playedGames;
     }
 
@@ -119,6 +124,7 @@ public class Standing extends RealmObject {
      * @return
      *     The points
      */
+    @NonNull
     public Integer getPoints() {
         return points;
     }
@@ -128,7 +134,7 @@ public class Standing extends RealmObject {
      * @param points
      *     The points
      */
-    public void setPoints(Integer points) {
+    public void setPoints(@NonNull Integer points) {
         this.points = points;
     }
 
@@ -137,6 +143,7 @@ public class Standing extends RealmObject {
      * @return
      *     The goals
      */
+    @NonNull
     public Integer getGoals() {
         return goals;
     }
@@ -146,7 +153,7 @@ public class Standing extends RealmObject {
      * @param goals
      *     The goals
      */
-    public void setGoals(Integer goals) {
+    public void setGoals(@NonNull Integer goals) {
         this.goals = goals;
     }
 
@@ -155,6 +162,7 @@ public class Standing extends RealmObject {
      * @return
      *     The goalsAgainst
      */
+    @NonNull
     public Integer getGoalsAgainst() {
         return goalsAgainst;
     }
@@ -164,7 +172,7 @@ public class Standing extends RealmObject {
      * @param goalsAgainst
      *     The goalsAgainst
      */
-    public void setGoalsAgainst(Integer goalsAgainst) {
+    public void setGoalsAgainst(@NonNull Integer goalsAgainst) {
         this.goalsAgainst = goalsAgainst;
     }
 
@@ -173,6 +181,7 @@ public class Standing extends RealmObject {
      * @return
      *     The goalDifference
      */
+    @NonNull
     public Integer getGoalDifference() {
         return goalDifference;
     }
@@ -182,7 +191,7 @@ public class Standing extends RealmObject {
      * @param goalDifference
      *     The goalDifference
      */
-    public void setGoalDifference(Integer goalDifference) {
+    public void setGoalDifference(@NonNull Integer goalDifference) {
         this.goalDifference = goalDifference;
     }
 
@@ -191,6 +200,7 @@ public class Standing extends RealmObject {
      * @return
      *     The wins
      */
+    @NonNull
     public Integer getWins() {
         return wins;
     }
@@ -200,7 +210,7 @@ public class Standing extends RealmObject {
      * @param wins
      *     The wins
      */
-    public void setWins(Integer wins) {
+    public void setWins(@NonNull Integer wins) {
         this.wins = wins;
     }
 
@@ -209,6 +219,7 @@ public class Standing extends RealmObject {
      * @return
      *     The draws
      */
+    @NonNull
     public Integer getDraws() {
         return draws;
     }
@@ -218,7 +229,7 @@ public class Standing extends RealmObject {
      * @param draws
      *     The draws
      */
-    public void setDraws(Integer draws) {
+    public void setDraws(@NonNull Integer draws) {
         this.draws = draws;
     }
 
@@ -227,6 +238,7 @@ public class Standing extends RealmObject {
      * @return
      *     The losses
      */
+    @NonNull
     public Integer getLosses() {
         return losses;
     }
@@ -236,7 +248,7 @@ public class Standing extends RealmObject {
      * @param losses
      *     The losses
      */
-    public void setLosses(Integer losses) {
+    public void setLosses(@NonNull Integer losses) {
         this.losses = losses;
     }
 

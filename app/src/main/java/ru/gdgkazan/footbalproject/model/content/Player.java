@@ -1,6 +1,8 @@
 
 package ru.gdgkazan.footbalproject.model.content;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -9,25 +11,24 @@ import io.realm.RealmObject;
 public class Player extends RealmObject {
 
     @SerializedName("name")
-    @Expose
     private String name;
+
     @SerializedName("position")
-    @Expose
     private String position;
+
     @SerializedName("jerseyNumber")
-    @Expose
     private Integer jerseyNumber;
+
     @SerializedName("dateOfBirth")
-    @Expose
     private String dateOfBirth;
+
     @SerializedName("nationality")
-    @Expose
     private String nationality;
+
     @SerializedName("contractUntil")
-    @Expose
     private String contractUntil;
+
     @SerializedName("marketValue")
-    @Expose
     private String marketValue;
 
     /**
@@ -35,6 +36,7 @@ public class Player extends RealmObject {
      * @return
      *     The name
      */
+    @NonNull
     public String getName() {
         return name;
     }
@@ -44,7 +46,7 @@ public class Player extends RealmObject {
      * @param name
      *     The name
      */
-    public void setName(String name) {
+    public void setName(@NonNull String name) {
         this.name = name;
     }
 
@@ -53,6 +55,7 @@ public class Player extends RealmObject {
      * @return
      *     The position
      */
+    @NonNull
     public String getPosition() {
         return position;
     }
@@ -62,7 +65,7 @@ public class Player extends RealmObject {
      * @param position
      *     The position
      */
-    public void setPosition(String position) {
+    public void setPosition(@NonNull String position) {
         this.position = position;
     }
 
@@ -71,6 +74,7 @@ public class Player extends RealmObject {
      * @return
      *     The jerseyNumber
      */
+    @NonNull
     public Integer getJerseyNumber() {
         return jerseyNumber;
     }
@@ -80,7 +84,7 @@ public class Player extends RealmObject {
      * @param jerseyNumber
      *     The jerseyNumber
      */
-    public void setJerseyNumber(Integer jerseyNumber) {
+    public void setJerseyNumber(@NonNull Integer jerseyNumber) {
         this.jerseyNumber = jerseyNumber;
     }
 
@@ -89,6 +93,7 @@ public class Player extends RealmObject {
      * @return
      *     The dateOfBirth
      */
+    @NonNull
     public String getDateOfBirth() {
         return dateOfBirth;
     }
@@ -98,7 +103,7 @@ public class Player extends RealmObject {
      * @param dateOfBirth
      *     The dateOfBirth
      */
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(@NonNull String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -107,6 +112,7 @@ public class Player extends RealmObject {
      * @return
      *     The nationality
      */
+    @NonNull
     public String getNationality() {
         return nationality;
     }
@@ -116,7 +122,7 @@ public class Player extends RealmObject {
      * @param nationality
      *     The nationality
      */
-    public void setNationality(String nationality) {
+    public void setNationality(@NonNull String nationality) {
         this.nationality = nationality;
     }
 
@@ -125,6 +131,7 @@ public class Player extends RealmObject {
      * @return
      *     The contractUntil
      */
+    @NonNull
     public String getContractUntil() {
         return contractUntil;
     }
@@ -134,7 +141,7 @@ public class Player extends RealmObject {
      * @param contractUntil
      *     The contractUntil
      */
-    public void setContractUntil(String contractUntil) {
+    public void setContractUntil(@NonNull String contractUntil) {
         this.contractUntil = contractUntil;
     }
 
@@ -143,6 +150,7 @@ public class Player extends RealmObject {
      * @return
      *     The marketValue
      */
+    @NonNull
     public String getMarketValue() {
         return marketValue;
     }
@@ -152,7 +160,7 @@ public class Player extends RealmObject {
      * @param marketValue
      *     The marketValue
      */
-    public void setMarketValue(String marketValue) {
+    public void setMarketValue(@NonNull String marketValue) {
         this.marketValue = marketValue;
     }
 
