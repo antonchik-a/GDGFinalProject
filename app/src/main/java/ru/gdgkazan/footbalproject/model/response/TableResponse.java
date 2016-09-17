@@ -10,30 +10,9 @@ import ru.gdgkazan.footbalproject.model.content.Standing;
 
 public class TableResponse {
 
-    @SerializedName("matchday")
-    @Expose
-    private Integer matchday;
     @SerializedName("standing")
     @Expose
     private List<Standing> standing = new ArrayList<>();
-
-    /**
-     * 
-     * @return
-     *     The matchday
-     */
-    public Integer getMatchday() {
-        return matchday;
-    }
-
-    /**
-     * 
-     * @param matchday
-     *     The matchday
-     */
-    public void setMatchday(Integer matchday) {
-        this.matchday = matchday;
-    }
 
     /**
      * 

@@ -39,12 +39,6 @@ public class Standing {
     @SerializedName("losses")
     @Expose
     private Integer losses;
-    @SerializedName("home")
-    @Expose
-    private Home home;
-    @SerializedName("away")
-    @Expose
-    private Away away;
 
     /**
      * 
@@ -242,42 +236,6 @@ public class Standing {
      */
     public void setLosses(Integer losses) {
         this.losses = losses;
-    }
-
-    /**
-     * 
-     * @return
-     *     The home
-     */
-    public Home getHome() {
-        return home;
-    }
-
-    /**
-     * 
-     * @param home
-     *     The home
-     */
-    public void setHome(Home home) {
-        this.home = home;
-    }
-
-    /**
-     * 
-     * @return
-     *     The away
-     */
-    public Away getAway() {
-        return away;
-    }
-
-    /**
-     * 
-     * @param away
-     *     The away
-     */
-    public void setAway(Away away) {
-        this.away = away;
     }
 
 }
