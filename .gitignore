@@ -42,7 +42,3 @@ trash/**
 
 .gradle/
 .idea/
-app/libs/
-app/src/main/java/
-app/src/main/res/drawable/
-build/
