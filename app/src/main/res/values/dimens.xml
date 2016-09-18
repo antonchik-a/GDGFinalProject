@@ -32,4 +32,9 @@
     <dimen name="text.22">22sp</dimen>
     <dimen name="text.24">24sp</dimen>
 
+    <dimen name="app_bar_height">320dp</dimen>
+    <dimen name="title_textsize">22sp</dimen>
+    <dimen name="description_textsize">14sp</dimen>
+    <dimen name="info_textsize">18sp</dimen>
+
 </resources>
