@@ -18,6 +18,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.gdgkazan.footbalproject.R;
 import ru.gdgkazan.footbalproject.model.content.Team;
+import ru.gdgkazan.footbalproject.screen.loading.LoadingDialog;
+import ru.gdgkazan.footbalproject.screen.loading.LoadingView;
 
 /**
  * Created by Sergei Riabov
@@ -27,6 +29,7 @@ public class TeamActivity extends AppCompatActivity implements TeamContract.View
     public static final String EXTRA_TEAM = "extraTeamName";
 
     private TeamContract.UserActionListener mPresenter;
+    private LoadingView mLoadingView;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -52,10 +55,11 @@ public class TeamActivity extends AppCompatActivity implements TeamContract.View
         setContentView(R.layout.activity_team);
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
-
         if(getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        mLoadingView = LoadingDialog.view(getSupportFragmentManager());
 
         String teamName = getIntent().getStringExtra(EXTRA_TEAM);
         teamName = "Chelsea FC";
@@ -71,5 +75,15 @@ public class TeamActivity extends AppCompatActivity implements TeamContract.View
     @Override
     public void showError() {
         Snackbar.make(playersRecyclerView, getResources().getString(R.string.loading_error), Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showLoadingIndicator() {
+        mLoadingView.showLoadingIndicator();
+    }
+
+    @Override
+    public void hideLoadingIndicator() {
+        mLoadingView.hideLoadingIndicator();
     }
 }

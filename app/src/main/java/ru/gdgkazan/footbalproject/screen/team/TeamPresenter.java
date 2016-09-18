@@ -20,6 +20,8 @@ public class TeamPresenter implements TeamContract.UserActionListener {
 
         RepositoryProvider.provideFootballRepository()
                 .team(teamName)
+                .doOnSubscribe(() -> mView.showLoadingIndicator())
+                .doAfterTerminate(() -> mView.hideLoadingIndicator())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(team -> {
