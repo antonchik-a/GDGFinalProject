@@ -1,6 +1,8 @@
 
 package ru.gdgkazan.footbalproject.model.response;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class LinkSelf {
@@ -13,6 +15,7 @@ public class LinkSelf {
      * @return
      *     The href
      */
+    @NonNull
     public String getHref() {
         return href;
     }
@@ -22,7 +25,7 @@ public class LinkSelf {
      * @param href
      *     The href
      */
-    public void setHref(String href) {
+    public void setHref(@NonNull String href) {
         this.href = href;
     }
 

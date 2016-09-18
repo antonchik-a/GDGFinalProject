@@ -1,6 +1,8 @@
 
 package ru.gdgkazan.footbalproject.model.response;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class TeamResponse {
@@ -28,6 +30,7 @@ public class TeamResponse {
      * @return
      *     The links
      */
+    @NonNull
     public Links getLinks() {
         return links;
     }
@@ -37,7 +40,7 @@ public class TeamResponse {
      * @param links
      *     The _links
      */
-    public void setLinks(Links links) {
+    public void setLinks(@NonNull Links links) {
         this.links = links;
     }
 

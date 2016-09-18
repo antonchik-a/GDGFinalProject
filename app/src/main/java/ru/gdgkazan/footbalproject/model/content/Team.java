@@ -5,12 +5,15 @@ import android.support.annotation.Nullable;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+import ru.gdgkazan.footbalproject.model.response.TeamResponse;
 
 /**
  * Created by Sergei Riabov
  */
 public class Team extends RealmObject {
 
+    @PrimaryKey
     private int id;
     private String name;
     private String code;
@@ -18,6 +21,18 @@ public class Team extends RealmObject {
     private String squadMarketValue;
     private String crestUrl;
     private RealmList<Player> players;
+
+    public Team() {
+    }
+
+    public Team(int id, String name, String code, String shortName, String squadMarketName, String crestUrl) {
+        this.id = id;
+        this.name = name;
+        this.code = code;
+        this.shortName = shortName;
+        this.squadMarketValue = squadMarketName;
+        this.crestUrl = crestUrl;
+    }
 
     /**
      *
@@ -150,5 +165,4 @@ public class Team extends RealmObject {
     public void setPlayers(@Nullable RealmList<Player> players) {
         this.players = players;
     }
-
 }

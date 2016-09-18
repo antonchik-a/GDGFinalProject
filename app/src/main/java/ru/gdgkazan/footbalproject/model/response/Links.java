@@ -1,6 +1,8 @@
 
 package ru.gdgkazan.footbalproject.model.response;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Links {
@@ -13,6 +15,7 @@ public class Links {
      * @return
      *     The self
      */
+    @NonNull
     public LinkSelf getSelf() {
         return self;
     }
@@ -22,7 +25,7 @@ public class Links {
      * @param self
      *     The self
      */
-    public void setSelf(LinkSelf self) {
+    public void setSelf(@NonNull LinkSelf self) {
         this.self = self;
     }
 
