@@ -14,7 +14,7 @@ public final class RepositoryProvider {
     }
 
     @NonNull
-    public static FootballRepository provideGithubRepository() {
+    public static FootballRepository provideFootballRepository() {
         if (sFootballRepository == null) {
             sFootballRepository = new DefaulFootballRepository();
         }
