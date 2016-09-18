@@ -15,6 +15,7 @@ android {
         versionName "1.0"
 
         buildConfigField "String", "API_ENDPOINT", '"http://http://api.football-data.org/v1/"'
+        buildConfigField "String", "API_KEY", '"0f24a4c19ed245fb9ae31f58eee2d37e"'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
