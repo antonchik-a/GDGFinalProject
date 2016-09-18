@@ -14,7 +14,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField "String", "API_ENDPOINT", '"http://http://api.football-data.org/"'
+        buildConfigField "String", "API_ENDPOINT", '"http://http://api.football-data.org/v1/"'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
