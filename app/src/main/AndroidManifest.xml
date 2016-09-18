@@ -24,7 +24,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".screen.team.TeamActivity"/>
+        <activity android:name=".screen.team.TeamActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            </activity>
 
     </application>
 

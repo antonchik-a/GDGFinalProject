@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
@@ -34,6 +37,9 @@ public class TeamActivity extends AppCompatActivity implements TeamContract.View
     @BindView(R.id.title)
     TextView mTeamNameTextView;
 
+    @BindView(R.id.players_recyclerview)
+    RecyclerView playersRecyclerView;
+
     public static void navigate(@NonNull AppCompatActivity activity, @NonNull String teamName) {
         Intent intent = new Intent(activity, TeamActivity.class);
         intent.putExtra(EXTRA_TEAM, teamName);
@@ -52,12 +58,18 @@ public class TeamActivity extends AppCompatActivity implements TeamContract.View
         }
 
         String teamName = getIntent().getStringExtra(EXTRA_TEAM);
-        mPresenter = new TeamPresenter();
+        teamName = "Chelsea FC";
+        mPresenter = new TeamPresenter(this);
         mPresenter.init(teamName);
     }
 
     @Override
     public void showTeam(Team team) {
+        mCollapsingToolbar.setTitle(team.getName());
+    }
 
+    @Override
+    public void showError() {
+        Snackbar.make(playersRecyclerView, getResources().getString(R.string.loading_error), Snackbar.LENGTH_SHORT).show();
     }
 }

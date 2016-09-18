@@ -1,38 +1,34 @@
 package ru.gdgkazan.footbalproject.screen.team;
 
-import java.util.NoSuchElementException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import ru.gdgkazan.footbalproject.model.content.Team;
-import ru.gdgkazan.footbalproject.model.response.TeamResponse;
-import rx.Observable;
+import ru.gdgkazan.footbalproject.repository.RepositoryProvider;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Sergei Riabov
  */
 public class TeamPresenter implements TeamContract.UserActionListener {
 
+    private TeamContract.View mView;
+
+    public TeamPresenter(TeamContract.View mView) {
+        this.mView = mView;
+    }
+
     @Override
     public void init(String teamName) {
 
+        RepositoryProvider.provideFootballRepository()
+                .team(teamName)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(team -> {
+                    mView.showTeam(team);
+                },
+                        throwable -> {
+                            mView.showError();
+                            throwable.printStackTrace();
+                        });
     }
 
-    private Observable<Team> teamMapper(TeamResponse response) {
-        String link = response.getLinks().getSelf().getHref();
-        Matcher m = Pattern.compile("\\d{2,}")
-                .matcher(link);
-        if(m.find()) {
-            int id = Integer.parseInt(m.group());
-            return Observable.just(new Team(
-                    id,
-                    response.getName(),
-                    response.getCode(),
-                    response.getShortName(),
-                    response.getSquadMarketValue(),
-                    response.getCrestUrl()));
-        } else {
-            return Observable.error(new NoSuchElementException());
-        }
-    }
 }

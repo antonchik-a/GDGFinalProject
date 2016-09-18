@@ -8,6 +8,7 @@ import ru.gdgkazan.footbalproject.model.content.Team;
 public interface TeamContract {
     interface View {
         void showTeam(Team team);
+        void showError();
     }
 
     interface UserActionListener {

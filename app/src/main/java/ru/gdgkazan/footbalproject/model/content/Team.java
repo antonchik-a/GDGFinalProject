@@ -3,15 +3,16 @@ package ru.gdgkazan.footbalproject.model.content;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
-import ru.gdgkazan.footbalproject.model.response.TeamResponse;
 
 /**
  * Created by Sergei Riabov
  */
 public class Team extends RealmObject {
+
+    public static final String FIELD_ID = "id";
+    public static final String FIELD_NAME = "name";
 
     @PrimaryKey
     private int id;
@@ -20,7 +21,6 @@ public class Team extends RealmObject {
     private String shortName;
     private String squadMarketValue;
     private String crestUrl;
-    private RealmList<Player> players;
 
     public Team() {
     }
@@ -147,22 +147,4 @@ public class Team extends RealmObject {
         this.crestUrl = crestUrl;
     }
 
-    /**
-     *
-     * @return
-     *     The team players
-     */
-    @Nullable
-    public RealmList<Player> getPlayers() {
-        return players;
-    }
-
-    /**
-     *
-     * @param players
-     *     The team players
-     */
-    public void setPlayers(@Nullable RealmList<Player> players) {
-        this.players = players;
-    }
 }
