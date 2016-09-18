@@ -1,14 +1,12 @@
 package ru.gdgkazan.footbalproject.api;
 
-import android.support.annotation.NonNull;
-
-import java.util.List;
-
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import ru.gdgkazan.footbalproject.model.response.FixturesListResponse;
 import ru.gdgkazan.footbalproject.model.response.PlayersResponse;
 import ru.gdgkazan.footbalproject.model.response.TableResponse;
+import ru.gdgkazan.footbalproject.model.response.TeamResponse;
+import ru.gdgkazan.footbalproject.model.response.TeamsResponse;
 import rx.Observable;
 
 /**
@@ -16,13 +14,19 @@ import rx.Observable;
  */
 public interface FootballOrgService {
 
-    @GET("/v1/competitions/426/fixtures")
+    @GET("competitions/426/fixtures")
     Observable<FixturesListResponse> fixtures();
 
-    @GET("/v1/competitions/424/leagueTable")
+    @GET("competitions/424/leagueTable")
     Observable<TableResponse> resultsTable();
 
-    @GET("/v1/teams/{id}")
-    Observable<PlayersResponse> players(@NonNull @Path("id") String id);
+    @GET("teams/{id}/players")
+    Observable<PlayersResponse> players(@Path("id") int id);
+
+    @GET("teams/{id}")
+    Observable<TeamResponse> team(@Path("id") int id);
+
+    @GET("competitions/426/teams")
+    Observable<TeamsResponse> teams();
 
 }

@@ -10,6 +10,10 @@ import io.realm.RealmObject;
 
 public class Player extends RealmObject {
 
+    public static final String FIELD_TEAM_ID = "teamId";
+
+    private int teamId;
+
     @SerializedName("name")
     private String name;
 
@@ -30,6 +34,24 @@ public class Player extends RealmObject {
 
     @SerializedName("marketValue")
     private String marketValue;
+
+    /**
+     *
+     * @return
+     *     The team ID
+     */
+    public int getTeamId() {
+        return teamId;
+    }
+
+    /**
+     *
+     * @param teamId
+     *     The team ID
+     */
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
+    }
 
     /**
      * 
