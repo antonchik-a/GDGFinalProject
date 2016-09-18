@@ -1,4 +1,4 @@
-package ru.gdgkazan.footbalproject.screen;
+package ru.gdgkazan.footbalproject.screen.main;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

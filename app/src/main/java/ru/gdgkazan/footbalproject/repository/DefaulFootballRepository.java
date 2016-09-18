@@ -16,6 +16,6 @@ import rx.Observable;
  */
 public class DefaulFootballRepository implements FootballRepository {
 
-    
+
 
 }

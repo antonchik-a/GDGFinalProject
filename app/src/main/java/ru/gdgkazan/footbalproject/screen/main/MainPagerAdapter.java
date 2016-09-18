@@ -1,4 +1,4 @@
-package ru.gdgkazan.footbalproject.screen;
+package ru.gdgkazan.footbalproject.screen.main;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
