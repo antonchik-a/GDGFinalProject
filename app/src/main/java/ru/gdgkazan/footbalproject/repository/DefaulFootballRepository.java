@@ -29,8 +29,6 @@ public class DefaulFootballRepository implements FootballRepository {
         return ApiFactory.getFootballService()
                 .fixtures()
                 .map(FixturesListResponse::getFixtures)
-                .flatMap(Observable::from)
-                .toList()
                 .flatMap(fixtures -> {
                     Realm.getDefaultInstance().executeTransaction(realm -> {
                         RealmResults<Fixture> fixtureRealmResults = realm.where(Fixture.class).findAll();
