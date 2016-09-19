@@ -10,8 +10,10 @@ import java.util.regex.Pattern;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import ru.gdgkazan.footbalproject.api.ApiFactory;
+import ru.gdgkazan.footbalproject.model.content.Fixture;
 import ru.gdgkazan.footbalproject.model.content.Player;
 import ru.gdgkazan.footbalproject.model.content.Team;
+import ru.gdgkazan.footbalproject.model.response.FixturesListResponse;
 import ru.gdgkazan.footbalproject.model.response.PlayersResponse;
 import ru.gdgkazan.footbalproject.model.response.TeamResponse;
 import ru.gdgkazan.footbalproject.model.response.TeamsResponse;
@@ -21,6 +23,28 @@ import rx.Observable;
  * Created by Alexey Antonchik on 17.09.16.
  */
 public class DefaulFootballRepository implements FootballRepository {
+
+    @Override
+    public Observable<List<Fixture>> fixtures() {
+        return ApiFactory.getFootballService()
+                .fixtures()
+                .map(FixturesListResponse::getFixtures)
+                .flatMap(Observable::from)
+                .toList()
+                .flatMap(fixtures -> {
+                    Realm.getDefaultInstance().executeTransaction(realm -> {
+                        RealmResults<Fixture> fixtureRealmResults = realm.where(Fixture.class).findAll();
+                        fixtureRealmResults.deleteAllFromRealm();
+                        realm.insert(fixtures);
+                    });
+                    return Observable.just(fixtures);
+                })
+                .onErrorResumeNext(throwable -> {
+                    Realm realm = Realm.getDefaultInstance();
+                    RealmResults<Fixture> fixtureRealmResults = realm.where(Fixture.class).findAll();
+                    return Observable.just(realm.copyFromRealm(fixtureRealmResults));
+                });
+    }
 
     @NonNull
     @Override
