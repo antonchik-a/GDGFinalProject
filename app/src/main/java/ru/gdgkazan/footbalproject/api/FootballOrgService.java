@@ -17,7 +17,7 @@ public interface FootballOrgService {
     @GET("competitions/426/fixtures")
     Observable<FixturesListResponse> fixtures();
 
-    @GET("competitions/424/leagueTable")
+    @GET("competitions/426/leagueTable")
     Observable<TableResponse> resultsTable();
 
     @GET("teams/{id}/players")

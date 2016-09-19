@@ -5,6 +5,7 @@
     <item name="toolbar" type="id"/>
     <item name="recyclerView" type="id"/>
     <item name="empty" type="id"/>
+    <item name="swipe_refresh" type="id"/>
 
     <!-- fixtures items -->
 

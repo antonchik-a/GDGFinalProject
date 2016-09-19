@@ -2,6 +2,7 @@ package ru.gdgkazan.footbalproject.repository;
 
 import java.util.List;
 
+import ru.gdgkazan.footbalproject.model.content.Fixture;
 import ru.gdgkazan.footbalproject.model.content.Player;
 import ru.gdgkazan.footbalproject.model.content.Team;
 import rx.Observable;
@@ -11,8 +12,12 @@ import rx.Observable;
  */
 public interface FootballRepository {
 
+    Observable<List<Fixture>> fixtures();
+
     Observable<List<Player>> players(int teamId);
 
     Observable<Team> team(String teamName);
+
+
 
 }
