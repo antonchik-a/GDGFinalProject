@@ -3,7 +3,6 @@ package ru.gdgkazan.footbalproject.model.content;
 
 import android.support.annotation.NonNull;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
@@ -11,157 +10,157 @@ import io.realm.RealmObject;
 public class Player extends RealmObject {
 
     @SerializedName("name")
-    private String name;
+    private String mName;
 
     @SerializedName("position")
-    private String position;
+    private String mPosition;
 
     @SerializedName("jerseyNumber")
-    private Integer jerseyNumber;
+    private Integer mJerseyNumber;
 
     @SerializedName("dateOfBirth")
-    private String dateOfBirth;
+    private String mDateOfBirth;
 
     @SerializedName("nationality")
-    private String nationality;
+    private String mNationality;
 
     @SerializedName("contractUntil")
-    private String contractUntil;
+    private String mContractUntil;
 
     @SerializedName("marketValue")
-    private String marketValue;
+    private String mMarketValue;
 
     /**
      * 
      * @return
-     *     The name
+     *     The Name
      */
     @NonNull
     public String getName() {
-        return name;
+        return mName;
     }
 
     /**
      * 
      * @param name
-     *     The name
+     *     The Name
      */
     public void setName(@NonNull String name) {
-        this.name = name;
+        this.mName = name;
     }
 
     /**
      * 
      * @return
-     *     The position
+     *     The Position
      */
     @NonNull
     public String getPosition() {
-        return position;
+        return mPosition;
     }
 
     /**
      * 
      * @param position
-     *     The position
+     *     The Position
      */
     public void setPosition(@NonNull String position) {
-        this.position = position;
+        this.mPosition = position;
     }
 
     /**
      * 
      * @return
-     *     The jerseyNumber
+     *     The JerseyNumber
      */
     @NonNull
     public Integer getJerseyNumber() {
-        return jerseyNumber;
+        return mJerseyNumber;
     }
 
     /**
      * 
      * @param jerseyNumber
-     *     The jerseyNumber
+     *     The JerseyNumber
      */
     public void setJerseyNumber(@NonNull Integer jerseyNumber) {
-        this.jerseyNumber = jerseyNumber;
+        this.mJerseyNumber = jerseyNumber;
     }
 
     /**
      * 
      * @return
-     *     The dateOfBirth
+     *     The DateOfBirth
      */
     @NonNull
     public String getDateOfBirth() {
-        return dateOfBirth;
+        return mDateOfBirth;
     }
 
     /**
      * 
      * @param dateOfBirth
-     *     The dateOfBirth
+     *     The DateOfBirth
      */
     public void setDateOfBirth(@NonNull String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+        this.mDateOfBirth = dateOfBirth;
     }
 
     /**
      * 
      * @return
-     *     The nationality
+     *     The Nationality
      */
     @NonNull
     public String getNationality() {
-        return nationality;
+        return mNationality;
     }
 
     /**
      * 
      * @param nationality
-     *     The nationality
+     *     The Nationality
      */
     public void setNationality(@NonNull String nationality) {
-        this.nationality = nationality;
+        this.mNationality = nationality;
     }
 
     /**
      * 
      * @return
-     *     The contractUntil
+     *     The ContractUntil
      */
     @NonNull
     public String getContractUntil() {
-        return contractUntil;
+        return mContractUntil;
     }
 
     /**
      * 
      * @param contractUntil
-     *     The contractUntil
+     *     The ContractUntil
      */
     public void setContractUntil(@NonNull String contractUntil) {
-        this.contractUntil = contractUntil;
+        this.mContractUntil = contractUntil;
     }
 
     /**
      * 
      * @return
-     *     The marketValue
+     *     The MarketValue
      */
     @NonNull
     public String getMarketValue() {
-        return marketValue;
+        return mMarketValue;
     }
 
     /**
      * 
      * @param marketValue
-     *     The marketValue
+     *     The MarketValue
      */
     public void setMarketValue(@NonNull String marketValue) {
-        this.marketValue = marketValue;
+        this.mMarketValue = marketValue;
     }
 
 }

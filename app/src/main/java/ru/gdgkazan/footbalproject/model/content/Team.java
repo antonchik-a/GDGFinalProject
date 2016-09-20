@@ -1,7 +1,6 @@
 package ru.gdgkazan.footbalproject.model.content;
 
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
@@ -12,15 +11,15 @@ import io.realm.annotations.PrimaryKey;
  */
 public class Team extends RealmObject {
 
-    public static final String FIELD_ID = "id";
-    public static final String FIELD_NAME = "name";
+    public static final String FIELD_ID = "mId";
+    public static final String FIELD_NAME = "mName";
 
     @PrimaryKey
-    private int id;
-    private String name;
-    private String code;
-    private String shortName;
-    private String squadMarketValue;
+    private int mId;
+    private String mName;
+    private String mCode;
+    private String mShortName;
+    private String mSquadMarketValue;
     private String mCrestUrl;
     private RealmList<Player> mPlayers;
 
@@ -28,11 +27,11 @@ public class Team extends RealmObject {
     }
 
     public Team(int id, String name, String code, String shortName, String squadMarketName, String crestUrl) {
-        this.id = id;
-        this.name = name;
-        this.code = code;
-        this.shortName = shortName;
-        this.squadMarketValue = squadMarketName;
+        this.mId = id;
+        this.mName = name;
+        this.mCode = code;
+        this.mShortName = shortName;
+        this.mSquadMarketValue = squadMarketName;
         this.mCrestUrl = crestUrl;
     }
 
@@ -42,7 +41,7 @@ public class Team extends RealmObject {
      *     The team ID
      */
     public int getId() {
-        return id;
+        return mId;
     }
 
     /**
@@ -51,83 +50,83 @@ public class Team extends RealmObject {
      *     The team ID
      */
     public void setId(int id) {
-        this.id = id;
+        this.mId = id;
     }
 
     /**
      *
      * @return
-     *     The name
+     *     The Name
      */
     @NonNull
     public String getName() {
-        return name;
+        return mName;
     }
 
     /**
      *
      * @param name
-     *     The name
+     *     The Name
      */
     public void setName(@NonNull String name) {
-        this.name = name;
+        this.mName = name;
     }
 
     /**
      *
      * @return
-     *     The code
+     *     The Code
      */
     @NonNull
     public String getCode() {
-        return code;
+        return mCode;
     }
 
     /**
      *
      * @param code
-     *     The code
+     *     The Code
      */
     public void setCode(@NonNull String code) {
-        this.code = code;
+        this.mCode = code;
     }
 
     /**
      *
      * @return
-     *     The shortName
+     *     The ShortName
      */
     @NonNull
     public String getShortName() {
-        return shortName;
+        return mShortName;
     }
 
     /**
      *
      * @param shortName
-     *     The shortName
+     *     The ShortName
      */
     public void setShortName(@NonNull String shortName) {
-        this.shortName = shortName;
+        this.mShortName = shortName;
     }
 
     /**
      *
      * @return
-     *     The squadMarketValue
+     *     The SquadMarketValue
      */
     @NonNull
     public String getSquadMarketValue() {
-        return squadMarketValue;
+        return mSquadMarketValue;
     }
 
     /**
      *
      * @param squadMarketValue
-     *     The squadMarketValue
+     *     The SquadMarketValue
      */
     public void setSquadMarketValue(@NonNull String squadMarketValue) {
-        this.squadMarketValue = squadMarketValue;
+        this.mSquadMarketValue = squadMarketValue;
     }
 
     /**

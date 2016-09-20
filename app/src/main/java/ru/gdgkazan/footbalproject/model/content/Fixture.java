@@ -4,7 +4,6 @@ package ru.gdgkazan.footbalproject.model.content;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
@@ -14,135 +13,135 @@ import io.realm.RealmObject;
 public class Fixture extends RealmObject {
 
     @SerializedName("date")
-    private Date date;
+    private Date mDate;
 
     @SerializedName("status")
-    private String status;
+    private String mStatus;
 
     @SerializedName("matchday")
-    private Integer matchday;
+    private Integer mMatchday;
 
     @SerializedName("homeTeamName")
-    private String homeTeamName;
+    private String mHomeTeamName;
 
     @SerializedName("awayTeamName")
-    private String awayTeamName;
+    private String mAwayTeamName;
 
     @SerializedName("result")
-    private Result result;
+    private Result mResult;
 
     /**
      * 
      * @return
-     *     The date
+     *     The Date
      */
     @NonNull
     public Date getDate() {
-        return date;
+        return mDate;
     }
 
     /**
      * 
      * @param date
-     *     The date
+     *     The Date
      */
     public void setDate(@NonNull Date date) {
-        this.date = date;
+        this.mDate = date;
     }
 
     /**
      * 
      * @return
-     *     The status
+     *     The Status
      */
     @NonNull
     public String getStatus() {
-        return status;
+        return mStatus;
     }
 
     /**
      * 
      * @param status
-     *     The status
+     *     The Status
      */
     public void setStatus(@NonNull String status) {
-        this.status = status;
+        this.mStatus = status;
     }
 
     /**
      * 
      * @return
-     *     The matchday
+     *     The Matchday
      */
     @NonNull
     public Integer getMatchday() {
-        return matchday;
+        return mMatchday;
     }
 
     /**
      * 
      * @param matchday
-     *     The matchday
+     *     The Matchday
      */
     public void setMatchday(@NonNull Integer matchday) {
-        this.matchday = matchday;
+        this.mMatchday = matchday;
     }
 
     /**
      * 
      * @return
-     *     The homeTeamName
+     *     The HomeTeamName
      */
     @NonNull
     public String getHomeTeamName() {
-        return homeTeamName;
+        return mHomeTeamName;
     }
 
     /**
      * 
      * @param homeTeamName
-     *     The homeTeamName
+     *     The HomeTeamName
      */
     public void setHomeTeamName(@NonNull String homeTeamName) {
-        this.homeTeamName = homeTeamName;
+        this.mHomeTeamName = homeTeamName;
     }
 
     /**
      * 
      * @return
-     *     The awayTeamName
+     *     The AwayTeamName
      */
     @NonNull
     public String getAwayTeamName() {
-        return awayTeamName;
+        return mAwayTeamName;
     }
 
     /**
      * 
      * @param awayTeamName
-     *     The awayTeamName
+     *     The AwayTeamName
      */
     public void setAwayTeamName(@NonNull String awayTeamName) {
-        this.awayTeamName = awayTeamName;
+        this.mAwayTeamName = awayTeamName;
     }
 
     /**
      * 
      * @return
-     *     The result
+     *     The Result
      */
     @Nullable
     public Result getResult() {
-        return result;
+        return mResult;
     }
 
     /**
      * 
      * @param result
-     *     The result
+     *     The Result
      */
     public void setResult(@Nullable Result result) {
-        this.result = result;
+        this.mResult = result;
     }
 
 }
