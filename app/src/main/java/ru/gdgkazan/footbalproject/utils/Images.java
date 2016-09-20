@@ -31,8 +31,9 @@ public final class Images {
                 .as(SVG.class)
                 .transcode(new SvgDrawableTranscoder(), PictureDrawable.class)
                 .sourceEncoder(new StreamEncoder())
-                .cacheDecoder(new FileToStreamDecoder<SVG>(new SvgDecoder()))
+                .cacheDecoder(new FileToStreamDecoder<>(new SvgDecoder()))
                 .decoder(new SvgDecoder())
+                .listener(new SvgSoftwareLayerSetter<>())
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .load(url)
                 .into(imageView);
