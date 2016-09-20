@@ -2,6 +2,7 @@
 package ru.gdgkazan.footbalproject.model.content;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -12,8 +13,8 @@ public class Standings extends RealmObject {
     @SerializedName("position")
     private Integer mPosition;
 
-    @SerializedName("teamname")
-    private String mTeamname;
+    @SerializedName("teamName")
+    private String mTeamName;
 
     @SerializedName("crestUri")
     private String mCrestUri;
@@ -42,6 +43,12 @@ public class Standings extends RealmObject {
     @SerializedName("losses")
     private Integer mLosses;
 
+    @SerializedName("home")
+    private StandingsDetails mStandingsDetailsHome;
+
+    @SerializedName("away")
+    private StandingsDetails mStandingsDetailsAway;
+
     @NonNull
     public Integer getPosition() {
         return mPosition;
@@ -53,11 +60,11 @@ public class Standings extends RealmObject {
 
     @NonNull
     public String getTeamname() {
-        return mTeamname;
+        return mTeamName;
     }
 
     public void setTeamname(@NonNull String teamname) {
-        this.mTeamname = teamname;
+        mTeamName = teamname;
     }
 
     @NonNull
@@ -66,7 +73,7 @@ public class Standings extends RealmObject {
     }
 
     public void setCrestUri(@NonNull String crestUri) {
-        this.mCrestUri = crestUri;
+        mCrestUri = crestUri;
     }
 
     @NonNull
@@ -75,7 +82,7 @@ public class Standings extends RealmObject {
     }
 
     public void setPlayedGames(@NonNull Integer playedGames) {
-        this.mPlayedGames = playedGames;
+        mPlayedGames = playedGames;
     }
 
     @NonNull
@@ -84,7 +91,7 @@ public class Standings extends RealmObject {
     }
 
     public void setPoints(@NonNull Integer points) {
-        this.mPoints = points;
+        mPoints = points;
     }
 
     @NonNull
@@ -93,7 +100,7 @@ public class Standings extends RealmObject {
     }
 
     public void setGoals(@NonNull Integer goals) {
-        this.mGoals = goals;
+        mGoals = goals;
     }
 
     @NonNull
@@ -102,7 +109,7 @@ public class Standings extends RealmObject {
     }
 
     public void setGoalsAgainst(@NonNull Integer goalsAgainst) {
-        this.mGoalsAgainst = goalsAgainst;
+        mGoalsAgainst = goalsAgainst;
     }
 
     @NonNull
@@ -111,7 +118,7 @@ public class Standings extends RealmObject {
     }
 
     public void setGoalDifference(@NonNull Integer goalDifference) {
-        this.mGoalDifference = goalDifference;
+        mGoalDifference = goalDifference;
     }
 
     @NonNull
@@ -120,7 +127,7 @@ public class Standings extends RealmObject {
     }
 
     public void setWins(@NonNull Integer wins) {
-        this.mWins = wins;
+        mWins = wins;
     }
 
     @NonNull
@@ -129,7 +136,7 @@ public class Standings extends RealmObject {
     }
 
     public void setDraws(@NonNull Integer draws) {
-        this.mDraws = draws;
+        mDraws = draws;
     }
 
     @NonNull
@@ -138,7 +145,25 @@ public class Standings extends RealmObject {
     }
 
     public void setLosses(@NonNull Integer losses) {
-        this.mLosses = losses;
+        mLosses = losses;
+    }
+
+    @NonNull
+    public StandingsDetails getStandingsDetailsHome(){
+        return mStandingsDetailsHome;
+    }
+
+    public void setStandingsDetailsHome(@NonNull  StandingsDetails standingsDetailsHome){
+        mStandingsDetailsHome = standingsDetailsHome;
+    }
+
+    @NonNull
+    public StandingsDetails getStandingsDetailsAway(){
+        return mStandingsDetailsAway;
+    }
+
+    public void setStandingsDetailsAway(@NonNull StandingsDetails standingsDetailsAway){
+        mStandingsDetailsAway = standingsDetailsAway;
     }
 
 }
