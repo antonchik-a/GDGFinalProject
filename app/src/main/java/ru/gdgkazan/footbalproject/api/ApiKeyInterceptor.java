@@ -14,7 +14,7 @@ public class ApiKeyInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-        request = request.newBuilder().addHeader("X-Authorization", BuildConfig.API_KEY).build();
+        request = request.newBuilder().addHeader("X-Auth-Token", BuildConfig.API_KEY).build();
         return chain.proceed(request);
     }
 }

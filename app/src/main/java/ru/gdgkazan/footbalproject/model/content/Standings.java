@@ -3,7 +3,6 @@ package ru.gdgkazan.footbalproject.model.content;
 
 import android.support.annotation.NonNull;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
@@ -11,135 +10,135 @@ import io.realm.RealmObject;
 public class Standings extends RealmObject {
 
     @SerializedName("position")
-    private Integer position;
+    private Integer mPosition;
 
-    @SerializedName("teamName")
-    private String teamName;
+    @SerializedName("teamname")
+    private String mTeamname;
 
-    @SerializedName("crestURI")
-    private String crestURI;
+    @SerializedName("crestUri")
+    private String mCrestUri;
 
     @SerializedName("playedGames")
-    private Integer playedGames;
+    private Integer mPlayedGames;
 
     @SerializedName("points")
-    private Integer points;
+    private Integer mPoints;
 
     @SerializedName("goals")
-    private Integer goals;
+    private Integer mGoals;
 
     @SerializedName("goalsAgainst")
-    private Integer goalsAgainst;
+    private Integer mGoalsAgainst;
 
     @SerializedName("goalDifference")
-    private Integer goalDifference;
+    private Integer mGoalDifference;
 
     @SerializedName("wins")
-    private Integer wins;
+    private Integer mWins;
 
     @SerializedName("draws")
-    private Integer draws;
+    private Integer mDraws;
 
     @SerializedName("losses")
-    private Integer losses;
+    private Integer mLosses;
 
     @NonNull
     public Integer getPosition() {
-        return position;
+        return mPosition;
     }
 
     public void setPosition(@NonNull Integer position) {
-        this.position = position;
+        this.mPosition = position;
     }
 
     @NonNull
-    public String getTeamName() {
-        return teamName;
+    public String getTeamname() {
+        return mTeamname;
     }
 
-    public void setTeamName(@NonNull String teamName) {
-        this.teamName = teamName;
+    public void setTeamname(@NonNull String teamname) {
+        this.mTeamname = teamname;
     }
 
     @NonNull
-    public String getCrestURI() {
-        return crestURI;
+    public String getCrestUri() {
+        return mCrestUri;
     }
 
-    public void setCrestURI(@NonNull String crestURI) {
-        this.crestURI = crestURI;
+    public void setCrestUri(@NonNull String crestUri) {
+        this.mCrestUri = crestUri;
     }
 
     @NonNull
     public Integer getPlayedGames() {
-        return playedGames;
+        return mPlayedGames;
     }
 
     public void setPlayedGames(@NonNull Integer playedGames) {
-        this.playedGames = playedGames;
+        this.mPlayedGames = playedGames;
     }
 
     @NonNull
     public Integer getPoints() {
-        return points;
+        return mPoints;
     }
 
     public void setPoints(@NonNull Integer points) {
-        this.points = points;
+        this.mPoints = points;
     }
 
     @NonNull
     public Integer getGoals() {
-        return goals;
+        return mGoals;
     }
 
     public void setGoals(@NonNull Integer goals) {
-        this.goals = goals;
+        this.mGoals = goals;
     }
 
     @NonNull
     public Integer getGoalsAgainst() {
-        return goalsAgainst;
+        return mGoalsAgainst;
     }
 
     public void setGoalsAgainst(@NonNull Integer goalsAgainst) {
-        this.goalsAgainst = goalsAgainst;
+        this.mGoalsAgainst = goalsAgainst;
     }
 
     @NonNull
     public Integer getGoalDifference() {
-        return goalDifference;
+        return mGoalDifference;
     }
 
     public void setGoalDifference(@NonNull Integer goalDifference) {
-        this.goalDifference = goalDifference;
+        this.mGoalDifference = goalDifference;
     }
 
     @NonNull
     public Integer getWins() {
-        return wins;
+        return mWins;
     }
 
     public void setWins(@NonNull Integer wins) {
-        this.wins = wins;
+        this.mWins = wins;
     }
 
     @NonNull
     public Integer getDraws() {
-        return draws;
+        return mDraws;
     }
 
     public void setDraws(@NonNull Integer draws) {
-        this.draws = draws;
+        this.mDraws = draws;
     }
 
     @NonNull
     public Integer getLosses() {
-        return losses;
+        return mLosses;
     }
 
     public void setLosses(@NonNull Integer losses) {
-        this.losses = losses;
+        this.mLosses = losses;
     }
 
 }
