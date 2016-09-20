@@ -1,6 +1,7 @@
 package ru.gdgkazan.footbalproject.repository;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -8,16 +9,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 import ru.gdgkazan.footbalproject.api.ApiFactory;
 import ru.gdgkazan.footbalproject.model.content.Fixture;
 import ru.gdgkazan.footbalproject.model.content.Player;
+import ru.gdgkazan.footbalproject.model.content.Standings;
 import ru.gdgkazan.footbalproject.model.content.Team;
 import ru.gdgkazan.footbalproject.model.response.FixturesListResponse;
 import ru.gdgkazan.footbalproject.model.response.PlayersResponse;
 import ru.gdgkazan.footbalproject.model.response.TeamResponse;
 import ru.gdgkazan.footbalproject.model.response.TeamsResponse;
 import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * Created by Alexey Antonchik on 17.09.16.
@@ -44,37 +48,9 @@ public class DefaulFootballRepository implements FootballRepository {
                 });
     }
 
-    @NonNull
     @Override
     public Observable<List<Standings>> standingsList() {
         return null;
-    }
-
-    @NonNull
-    @Override
-    public Observable<List<Player>> players(int teamId) {
-        return ApiFactory.getFootballService()
-                .players(teamId)
-                .map(PlayersResponse::getPlayers)
-                .flatMap(Observable::from)
-                .map(player -> {
-                    player.setTeamId(teamId);
-                    return player;
-                })
-                .toList()
-                .flatMap(players -> {
-                    Realm.getDefaultInstance().executeTransaction(realm -> {
-                        RealmResults<Player> teamPlayers = realm.where(Player.class).equalTo(Player.FIELD_TEAM_ID, teamId).findAll();
-                        teamPlayers.deleteAllFromRealm();
-                        realm.insert(players);
-                    });
-                    return Observable.just(players);
-                })
-                .onErrorResumeNext(throwable -> {
-                    Realm realm = Realm.getDefaultInstance();
-                    RealmResults<Player> teamPlayers = realm.where(Player.class).equalTo(Player.FIELD_TEAM_ID, teamId).findAll();
-                    return Observable.just(realm.copyFromRealm(teamPlayers));
-                });
     }
 
     @Override
