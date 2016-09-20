@@ -6,4 +6,7 @@
     <string name="results">Таблица</string>
     <string name="loading_error">Loading error</string>
     <string name="loading">Loading…</string>
+
+    <!-- fixtures strings -->
+    <string name="fixture_end">Матч завершен</string>
 </resources>

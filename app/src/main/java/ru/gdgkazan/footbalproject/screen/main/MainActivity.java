@@ -19,6 +19,8 @@ import ru.gdgkazan.footbalproject.screen.results.ResultsFragment;
  */
 public class MainActivity extends AppCompatActivity {
 
+    final static String PAGE = "selected_page";
+
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
@@ -37,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
 
         setupViewPager(mPager);
         mTabLayout.setupWithViewPager(mPager);
+
+        if(savedInstanceState != null){
+            mPager.setCurrentItem(savedInstanceState.getInt(PAGE, 0));
+        }
     }
 
     private void setupViewPager(@NonNull ViewPager viewPager) {
@@ -46,4 +52,9 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(PAGE, mPager.getCurrentItem());
+    }
 }
