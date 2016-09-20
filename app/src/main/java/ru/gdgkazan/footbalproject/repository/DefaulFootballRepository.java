@@ -12,7 +12,6 @@ import io.realm.RealmResults;
 import ru.gdgkazan.footbalproject.api.ApiFactory;
 import ru.gdgkazan.footbalproject.model.content.Fixture;
 import ru.gdgkazan.footbalproject.model.content.Player;
-import ru.gdgkazan.footbalproject.model.content.Standings;
 import ru.gdgkazan.footbalproject.model.content.Team;
 import ru.gdgkazan.footbalproject.model.response.FixturesListResponse;
 import ru.gdgkazan.footbalproject.model.response.PlayersResponse;
@@ -84,11 +83,12 @@ public class DefaulFootballRepository implements FootballRepository {
                 .flatMap(integer -> {
                     Team team = Realm.getDefaultInstance().where(Team.class).equalTo(Team.FIELD_NAME,teamName).findFirst();
                     if(team != null) {
-                        return team(team.getId());
+                        return getTeamById(team.getId());
                     } else {
                         return getTeamFromAllTeams(teamName);
                     }
-                });
+                })
+                .flatMap(team -> getTeamWithPlayers(team.getId()));
     }
 
     private Observable<Team> getTeamFromAllTeams(String teamName) {
@@ -108,14 +108,12 @@ public class DefaulFootballRepository implements FootballRepository {
                 .filter(team -> teamName.equals(team.getName()));
     }
 
-    private Observable<Team> team(int teamId) {
+    private Observable<Team> getTeamById(int teamId) {
         return ApiFactory.getFootballService()
                 .team(teamId)
                 .flatMap(this::teamMapper)
                 .flatMap(team -> {
-                    Realm.getDefaultInstance().executeTransaction(realm -> {
-                        realm.insertOrUpdate(team);
-                    });
+                    Realm.getDefaultInstance().executeTransaction(realm -> realm.insertOrUpdate(team));
                     return Observable.just(team);
                 })
                 .onErrorResumeNext(throwable -> {
@@ -125,7 +123,26 @@ public class DefaulFootballRepository implements FootballRepository {
                 });
     }
 
-    private Observable<Team> teamMapper(TeamResponse response) {
+    @NonNull
+    private Observable<Team> getTeamWithPlayers(int teamId) {
+        return ApiFactory.getFootballService()
+                .players(teamId)
+                .map(PlayersResponse::getPlayers)
+                .flatMap(players -> {
+                    Realm realmInstance = Realm.getDefaultInstance();
+                    realmInstance.executeTransaction(realm -> {
+                        Team teamRealm = realm.where(Team.class).equalTo(Team.FIELD_ID, teamId).findFirst();
+                        teamRealm.getPlayers().deleteAllFromRealm();
+                        teamRealm.getPlayers().addAll(players);
+                    });
+
+                    Team teamRealm = realmInstance.where(Team.class).equalTo(Team.FIELD_ID, teamId).findFirst();
+                    return Observable.just(realmInstance.copyFromRealm(teamRealm));
+                });
+    }
+
+    @NonNull
+    private Observable<Team> teamMapper(@NonNull TeamResponse response) {
         String link = response.getLinks().getSelf().getHref();
         Matcher m = Pattern.compile("\\d{2,}")
                 .matcher(link);

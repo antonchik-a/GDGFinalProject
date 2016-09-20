@@ -3,7 +3,6 @@ package ru.gdgkazan.footbalproject.model.content;
 
 import android.support.annotation.NonNull;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
@@ -11,47 +10,47 @@ import io.realm.RealmObject;
 public class Result extends RealmObject {
 
     @SerializedName("goalsHomeTeam")
-    private Integer goalsHomeTeam;
+    private Integer mGoalsHomeTeam;
 
     @SerializedName("goalsAwayTeam")
-    private Integer goalsAwayTeam;
+    private Integer mGoalsAwayTeam;
 
     /**
      * 
      * @return
-     *     The goalsHomeTeam
+     *     The GoalsHomeTeam
      */
     @NonNull
     public Integer getGoalsHomeTeam() {
-        return goalsHomeTeam;
+        return mGoalsHomeTeam;
     }
 
     /**
      * 
      * @param goalsHomeTeam
-     *     The goalsHomeTeam
+     *     The GoalsHomeTeam
      */
     public void setGoalsHomeTeam(@NonNull Integer goalsHomeTeam) {
-        this.goalsHomeTeam = goalsHomeTeam;
+        this.mGoalsHomeTeam = goalsHomeTeam;
     }
 
     /**
      * 
      * @return
-     *     The goalsAwayTeam
+     *     The GoalsAwayTeam
      */
     @NonNull
     public Integer getGoalsAwayTeam() {
-        return goalsAwayTeam;
+        return mGoalsAwayTeam;
     }
 
     /**
      * 
      * @param goalsAwayTeam
-     *     The goalsAwayTeam
+     *     The GoalsAwayTeam
      */
     public void setGoalsAwayTeam(@NonNull Integer goalsAwayTeam) {
-        this.goalsAwayTeam = goalsAwayTeam;
+        this.mGoalsAwayTeam = goalsAwayTeam;
     }
 
 
