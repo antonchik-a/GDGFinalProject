@@ -96,7 +96,8 @@ public class DefaulFootballRepository implements FootballRepository {
                 });
     }
 
-    private Observable<Team> teamMapper(TeamResponse response) {
+    @NonNull
+    private Observable<Team> teamMapper(@NonNull TeamResponse response) {
         String link = response.getLinks().getSelf().getHref();
         Matcher m = Pattern.compile("\\d{2,}")
                 .matcher(link);
