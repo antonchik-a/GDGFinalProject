@@ -14,8 +14,6 @@ public interface FootballRepository {
 
     Observable<List<Fixture>> fixtures();
 
-    Observable<List<Player>> players(int teamId);
-
     Observable<Team> team(String teamName);
 
 

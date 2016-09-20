@@ -3,6 +3,7 @@ package ru.gdgkazan.footbalproject.model.content;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -20,7 +21,8 @@ public class Team extends RealmObject {
     private String code;
     private String shortName;
     private String squadMarketValue;
-    private String crestUrl;
+    private String mCrestUrl;
+    private RealmList<Player> mPlayers;
 
     public Team() {
     }
@@ -31,7 +33,7 @@ public class Team extends RealmObject {
         this.code = code;
         this.shortName = shortName;
         this.squadMarketValue = squadMarketName;
-        this.crestUrl = crestUrl;
+        this.mCrestUrl = crestUrl;
     }
 
     /**
@@ -131,20 +133,29 @@ public class Team extends RealmObject {
     /**
      *
      * @return
-     *     The crestUrl
+     *     The CrestUrl
      */
     @NonNull
     public String getCrestUrl() {
-        return crestUrl;
+        return mCrestUrl;
     }
 
     /**
      *
      * @param crestUrl
-     *     The crestUrl
+     *     The CrestUrl
      */
     public void setCrestUrl(@NonNull String crestUrl) {
-        this.crestUrl = crestUrl;
+        this.mCrestUrl = crestUrl;
+    }
+
+    @NonNull
+    public RealmList<Player> getPlayers() {
+        return mPlayers;
+    }
+
+    public void setPlayers(@NonNull RealmList<Player> players) {
+        mPlayers = players;
     }
 
 }
