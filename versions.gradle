@@ -8,6 +8,8 @@ ext {
     butterKnifeVersion = '8.3.0'
     picassoVersion = '2.5.2'
     picassoDownloaderVersion = '1.0.2'
+    glideVersion = '3.6.0'
+    androidSvgVersion = '1.2.1'
     hawkVersion = '1.23'
 
     junitVersion = '4.12'
