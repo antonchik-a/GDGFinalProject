@@ -33,6 +33,7 @@
     <dimen name="text.24">24sp</dimen>
 
     <dimen name="app_bar_height">320dp</dimen>
+    <dimen name="team_logo_big">170dp</dimen>
     <dimen name="title_textsize">22sp</dimen>
     <dimen name="description_textsize">14sp</dimen>
     <dimen name="info_textsize">18sp</dimen>

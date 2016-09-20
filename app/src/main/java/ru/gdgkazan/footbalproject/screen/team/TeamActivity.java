@@ -67,8 +67,8 @@ public class TeamActivity extends AppCompatActivity implements TeamContract.View
         mLoadingView = LoadingDialog.view(getSupportFragmentManager());
 
         String teamName = getIntent().getStringExtra(EXTRA_TEAM);
-        teamName = "Chelsea FC";
-        //teamName = "West Ham United FC";
+        //teamName = "Chelsea FC";
+        teamName = "West Ham United FC";
         mPresenter = new TeamPresenter(this);
         mPresenter.init(teamName);
     }
