@@ -12,6 +12,7 @@ import io.realm.RealmResults;
 import ru.gdgkazan.footbalproject.api.ApiFactory;
 import ru.gdgkazan.footbalproject.model.content.Fixture;
 import ru.gdgkazan.footbalproject.model.content.Player;
+import ru.gdgkazan.footbalproject.model.content.Standings;
 import ru.gdgkazan.footbalproject.model.content.Team;
 import ru.gdgkazan.footbalproject.model.response.FixturesListResponse;
 import ru.gdgkazan.footbalproject.model.response.PlayersResponse;
@@ -42,6 +43,12 @@ public class DefaulFootballRepository implements FootballRepository {
                     RealmResults<Fixture> fixtureRealmResults = realm.where(Fixture.class).findAll();
                     return Observable.just(realm.copyFromRealm(fixtureRealmResults));
                 });
+    }
+
+    @NonNull
+    @Override
+    public Observable<List<Standings>> standingsList() {
+        return null;
     }
 
     @NonNull
