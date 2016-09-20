@@ -1,9 +1,11 @@
 package ru.gdgkazan.footbalproject.screen.fixtures;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -26,11 +28,13 @@ import ru.gdgkazan.footbalproject.widget.DividerItemDecoration;
 /**
  * Created by Alexey Antonchik on 18.09.16.
  */
-public class FixturesFragment extends Fragment implements FixturesView{
-
+public class FixturesFragment extends Fragment implements FixturesView, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
+
+    @BindView(R.id.swipe_refresh)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     private FixturesAdapter mFixturesAdapter;
     private LifecycleHandler mLifecycleHandler;
@@ -50,6 +54,7 @@ public class FixturesFragment extends Fragment implements FixturesView{
         super.onActivityCreated(savedInstanceState);
 
         mLoadingView = LoadingDialog.view(getChildFragmentManager());
+        mSwipeRefreshLayout.setOnRefreshListener(this);
 
         mFixturesAdapter = new FixturesAdapter();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -62,13 +67,13 @@ public class FixturesFragment extends Fragment implements FixturesView{
     }
 
     @Override
-    public void setFixtures(List<Fixture> fixtures) {
+    public void setFixtures(@NonNull List<Fixture> fixtures) {
         mFixturesAdapter.setData(fixtures);
     }
 
     @Override
-    public void clickFixture(Fixture fixture) {
-
+    public void clickFixture(@NonNull Fixture fixture) {
+        //TODO
     }
 
     @Override
@@ -84,5 +89,10 @@ public class FixturesFragment extends Fragment implements FixturesView{
     @Override
     public void showError() {
         Snackbar.make(mRecyclerView, getResources().getString(R.string.loading_error), Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRefresh() {
+        mFixturesPresenter.refresh();
     }
 }

@@ -54,4 +54,13 @@ public class Result extends RealmObject {
         this.goalsAwayTeam = goalsAwayTeam;
     }
 
+
+    @Override
+    public String toString() {
+        if(getGoalsAwayTeam() != null && getGoalsHomeTeam() != null) {
+            return String.valueOf(getGoalsHomeTeam()) + " : " + String.valueOf(getGoalsAwayTeam());
+        }else {
+            return "";
+        }
+    }
 }

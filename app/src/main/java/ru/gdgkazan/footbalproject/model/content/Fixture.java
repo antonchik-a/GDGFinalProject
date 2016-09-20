@@ -7,12 +7,14 @@ import android.support.annotation.Nullable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 import io.realm.RealmObject;
 
 public class Fixture extends RealmObject {
 
     @SerializedName("date")
-    private String date;
+    private Date date;
 
     @SerializedName("status")
     private String status;
@@ -35,7 +37,7 @@ public class Fixture extends RealmObject {
      *     The date
      */
     @NonNull
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -44,7 +46,7 @@ public class Fixture extends RealmObject {
      * @param date
      *     The date
      */
-    public void setDate(@NonNull String date) {
+    public void setDate(@NonNull Date date) {
         this.date = date;
     }
 

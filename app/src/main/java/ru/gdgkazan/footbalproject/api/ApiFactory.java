@@ -2,6 +2,9 @@ package ru.gdgkazan.footbalproject.api;
 
 import android.support.annotation.NonNull;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -19,6 +22,8 @@ public final class ApiFactory {
 
     private ApiFactory() {
     }
+
+    private static final Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'").create();
 
     @NonNull
     public static FootballOrgService getFootballService() {
@@ -45,7 +50,7 @@ public final class ApiFactory {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.API_ENDPOINT)
                 .client(getClient())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(GSON))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
     }

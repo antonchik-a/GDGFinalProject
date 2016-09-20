@@ -4,7 +4,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import ru.gdgkazan.footbalproject.model.response.FixturesListResponse;
 import ru.gdgkazan.footbalproject.model.response.PlayersResponse;
-import ru.gdgkazan.footbalproject.model.response.TableResponse;
+import ru.gdgkazan.footbalproject.model.response.StandingsResponse;
 import ru.gdgkazan.footbalproject.model.response.TeamResponse;
 import ru.gdgkazan.footbalproject.model.response.TeamsResponse;
 import rx.Observable;
@@ -18,7 +18,7 @@ public interface FootballOrgService {
     Observable<FixturesListResponse> fixtures();
 
     @GET("competitions/426/leagueTable")
-    Observable<TableResponse> resultsTable();
+    Observable<StandingsResponse> standings();
 
     @GET("teams/{id}/players")
     Observable<PlayersResponse> players(@Path("id") int id);
