@@ -89,7 +89,7 @@ public class TeamActivity extends AppCompatActivity implements TeamContract.View
     }
 
     @Override
-    public void showTeam(Team team) {
+    public void showTeam(@NonNull Team team) {
         Images.loadTeamLogo(logoImageView, team);
         mCollapsingToolbar.setTitle(team.getName());
         mMarketValueView.setText(getString(R.string.squad_market_value, team.getSquadMarketValue()));

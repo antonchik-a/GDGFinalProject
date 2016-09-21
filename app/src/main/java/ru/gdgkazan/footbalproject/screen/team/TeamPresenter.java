@@ -1,5 +1,7 @@
 package ru.gdgkazan.footbalproject.screen.team;
 
+import android.support.annotation.NonNull;
+
 import ru.arturvasilov.rxloader.LifecycleHandler;
 import ru.gdgkazan.footbalproject.R;
 import ru.gdgkazan.footbalproject.repository.RepositoryProvider;
@@ -21,7 +23,7 @@ public class TeamPresenter implements TeamContract.UserActionListener {
     }
 
     @Override
-    public void init(String teamName) {
+    public void init(@NonNull String teamName) {
         mTeamName = teamName;
         load(false);
     }
