@@ -10,6 +10,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.gdgkazan.footbalproject.R;
 import ru.gdgkazan.footbalproject.model.content.Standings;
+import ru.gdgkazan.footbalproject.utils.CircleImageView;
 
 /**
  * Created by mikes on 21.09.16.
@@ -71,6 +72,9 @@ public class StandingsHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.standingsChildAwayLosses)
     TextView mStandingsChildAwayLosses;
 
+    @BindView(R.id.standingsParentLogo)
+    CircleImageView mStandingsParentLogo;
+
     public StandingsHolder(@NonNull  View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
@@ -86,7 +90,6 @@ public class StandingsHolder extends RecyclerView.ViewHolder {
         mStandingsChildHomeWins.setText(String.valueOf(standings.getStandingsDetailsHome().getWins()));
         mStandingsChildHomeDraws.setText(String.valueOf(standings.getStandingsDetailsHome().getDraws()));
         mStandingsChildHomeLosses.setText(String.valueOf(standings.getStandingsDetailsHome().getLosses()));
-        mProgressBar.setProgress((100 * standings.getGoals() / (standings.getGoals() + standings.getGoalsAgainst())));
         mStandingsChildGoalsDifference.setText(String.valueOf(standings.getGoalDifference()));
         mStandingsChildHomeGoalsScored.setText(String.valueOf(standings.getStandingsDetailsHome().getGoals()));
         mStandingsChildAwayGoalsScored.setText(String.valueOf(standings.getStandingsDetailsAway().getGoals()));
@@ -95,6 +98,11 @@ public class StandingsHolder extends RecyclerView.ViewHolder {
         mStandingsChildAwayWins.setText(String.valueOf(standings.getStandingsDetailsAway().getWins()));
         mStandingsChildAwayDraws.setText(String.valueOf(standings.getStandingsDetailsAway().getDraws()));
         mStandingsChildAwayLosses.setText(String.valueOf(standings.getStandingsDetailsAway().getLosses()));
+        mProgressBar.setProgress(getGoalsPercentage(standings.getGoals(), standings.getGoalsAgainst()));
+    }
+
+    private int getGoalsPercentage(int goals, int goalsAgainst){
+        return (100 * goals / (goals + goalsAgainst));
     }
 
 }

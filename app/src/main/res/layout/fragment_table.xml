@@ -3,15 +3,30 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/standings_background_white">
+    android:background="@color/standings_background_white"
+    android:orientation="vertical">
 
-    <!--<include layout="@layout/layout_standings_header" />-->
+    <include layout="@layout/layout_standings_header" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerViewStandings"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
-    </android.support.v7.widget.RecyclerView>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewStandings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:id="@id/empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/error_please_try_again_refresh_your_table"
+            android:textColor="@color/standings_text_secondary_color"
+            android:textSize="@dimen/text.15"/>
+
+    </FrameLayout>
 
 </LinearLayout>
