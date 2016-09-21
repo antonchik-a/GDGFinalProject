@@ -26,8 +26,8 @@ public class TablePresenter implements TableContract.Presenter {
     @Override
     public void init() {
         RepositoryProvider.provideFootballRepository().standingsList()
-                .doOnSubscribe(mView::showLoadingProgress)
-                .doOnTerminate(mView::hideLoadingProgress)
+                .doOnSubscribe(mView::showLoadingIndicator)
+                .doOnTerminate(mView::hideLoadingIndicator)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(mLifeCycleHandler.load(R.id.standings_list_request))

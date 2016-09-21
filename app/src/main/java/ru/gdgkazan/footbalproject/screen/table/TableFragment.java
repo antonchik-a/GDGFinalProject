@@ -33,16 +33,6 @@ public class TableFragment extends Fragment implements TableContract.View, Stand
     }
 
     @Override
-    public void showLoadingProgress() {
-        //TODO: show loading progress
-    }
-
-    @Override
-    public void hideLoadingProgress() {
-        //TODO: hide loading progress
-    }
-
-    @Override
     public void showError() {
         //TODO: show error
     }
@@ -55,5 +45,15 @@ public class TableFragment extends Fragment implements TableContract.View, Stand
     @Override
     public void onItemClick(@NonNull Standings standing) {
         Toast.makeText(getActivity(), "Pressed on standings!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showLoadingIndicator() {
+        //TODO: show loading indicator
+    }
+
+    @Override
+    public void hideLoadingIndicator() {
+        //TODO: hide loading indicator
     }
 }
