@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,8 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ru.arturvasilov.rxloader.LifecycleHandler;
+import ru.arturvasilov.rxloader.LoaderLifecycleHandler;
 import ru.gdgkazan.footbalproject.R;
 import ru.gdgkazan.footbalproject.model.content.Team;
 import ru.gdgkazan.footbalproject.screen.loading.LoadingDialog;
@@ -26,11 +29,12 @@ import ru.gdgkazan.footbalproject.widget.DividerItemDecoration;
 /**
  * Created by Sergei Riabov
  */
-public class TeamActivity extends AppCompatActivity implements TeamContract.View {
+public class TeamActivity extends AppCompatActivity implements TeamContract.View, SwipeRefreshLayout.OnRefreshListener {
 
     public static final String EXTRA_TEAM = "extraTeamName";
 
     private TeamContract.UserActionListener mPresenter;
+    private LifecycleHandler mLifecycleHandler;
     private PlayersAdapter mPlayersAdapter;
     private LoadingView mLoadingView;
 
@@ -48,6 +52,9 @@ public class TeamActivity extends AppCompatActivity implements TeamContract.View
 
     @BindView(R.id.squad_market_value)
     TextView mMarketValueView;
+
+    @BindView(R.id.swipe_refresh)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     public static void navigate(@NonNull AppCompatActivity activity, @NonNull String teamName) {
         Intent intent = new Intent(activity, TeamActivity.class);
@@ -72,9 +79,12 @@ public class TeamActivity extends AppCompatActivity implements TeamContract.View
         mPlayersRecyclerView.addItemDecoration(new DividerItemDecoration(this));
         mPlayersRecyclerView.setAdapter(mPlayersAdapter);
 
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+
         String teamName = getIntent().getStringExtra(EXTRA_TEAM);
-       // teamName = "Chelsea FC";
-        mPresenter = new TeamPresenter(this);
+        //teamName = "Chelsea FC";
+        mLifecycleHandler = LoaderLifecycleHandler.create(this, getSupportLoaderManager());
+        mPresenter = new TeamPresenter(this, mLifecycleHandler);
         mPresenter.init(teamName);
     }
 
@@ -84,6 +94,9 @@ public class TeamActivity extends AppCompatActivity implements TeamContract.View
         mCollapsingToolbar.setTitle(team.getName());
         mMarketValueView.setText(getString(R.string.squad_market_value, team.getSquadMarketValue()));
         mPlayersAdapter.setData(team.getPlayers());
+        if(mSwipeRefreshLayout.isRefreshing()) {
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     @Override
@@ -99,5 +112,10 @@ public class TeamActivity extends AppCompatActivity implements TeamContract.View
     @Override
     public void hideLoadingIndicator() {
         mLoadingView.hideLoadingIndicator();
+    }
+
+    @Override
+    public void onRefresh() {
+        mPresenter.reload();
     }
 }

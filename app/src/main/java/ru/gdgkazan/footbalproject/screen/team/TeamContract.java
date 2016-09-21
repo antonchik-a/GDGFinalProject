@@ -14,5 +14,6 @@ public interface TeamContract {
 
     interface UserActionListener {
         void init(String teamName);
+        void reload();
     }
 }
