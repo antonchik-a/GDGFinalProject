@@ -53,28 +53,21 @@ public class DefaulFootballRepository implements FootballRepository {
     @Override
     public Observable<List<Standings>> standingsList() {
         return ApiFactory.getFootballService().standingsList()
-                .flatMap(new Func1<StandingsListResponse, Observable<List<Standings>>>() {
-                    @Override
-                    public Observable<List<Standings>> call(StandingsListResponse standingsListResponse) {
+                .flatMap(standingsListResponse -> {
                         List<Standings> standingsList = standingsListResponse.getStandingsList();
-                        Realm.getDefaultInstance().executeTransaction(new Realm.Transaction() {
-                            @Override
-                            public void execute(Realm realm) {
-                                realm.delete(Standings.class);
-                                realm.insert(standingsList);
-                            }
+                        Realm.getDefaultInstance().executeTransaction(realm -> {
+                            realm.delete(Standings.class);
+                            realm.insert(standingsList);
                         });
                         return Observable.just(standingsList);
                     }
-                })
-                .onErrorResumeNext(new Func1<Throwable, Observable<List<Standings>>>() {
-                    @Override
-                    public Observable<List<Standings>> call(Throwable throwable) {
+                )
+                .onErrorResumeNext(throwable -> {
                         Realm realm = Realm.getDefaultInstance();
                         RealmResults<Standings> realmResultsStandingsList = realm.where(Standings.class).findAll();
                         return Observable.just(realm.copyFromRealm(realmResultsStandingsList));
                     }
-                });
+                );
     }
 
     @Override
