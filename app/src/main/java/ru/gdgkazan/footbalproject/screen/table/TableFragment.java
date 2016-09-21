@@ -1,22 +1,13 @@
-package ru.gdgkazan.footbalproject.screen.results;
+package ru.gdgkazan.footbalproject.screen.table;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.List;
-
 import ru.gdgkazan.footbalproject.R;
-import ru.gdgkazan.footbalproject.model.content.Standings;
-import ru.gdgkazan.footbalproject.repository.RepositoryProvider;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Alexey Antonchik on 18.09.16.

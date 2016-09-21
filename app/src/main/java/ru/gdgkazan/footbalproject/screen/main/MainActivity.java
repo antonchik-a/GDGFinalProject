@@ -12,7 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.gdgkazan.footbalproject.R;
 import ru.gdgkazan.footbalproject.screen.fixtures.FixturesFragment;
-import ru.gdgkazan.footbalproject.screen.results.TableFragment;
+import ru.gdgkazan.footbalproject.screen.table.TableFragment;
 
 /**
  * Created by Alexey Antonchik on 18.09.16.
