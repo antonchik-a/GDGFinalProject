@@ -59,12 +59,12 @@ public class Standings extends RealmObject {
     }
 
     @NonNull
-    public String getTeamname() {
+    public String getTeamName() {
         return mTeamName;
     }
 
-    public void setTeamname(@NonNull String teamname) {
-        mTeamName = teamname;
+    public void setTeamName(@NonNull String teamName) {
+        mTeamName = teamName;
     }
 
     @NonNull

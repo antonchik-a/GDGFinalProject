@@ -82,7 +82,7 @@ public class StandingsHolder extends RecyclerView.ViewHolder {
 
     public void bind(@NonNull Standings standings){
         mStandingsParentRank.setText(String.valueOf(standings.getPosition()));
-        mStandingsParentTeam.setText(standings.getTeamname());
+        mStandingsParentTeam.setText(standings.getTeamName());
         mStandingsParentWins.setText(String.valueOf(standings.getWins()));
         mStandingsParentDraws.setText(String.valueOf(standings.getDraws()));
         mStandingsParentLosses.setText(String.valueOf(standings.getLosses()));
