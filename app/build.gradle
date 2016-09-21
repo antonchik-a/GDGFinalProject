@@ -34,6 +34,15 @@ android {
     testOptions {
         unitTests.all { jvmArgs '-noverify' }
     }
+
+    productFlavors {
+        prod {
+
+        }
+        mock {
+
+        }
+    }
 }
 
 apply from: '../versions.gradle'
@@ -60,9 +69,6 @@ dependencies {
 
     compile "com.jakewharton:butterknife:$butterKnifeVersion"
     apt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
-
-    compile "com.squareup.picasso:picasso:$picassoVersion"
-    compile "com.jakewharton.picasso:picasso2-okhttp3-downloader:$picassoDownloaderVersion"
 
     compile "com.github.bumptech.glide:glide:$glideVersion"
     compile "com.caverock:androidsvg:$androidSvgVersion"

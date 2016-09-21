@@ -2,4 +2,5 @@
 <resources>
     <item name="fixtures_request" type="id"/>
     <item name="standings_list_request" type="id"/>
+    <item name="team_request" type="id"/>
 </resources>
