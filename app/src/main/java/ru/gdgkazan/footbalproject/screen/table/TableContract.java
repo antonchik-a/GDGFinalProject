@@ -16,9 +16,13 @@ public interface TableContract {
 
         void showTable(List<Standings> standingsList);
 
-        void showRefreshLoading();
+        void showLoadingProgress();
 
-        void hideRefreshLoading();
+        void hideLoadingProgress();
+
+        void showError();
+
+        void showToastMessage(String message);
 
     }
 
