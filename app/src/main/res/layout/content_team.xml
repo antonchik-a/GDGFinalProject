@@ -15,18 +15,11 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/squad_market_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_12"
-            android:textSize="@dimen/title_textsize"/>
-
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_12"
-            android:textSize="@dimen/description_textsize"/>
+            android:textSize="@dimen/text.14"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/players_recyclerview"

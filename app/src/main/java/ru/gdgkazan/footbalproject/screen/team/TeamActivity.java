@@ -8,20 +8,20 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.gdgkazan.footbalproject.R;
-import ru.gdgkazan.footbalproject.model.content.Player;
 import ru.gdgkazan.footbalproject.model.content.Team;
 import ru.gdgkazan.footbalproject.screen.loading.LoadingDialog;
 import ru.gdgkazan.footbalproject.screen.loading.LoadingView;
 import ru.gdgkazan.footbalproject.utils.Images;
+import ru.gdgkazan.footbalproject.widget.DividerItemDecoration;
 
 /**
  * Created by Sergei Riabov
@@ -31,6 +31,7 @@ public class TeamActivity extends AppCompatActivity implements TeamContract.View
     public static final String EXTRA_TEAM = "extraTeamName";
 
     private TeamContract.UserActionListener mPresenter;
+    private PlayersAdapter mPlayersAdapter;
     private LoadingView mLoadingView;
 
     @BindView(R.id.toolbar)
@@ -39,14 +40,14 @@ public class TeamActivity extends AppCompatActivity implements TeamContract.View
     @BindView(R.id.toolbar_layout)
     CollapsingToolbarLayout mCollapsingToolbar;
 
-    @BindView(R.id.title)
-    TextView mTeamNameTextView;
-
     @BindView(R.id.players_recyclerview)
-    RecyclerView playersRecyclerView;
+    RecyclerView mPlayersRecyclerView;
 
     @BindView(R.id.team_logo)
     ImageView logoImageView;
+
+    @BindView(R.id.squad_market_value)
+    TextView mMarketValueView;
 
     public static void navigate(@NonNull AppCompatActivity activity, @NonNull String teamName) {
         Intent intent = new Intent(activity, TeamActivity.class);
@@ -66,23 +67,28 @@ public class TeamActivity extends AppCompatActivity implements TeamContract.View
 
         mLoadingView = LoadingDialog.view(getSupportFragmentManager());
 
+        mPlayersAdapter = new PlayersAdapter();
+        mPlayersRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mPlayersRecyclerView.addItemDecoration(new DividerItemDecoration(this));
+        mPlayersRecyclerView.setAdapter(mPlayersAdapter);
+
         String teamName = getIntent().getStringExtra(EXTRA_TEAM);
-        //teamName = "Chelsea FC";
-        teamName = "West Ham United FC";
+       // teamName = "Chelsea FC";
         mPresenter = new TeamPresenter(this);
         mPresenter.init(teamName);
     }
 
     @Override
     public void showTeam(Team team) {
-        mCollapsingToolbar.setTitle(team.getName());
         Images.loadTeamLogo(logoImageView, team);
-
+        mCollapsingToolbar.setTitle(team.getName());
+        mMarketValueView.setText(getString(R.string.squad_market_value, team.getSquadMarketValue()));
+        mPlayersAdapter.setData(team.getPlayers());
     }
 
     @Override
     public void showError() {
-        Snackbar.make(playersRecyclerView, getResources().getString(R.string.loading_error), Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(mPlayersRecyclerView, getResources().getString(R.string.loading_error), Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
