@@ -14,7 +14,8 @@
         android:layout_width="50dp"
         android:gravity="center_vertical|center_horizontal"
         android:background="@drawable/circle"
-        android:textColor="@color/textSecondary"/>
+        android:textColor="@color/textSecondary"
+        android:layout_gravity="center_vertical|center_horizontal"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,14 +37,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            android:textColor="@color/textSecondary"/>
+            android:textColor="@color/textHint"/>
         <TextView
             android:text="TextView"
             android:id="@+id/position"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:textColor="@color/textPrimary"/>
+            android:textColor="@color/textSecondary"/>
         </LinearLayout>
 
     <ImageView

@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#388E3C</color>
     <color name="colorAccent">#d50000</color>
     <color name="colorPrimaryLight">#A5D6A7</color>
-    <color name="textPrimary">#87000000</color>
-    <color name="textSecondary">#54000000</color>
-    <color name="textHint">#38000000</color>
+    <color name="textPrimary">#DE000000</color>
+    <color name="textSecondary">#8A000000</color>
+    <color name="textHint">#61000000</color>
 </resources>
