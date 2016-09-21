@@ -15,11 +15,13 @@
     <!--STANDINGS_HEADER_STRINGS-->
     <string name="standings_header_team">Team</string>
     <string name="standings_header_points">Pts</string>
+
     <!--STANDINGS_GENERAL_STRINGS-->
     <string name="error_please_try_again_refresh_your_table">Error. Please, try again refresh your table</string>
     <string name="standings_wins">W</string>
     <string name="standings_draws">D</string>
     <string name="standings_losses">L</string>
+
     <!--STANDINGS_ITEM_CHILD_STRINGS-->
     <string name="standings_home_block">HOME</string>
     <string name="standings_away_block">AWAY</string>

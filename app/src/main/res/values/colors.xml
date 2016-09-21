@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--STANDINGS_PROGRESS-->
+    <color name="standings_progress_start_color">#66BB6A</color>
+    <color name="standings_progress_center_color">#A5D6A7</color>
+    <color name="standings_progress_end_color">#66BB6A</color>
+
+    <!--STANDINGS_SECONDARY_PROGRESS-->
+    <color name="standings_secondary_progress_start_color">#EF5350</color>
+    <color name="standings_secondary_progress_center_color">#EF9A9A</color>
+    <color name="standings_secondary_progress_end_color">#EF5350</color>
+
+    <!--STANDINGS_POSITIVE_$_NEGATIVE-->
+    <color name="standings_positive_color">#2E7D32</color>
+    <color name="standings_negative_color">#C62828</color>
+
+    <!--STANDINGS_TEXT-->
+    <color name="standings_text_primary_color">#212121</color>
+    <color name="standings_text_secondary_color">#757575</color>
+    <color name="standings_text_white_color">#FFFFFF</color>
+
+    <!--STANDINGS_DIVIDER-->
+    <color name="standings_divider_color">#BDBDBD</color>
+    <color name="standings_divider_header_color">#757575</color>
+
+    <!--STANDINGS_BACKGROUND-->
+    <color name="standings_background_white">#FFFFFF</color>
+    <color name="standings_background_header">#EEEEEE</color>
+    <color name="standings_background_item_select">#EEEEEE</color>
+
 </resources>
