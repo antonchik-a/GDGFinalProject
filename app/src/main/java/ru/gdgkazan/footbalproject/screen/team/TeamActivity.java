@@ -94,9 +94,6 @@ public class TeamActivity extends AppCompatActivity implements TeamContract.View
         mCollapsingToolbar.setTitle(team.getName());
         mMarketValueView.setText(getString(R.string.squad_market_value, team.getSquadMarketValue()));
         mPlayersAdapter.setData(team.getPlayers());
-        if(mSwipeRefreshLayout.isRefreshing()) {
-            mSwipeRefreshLayout.setRefreshing(false);
-        }
     }
 
     @Override
@@ -112,6 +109,9 @@ public class TeamActivity extends AppCompatActivity implements TeamContract.View
     @Override
     public void hideLoadingIndicator() {
         mLoadingView.hideLoadingIndicator();
+        if(mSwipeRefreshLayout.isRefreshing()) {
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     @Override

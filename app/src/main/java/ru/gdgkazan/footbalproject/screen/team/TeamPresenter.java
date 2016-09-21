@@ -34,10 +34,10 @@ public class TeamPresenter implements TeamContract.UserActionListener {
     private void load(boolean isReload) {
         RepositoryProvider.provideFootballRepository()
                 .team(mTeamName)
-                .doOnSubscribe(() -> mView.showLoadingIndicator())
-                .doAfterTerminate(() -> mView.hideLoadingIndicator())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(() -> mView.showLoadingIndicator())
+                .doAfterTerminate(() -> mView.hideLoadingIndicator())
                 .compose(isReload ? mLifecycleHandler.reload(R.id.team_request) : mLifecycleHandler.load(R.id.team_request))
                 .subscribe(team -> {
                             mView.showTeam(team);
