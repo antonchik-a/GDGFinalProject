@@ -12,7 +12,18 @@
     <!-- fixtures strings -->
     <string name="fixture_end">Матч завершен</string>
 
-    <!--STANDINGS_STRINGS-->
+    <!--STANDINGS_HEADER_STRINGS-->
+    <string name="standings_header_team">Команда</string>
+    <string name="standings_header_points">О</string>
+    <!--STANDINGS_GENERAL_STRINGS-->
     <string name="error_please_try_again_refresh_your_table">Ошибка. Пожалуйста, попытайтесь снова обновить Вашу таблицу</string>
+    <string name="standings_wins">В</string>
+    <string name="standings_draws">Н</string>
+    <string name="standings_losses">П</string>
+    <!--STANDINGS_ITEM_CHILD_STRINGS-->
+    <string name="standings_home_block">ДОМА</string>
+    <string name="standings_away_block">В ГОСТЯХ</string>
+    <string name="standings_goals_scored">Забитые голы</string>
+    <string name="standings_goals_against">Пропущенные голы</string>
 
 </resources>
