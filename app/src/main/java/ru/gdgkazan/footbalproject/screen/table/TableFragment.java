@@ -14,7 +14,6 @@ import java.util.List;
 import ru.gdgkazan.footbalproject.R;
 import ru.gdgkazan.footbalproject.model.content.Standings;
 import ru.gdgkazan.footbalproject.screen.table.adapter.StandingsAdapter;
-import ru.gdgkazan.footbalproject.utils.Dialog;
 
 /**
  * Created by Alexey Antonchik on 18.09.16.
@@ -45,11 +44,7 @@ public class TableFragment extends Fragment implements TableContract.View, Stand
 
     @Override
     public void showError() {
-        Dialog.showWithPositiveButton(
-                getActivity(),
-                getString(R.string.error),
-                getString(R.string.error_please_try_again_refresh_your_table),
-                getString(R.string.ok));
+        //TODO: show error
     }
 
     @Override
