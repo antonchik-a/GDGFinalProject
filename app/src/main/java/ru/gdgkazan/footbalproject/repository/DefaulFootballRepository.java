@@ -81,7 +81,7 @@ public class DefaulFootballRepository implements FootballRepository {
                         return getTeamFromAllTeams(teamName);
                     }
                 })
-                .flatMap(team -> getTeamWithPlayers(team.getId()));
+                .flatMap(this::getTeamWithPlayers);
     }
 
     private Observable<Team> getTeamFromAllTeams(String teamName) {
@@ -98,7 +98,8 @@ public class DefaulFootballRepository implements FootballRepository {
                     });
                     return Observable.from(teams);
                 })
-                .filter(team -> teamName.equals(team.getName()));
+                .filter(team -> teamName.equals(team.getName()))
+                .switchIfEmpty(Observable.error(new NoSuchElementException()));
     }
 
     private Observable<Team> getTeamById(int teamId) {
@@ -117,21 +118,22 @@ public class DefaulFootballRepository implements FootballRepository {
     }
 
     @NonNull
-    private Observable<Team> getTeamWithPlayers(int teamId) {
+    private Observable<Team> getTeamWithPlayers(Team team) {
         return ApiFactory.getFootballService()
-                .players(teamId)
+                .players(team.getId())
                 .map(PlayersResponse::getPlayers)
                 .flatMap(players -> {
                     Realm realmInstance = Realm.getDefaultInstance();
                     realmInstance.executeTransaction(realm -> {
-                        Team teamRealm = realm.where(Team.class).equalTo(Team.FIELD_ID, teamId).findFirst();
+                        Team teamRealm = realm.where(Team.class).equalTo(Team.FIELD_ID, team.getId()).findFirst();
                         teamRealm.getPlayers().deleteAllFromRealm();
                         teamRealm.getPlayers().addAll(players);
                     });
 
-                    Team teamRealm = realmInstance.where(Team.class).equalTo(Team.FIELD_ID, teamId).findFirst();
+                    Team teamRealm = realmInstance.where(Team.class).equalTo(Team.FIELD_ID, team.getId()).findFirst();
                     return Observable.just(realmInstance.copyFromRealm(teamRealm));
-                });
+                })
+                .onErrorReturn(throwable -> team);
     }
 
     @NonNull

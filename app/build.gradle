@@ -34,6 +34,15 @@ android {
     testOptions {
         unitTests.all { jvmArgs '-noverify' }
     }
+
+    productFlavors {
+        prod {
+
+        }
+        mock {
+
+        }
+    }
 }
 
 apply from: '../versions.gradle'
