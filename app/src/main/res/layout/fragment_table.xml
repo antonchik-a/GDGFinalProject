@@ -25,15 +25,6 @@
 
         </android.support.v4.widget.SwipeRefreshLayout>
 
-        <TextView
-            android:id="@id/empty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/error_please_try_again_refresh_your_table"
-            android:textColor="@color/standings_text_secondary_color"
-            android:textSize="@dimen/text.15"/>
-
     </FrameLayout>
 
 </LinearLayout>
