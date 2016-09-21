@@ -1,5 +1,6 @@
 package ru.gdgkazan.footbalproject.test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ru.gdgkazan.footbalproject.model.content.Fixture;
@@ -14,14 +15,21 @@ import rx.Observable;
 public class TestFootballRepository implements FootballRepository {
 
     private boolean returnError = true;
+    private ArrayList<Fixture> mFixtures;
 
     public TestFootballRepository(boolean returnError) {
         this.returnError = returnError;
     }
 
+    public TestFootballRepository(boolean returnError, ArrayList<Fixture> fixtures) {
+        this.returnError = returnError;
+        mFixtures = fixtures;
+    }
+
     @Override
     public Observable<List<Fixture>> fixtures() {
-        return Observable.empty();
+        if(returnError) return Observable.error(new Exception());
+        return Observable.just(mFixtures);
     }
 
     @Override
