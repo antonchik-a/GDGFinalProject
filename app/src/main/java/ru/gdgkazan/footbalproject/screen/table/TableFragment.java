@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -30,10 +31,14 @@ import ru.gdgkazan.footbalproject.widget.DividerItemDecoration;
 /**
  * Created by Alexey Antonchik on 18.09.16.
  */
-public class TableFragment extends Fragment implements TableContract.View, StandingsAdapter.OnItemClick {
+public class TableFragment extends Fragment
+        implements TableContract.View, StandingsAdapter.OnItemClick, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.recyclerViewStandings)
     RecyclerView mRecyclerViewStandings;
+
+    @BindView(R.id.refreshLayout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     private LoadingView mLoadingView;
 
@@ -50,6 +55,13 @@ public class TableFragment extends Fragment implements TableContract.View, Stand
 
         mLoadingView = LoadingDialog.view(getActivity().getSupportFragmentManager());
 
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(
+                android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
         mRecyclerViewStandings.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerViewStandings.addItemDecoration(new DividerItemDecoration(getActivity()));
         mAdapter = new StandingsAdapter(new ArrayList<>(), this);
@@ -65,6 +77,7 @@ public class TableFragment extends Fragment implements TableContract.View, Stand
     @Override
     public void showTable(List<Standings> standingsList) {
         mAdapter.changeDataSet(standingsList);
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -90,5 +103,10 @@ public class TableFragment extends Fragment implements TableContract.View, Stand
     @Override
     public void hideLoadingIndicator() {
         mLoadingView.hideLoadingIndicator();
+    }
+
+    @Override
+    public void onRefresh() {
+        mPresenter.init();
     }
 }
