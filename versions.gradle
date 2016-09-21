@@ -11,6 +11,7 @@ ext {
     glideVersion = '3.6.0'
     androidSvgVersion = '1.2.1'
     hawkVersion = '1.23'
+    materialDialogVersion = '1.2.2'
 
     junitVersion = '4.12'
     mockitoVersion = '1.10.19'

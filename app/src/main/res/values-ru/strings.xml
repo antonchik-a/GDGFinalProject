@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- main strings -->
+    <string name="fixtures">Матчи</string>
+    <string name="results">Таблица</string>
+    <string name="loading_error">Ошибка загрузки</string>
+    <string name="loading">Загрузка...</string>
+    <string name="error">Ошибка</string>
+    <string name="ok">ОК</string>
+
+    <!-- fixtures strings -->
+    <string name="fixture_end">Матч завершен</string>
+
+    <!--STANDINGS_STRINGS-->
+    <string name="error_please_try_again_refresh_your_table">Ошибка. Пожалуйста, попытайтесь снова обновить Вашу таблицу</string>
+
+</resources>
