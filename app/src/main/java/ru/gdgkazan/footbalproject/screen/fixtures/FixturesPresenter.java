@@ -47,12 +47,13 @@ public class FixturesPresenter {
                 })
                 .toList()
                 .take(MAX_COUNT)
+
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(() -> {
                     if(!force) mView.showLoadingIndicator();
                 })
                 .doAfterTerminate(() ->  mView.hideLoadingIndicator())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .compose(force ?mLifecycleHandler.reload(R.id.fixtures_request) : mLifecycleHandler.load(R.id.fixtures_request))
                 .subscribe(fixtures -> {
                             mView.setFixtures(fixtures);

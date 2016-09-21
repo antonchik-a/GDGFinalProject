@@ -84,15 +84,7 @@ public class FixturesFragment extends Fragment implements FixturesView, SwipeRef
     @Override
     public void hideLoadingIndicator() {
         mLoadingView.hideLoadingIndicator();
-
-        if(mSwipeRefreshLayout.isRefreshing()) {
-            mSwipeRefreshLayout.post(new Runnable() {
-                @Override
-                public void run() {
-                    mSwipeRefreshLayout.setRefreshing(false);
-                }
-            });
-        }
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
