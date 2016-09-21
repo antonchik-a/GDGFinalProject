@@ -55,7 +55,7 @@ public class Standings extends RealmObject {
     }
 
     public void setPosition(@NonNull Integer position) {
-        this.mPosition = position;
+        mPosition = position;
     }
 
     @NonNull

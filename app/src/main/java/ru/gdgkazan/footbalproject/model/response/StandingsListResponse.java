@@ -32,7 +32,7 @@ public class StandingsListResponse {
     }
 
     @NonNull
-    public List<Standings> getStandings() {
+    public List<Standings> getStandingsList() {
         if(mStandingsList == null){
             return new ArrayList<>();
         }
