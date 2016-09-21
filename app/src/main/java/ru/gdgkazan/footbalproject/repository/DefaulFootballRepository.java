@@ -3,6 +3,7 @@ package ru.gdgkazan.footbalproject.repository;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
@@ -18,6 +19,7 @@ import ru.gdgkazan.footbalproject.model.content.Standings;
 import ru.gdgkazan.footbalproject.model.content.Team;
 import ru.gdgkazan.footbalproject.model.response.FixturesListResponse;
 import ru.gdgkazan.footbalproject.model.response.PlayersResponse;
+import ru.gdgkazan.footbalproject.model.response.StandingsListResponse;
 import ru.gdgkazan.footbalproject.model.response.TeamResponse;
 import ru.gdgkazan.footbalproject.model.response.TeamsResponse;
 import rx.Observable;
@@ -50,7 +52,22 @@ public class DefaulFootballRepository implements FootballRepository {
 
     @Override
     public Observable<List<Standings>> standingsList() {
-        return null;
+        return ApiFactory.getFootballService().standingsList()
+                .map(StandingsListResponse::getStandingsList)
+                .flatMap(standingsList -> {
+                        Realm.getDefaultInstance().executeTransaction(realm -> {
+                            realm.delete(Standings.class);
+                            realm.insert(standingsList);
+                        });
+                        return Observable.just(standingsList);
+                    }
+                )
+                .onErrorResumeNext(throwable -> {
+                        Realm realm = Realm.getDefaultInstance();
+                        RealmResults<Standings> realmResultsStandingsList = realm.where(Standings.class).findAll();
+                        return Observable.just(realm.copyFromRealm(realmResultsStandingsList));
+                    }
+                );
     }
 
     @Override

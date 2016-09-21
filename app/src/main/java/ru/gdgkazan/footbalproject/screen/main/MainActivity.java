@@ -12,7 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.gdgkazan.footbalproject.R;
 import ru.gdgkazan.footbalproject.screen.fixtures.FixturesFragment;
-import ru.gdgkazan.footbalproject.screen.results.ResultsFragment;
+import ru.gdgkazan.footbalproject.screen.table.TableFragment;
 
 /**
  * Created by Alexey Antonchik on 18.09.16.
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(@NonNull ViewPager viewPager) {
         MainPagerAdapter adapter = new MainPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new FixturesFragment(), getResources().getString(R.string.fixtures));
-        adapter.addFragment(new ResultsFragment(), getResources().getString(R.string.results));
+        adapter.addFragment(new TableFragment(), getResources().getString(R.string.results));
         viewPager.setAdapter(adapter);
     }
 
