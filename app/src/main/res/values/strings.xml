@@ -2,15 +2,34 @@
     <string name="app_name">FootbalProject</string>
 
     <!-- main strings -->
-    <string name="fixtures">Fixtures</string>
-    <string name="results">Standings</string>
+    <string name="fixtures">Matches</string>
+    <string name="results">Table</string>
     <string name="loading_error">Loading error</string>
     <string name="loading">Loading…</string>
     <string name="not_available">"n/a"</string>
-
-    <!-- fixtures strings -->
-    <string name="fixture_end">Finished</string>
+    <string name="error">Error</string>
+    <string name="ok">OK</string>
 
     <!-- team strings -->
     <string name="squad_market_value">Squad market value: %s</string>
+
+    <!-- fixtures strings -->
+    <string name="fixture_end">Match ended</string>
+
+    <!--STANDINGS_HEADER_STRINGS-->
+    <string name="standings_header_team">Team</string>
+    <string name="standings_header_points">Pts</string>
+
+    <!--STANDINGS_GENERAL_STRINGS-->
+    <string name="error_please_try_again_refresh_your_table">Error. Please, try again refresh your table</string>
+    <string name="standings_wins">W</string>
+    <string name="standings_draws">D</string>
+    <string name="standings_losses">L</string>
+
+    <!--STANDINGS_ITEM_CHILD_STRINGS-->
+    <string name="standings_home_block">HOME</string>
+    <string name="standings_away_block">AWAY</string>
+    <string name="standings_goals_scored">Goals scored</string>
+    <string name="standings_goals_against">Goals against</string>
+
 </resources>
