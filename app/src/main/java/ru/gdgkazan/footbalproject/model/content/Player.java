@@ -2,6 +2,7 @@
 package ru.gdgkazan.footbalproject.model.content;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -73,7 +74,7 @@ public class Player extends RealmObject {
      * @return
      *     The JerseyNumber
      */
-    @NonNull
+    @Nullable
     public Integer getJerseyNumber() {
         return mJerseyNumber;
     }
@@ -83,7 +84,7 @@ public class Player extends RealmObject {
      * @param jerseyNumber
      *     The JerseyNumber
      */
-    public void setJerseyNumber(@NonNull Integer jerseyNumber) {
+    public void setJerseyNumber(@Nullable Integer jerseyNumber) {
         this.mJerseyNumber = jerseyNumber;
     }
 

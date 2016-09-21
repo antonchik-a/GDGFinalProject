@@ -3,6 +3,7 @@ package ru.gdgkazan.footbalproject.utils;
         import android.graphics.drawable.PictureDrawable;
         import android.net.Uri;
         import android.support.annotation.NonNull;
+        import android.util.Log;
         import android.widget.ImageView;
 
         import com.bumptech.glide.Glide;
@@ -13,6 +14,7 @@ package ru.gdgkazan.footbalproject.utils;
 
         import java.io.InputStream;
 
+        import ru.gdgkazan.footbalproject.R;
         import ru.gdgkazan.footbalproject.model.content.Team;
 
 /**
@@ -34,8 +36,17 @@ public final class Images {
                 .cacheDecoder(new FileToStreamDecoder<>(new SvgDecoder()))
                 .decoder(new SvgDecoder())
                 .listener(new SvgSoftwareLayerSetter<>())
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                //.diskCacheStrategy(DiskCacheStrategy.NONE)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .load(url)
+                .into(imageView);
+    }
+
+    public static void loadCountryFlag(@NonNull ImageView imageView, @NonNull String code) {
+        String url = "http://www.geonames.org/flags/x/" + code.toLowerCase() + ".gif";
+        Glide.with(imageView.getContext())
+                .load(url)
+                .placeholder(R.drawable.country_na)
                 .into(imageView);
     }
 }
