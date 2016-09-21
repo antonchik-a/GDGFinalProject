@@ -24,6 +24,7 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersHolder> {
     }
 
     public void setData(List<Player> players){
+        mPlayers.clear();
         mPlayers.addAll(players);
         notifyDataSetChanged();
     }
