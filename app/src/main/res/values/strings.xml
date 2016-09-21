@@ -2,11 +2,15 @@
     <string name="app_name">FootbalProject</string>
 
     <!-- main strings -->
-    <string name="fixtures">Матчи</string>
-    <string name="results">Таблица</string>
+    <string name="fixtures">Fixtures</string>
+    <string name="results">Standings</string>
     <string name="loading_error">Loading error</string>
     <string name="loading">Loading…</string>
+    <string name="not_available">"n/a"</string>
 
     <!-- fixtures strings -->
-    <string name="fixture_end">Матч завершен</string>
+    <string name="fixture_end">Finished</string>
+
+    <!-- team strings -->
+    <string name="squad_market_value">Squad market value: %s</string>
 </resources>
