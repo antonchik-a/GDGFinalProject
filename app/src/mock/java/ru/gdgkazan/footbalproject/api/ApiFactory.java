@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import ru.gdgkazan.footbalproject.BuildConfig;
 
 /**
- * Created by Alexey Antonchik on 17.09.16.
+ * @author Sergei Riabov
  */
 public final class ApiFactory {
 
@@ -74,6 +74,7 @@ public final class ApiFactory {
         return new OkHttpClient.Builder()
                 .addInterceptor(LoggingInterceptor.create())
                 .addInterceptor(new ApiKeyInterceptor())
+                .addInterceptor(MockingInterceptor.create())
                 .build();
     }
 }
