@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="56dp"
-    android:background="@color/standings_background_header">
+    android:background="@color/standings_progress_start_color">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/standings_header_team"
-                android:textColor="@color/standings_text_primary_color"
+                android:textColor="@color/standings_text_white_color"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </FrameLayout>
@@ -46,7 +46,7 @@
                     android:gravity="center"
                     android:layout_weight="1"
                     android:text="@string/standings_wins"
-                    android:textColor="@color/standings_text_primary_color"
+                    android:textColor="@color/standings_text_white_color"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -56,7 +56,7 @@
                     android:gravity="center"
                     android:layout_weight="1"
                     android:text="@string/standings_draws"
-                    android:textColor="@color/standings_text_primary_color"
+                    android:textColor="@color/standings_text_white_color"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -66,7 +66,7 @@
                     android:gravity="center"
                     android:layout_weight="1"
                     android:text="@string/standings_losses"
-                    android:textColor="@color/standings_text_primary_color"
+                    android:textColor="@color/standings_text_white_color"
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="@string/standings_header_points"
-                    android:textColor="@color/standings_text_primary_color"
+                    android:textColor="@color/standings_text_white_color"
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </FrameLayout>

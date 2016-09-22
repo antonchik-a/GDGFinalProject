@@ -16,7 +16,7 @@ public class Standings extends RealmObject {
     @SerializedName("teamName")
     private String mTeamName;
 
-    @SerializedName("crestUri")
+    @SerializedName("crestURI")
     private String mCrestUri;
 
     @SerializedName("playedGames")
@@ -59,12 +59,12 @@ public class Standings extends RealmObject {
     }
 
     @NonNull
-    public String getTeamname() {
+    public String getTeamName() {
         return mTeamName;
     }
 
-    public void setTeamname(@NonNull String teamname) {
-        mTeamName = teamname;
+    public void setTeamName(@NonNull String teamName) {
+        mTeamName = teamName;
     }
 
     @NonNull
