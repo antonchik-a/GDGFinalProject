@@ -10,6 +10,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -40,12 +43,14 @@ public class FixturesFragment extends Fragment implements FixturesView, SwipeRef
     private LifecycleHandler mLifecycleHandler;
     private FixturesPresenter mFixturesPresenter;
     private LoadingView mLoadingView;
+    private int mCount = FixturesPresenter.WEEK;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fixtures, null);
         ButterKnife.bind(this, view);
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -55,6 +60,11 @@ public class FixturesFragment extends Fragment implements FixturesView, SwipeRef
 
         mLoadingView = LoadingDialog.view(getChildFragmentManager());
         mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(
+                android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
 
         mFixturesAdapter = new FixturesAdapter();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -63,7 +73,8 @@ public class FixturesFragment extends Fragment implements FixturesView, SwipeRef
 
         mLifecycleHandler = LoaderLifecycleHandler.create(getActivity(), getLoaderManager());
         mFixturesPresenter = new FixturesPresenter(this, mLifecycleHandler);
-        mFixturesPresenter.init();
+        mFixturesPresenter.init(savedInstanceState);
+
     }
 
     @Override
@@ -95,5 +106,40 @@ public class FixturesFragment extends Fragment implements FixturesView, SwipeRef
     @Override
     public void onRefresh() {
         mFixturesPresenter.refresh();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.fixtures_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.week:
+                mCount = FixturesPresenter.WEEK;
+                mFixturesPresenter.showWeekFixtures();
+                return true;
+            case R.id.month:
+                mCount = FixturesPresenter.MONTH;
+                mFixturesPresenter.showMonth();
+                return true;
+            case R.id.half_year:
+                mCount = FixturesPresenter.HALF_YAER;
+                mFixturesPresenter.showHalfYearFixtures();
+                return true;
+            default:
+                break;
+        }
+
+        return false;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mFixturesPresenter.saveState(outState);
     }
 }
