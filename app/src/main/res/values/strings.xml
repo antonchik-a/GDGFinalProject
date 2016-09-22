@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FootbalProject</string>
+    <string name="app_name">Premier League</string>
 
     <!-- main strings -->
     <string name="fixtures">Matches</string>
@@ -12,6 +12,7 @@
 
     <!-- team strings -->
     <string name="squad_market_value">Squad market value: %s</string>
+    <string name="player_age">Age: %d</string>
 
     <!-- fixtures strings -->
     <string name="fixture_end">Match ended</string>
