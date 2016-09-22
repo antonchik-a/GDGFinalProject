@@ -16,7 +16,7 @@ import rx.schedulers.Schedulers;
  */
 public class FixturesPresenter {
 
-    final static  int RELEVANCE_DAYS = -3;
+    final static  int RELEVANCE_DAYS = -20;
     final static  int MAX_COUNT = 50;
     private FixturesView mView;
     private LifecycleHandler mLifecycleHandler;
