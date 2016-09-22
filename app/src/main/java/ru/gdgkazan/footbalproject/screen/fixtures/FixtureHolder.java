@@ -44,7 +44,6 @@ public class FixtureHolder extends RecyclerView.ViewHolder {
             mResultText.setTextColor(mResultText.getContext().getResources().getColor(R.color.textPrimary));
         }else {
             mResultText.setText("0 : 0");
-            mResultText.setAlpha(0.54f);
             mResultText.setTextColor(mResultText.getContext().getResources().getColor(R.color.textSecondary));
         }
 
