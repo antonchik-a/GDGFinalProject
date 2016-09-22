@@ -20,6 +20,9 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -46,6 +49,8 @@ android {
 }
 
 apply from: '../versions.gradle'
+apply from: '../jacoco.gradle'
+
 
 dependencies {
     compile "com.android.support:support-v4:$supportVersion"
