@@ -24,6 +24,7 @@ public final class ApiFactory {
     }
 
     private static final Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'").create();
+    private static final Gson GSON_DATE = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
     @NonNull
     public static FootballOrgService getFootballService() {
@@ -51,6 +52,7 @@ public final class ApiFactory {
                 .baseUrl(BuildConfig.API_ENDPOINT)
                 .client(getClient())
                 .addConverterFactory(GsonConverterFactory.create(GSON))
+                .addConverterFactory(GsonConverterFactory.create(GSON_DATE))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
     }
