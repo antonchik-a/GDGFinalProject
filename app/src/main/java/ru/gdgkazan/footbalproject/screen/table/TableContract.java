@@ -25,7 +25,9 @@ public interface TableContract {
 
     interface Presenter {
 
-        void init();
+        void load();
+
+        void reload();
 
         void onClickStandings(@NonNull Standings standings);
 

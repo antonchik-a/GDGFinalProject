@@ -24,19 +24,31 @@ public class TablePresenter implements TableContract.Presenter {
     }
 
     @Override
-    public void init() {
-        RepositoryProvider.provideFootballRepository().standingsList()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(mView::showLoadingIndicator)
-                .doOnTerminate(mView::hideLoadingIndicator)
-                .compose(mLifeCycleHandler.reload(R.id.standings_list_request))
-                .subscribe(mView::showTable, throwable -> mView.showError());
+    public void load() {
+        getData(false);
+    }
+
+    @Override
+    public void reload() {
+        getData(true);
     }
 
     @Override
     public void onClickStandings(@NonNull Standings standings) {
         mView.showToastMessage("TODO: some action by clicking on item");
+    }
+
+    public void getData(boolean isReload) {
+        RepositoryProvider.provideFootballRepository().standingsList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(() -> {
+                    if (!isReload) mView.showLoadingIndicator();
+                })
+                .doOnTerminate(mView::hideLoadingIndicator)
+                .compose(isReload ? mLifeCycleHandler.reload(R.id.standings_list_request)
+                                  : mLifeCycleHandler.load(R.id.standings_list_request))
+                .subscribe(mView::showTable, throwable -> mView.showError());
     }
 
 }

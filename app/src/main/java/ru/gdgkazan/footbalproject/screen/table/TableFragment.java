@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,6 @@ import ru.arturvasilov.rxloader.LifecycleHandler;
 import ru.arturvasilov.rxloader.LoaderLifecycleHandler;
 import ru.gdgkazan.footbalproject.R;
 import ru.gdgkazan.footbalproject.model.content.Standings;
-import ru.gdgkazan.footbalproject.screen.fixtures.FixturesPresenter;
 import ru.gdgkazan.footbalproject.screen.loading.LoadingDialog;
 import ru.gdgkazan.footbalproject.screen.loading.LoadingView;
 import ru.gdgkazan.footbalproject.screen.table.adapter.StandingsAdapter;
@@ -69,7 +67,7 @@ public class TableFragment extends Fragment
 
         LifecycleHandler mLifeCycleHandler = LoaderLifecycleHandler.create(getActivity(), getLoaderManager());
         mPresenter = new TablePresenter(this, mLifeCycleHandler);
-        mPresenter.init();
+        mPresenter.load();
 
         return view;
     }
@@ -77,7 +75,6 @@ public class TableFragment extends Fragment
     @Override
     public void showTable(List<Standings> standingsList) {
         mAdapter.changeDataSet(standingsList);
-        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -107,6 +104,6 @@ public class TableFragment extends Fragment
 
     @Override
     public void onRefresh() {
-        mPresenter.init();
+        mPresenter.reload();
     }
 }
