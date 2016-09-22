@@ -16,7 +16,11 @@ import rx.schedulers.Schedulers;
  */
 public class FixturesPresenter {
 
-    final static  int RELEVANCE_DAYS = -20;
+
+    public static int WEEK = -7;
+    public static int MONTH = -30;
+    public static int HALF_YAER = -182;
+    private int mCount = MONTH;
     final static  int MAX_COUNT = 50;
     private FixturesView mView;
     private LifecycleHandler mLifecycleHandler;
@@ -31,6 +35,11 @@ public class FixturesPresenter {
         load(false);
     }
 
+    public  void init(int count){
+        mCount = count;
+        load(false);
+    }
+
     public void refresh(){
         load(true);
     }
@@ -41,20 +50,19 @@ public class FixturesPresenter {
                 .flatMap(Observable::from)
                 .filter(fixture -> {
                     Calendar calendar = Calendar.getInstance();
-                    calendar.add(Calendar.DAY_OF_YEAR, RELEVANCE_DAYS);
+                    calendar.add(Calendar.DAY_OF_YEAR, mCount);
 
                     return fixture.getDate().after(calendar.getTime());
                 })
-                .toList()
                 .take(MAX_COUNT)
-
+                .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(() -> {
                     if(!force) mView.showLoadingIndicator();
                 })
                 .doAfterTerminate(() ->  mView.hideLoadingIndicator())
-                .compose(force ?mLifecycleHandler.reload(R.id.fixtures_request) : mLifecycleHandler.load(R.id.fixtures_request))
+                .compose(force ? mLifecycleHandler.reload(R.id.fixtures_request) : mLifecycleHandler.load(R.id.fixtures_request))
                 .subscribe(fixtures -> {
                             mView.setFixtures(fixtures);
                         },
@@ -62,6 +70,21 @@ public class FixturesPresenter {
                             mView.showError();
                             throwable.printStackTrace();
                         });
+    }
+
+    public void showWeekFixtures(){
+        mCount = WEEK;
+        load(true);
+    }
+
+    public void showMonth(){
+        mCount = MONTH;
+        load(true);
+    }
+
+    public void showHalfYearFixtures(){
+        mCount = HALF_YAER;
+        load(true);
     }
 
 }

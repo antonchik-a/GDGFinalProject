@@ -92,10 +92,46 @@ public class FixturesPresenterTest {
 
         RepositoryProvider.setFootballRepository(new TestFootballRepository(true, fixtures));
         mPresenter.refresh();
-        Mockito.verify(mView, times(2)).showLoadingIndicator();
+        Mockito.verify(mView, times(1)).showLoadingIndicator();
         Mockito.verify(mView,  times(2)).hideLoadingIndicator();
         Mockito.verify(mView).showError();
         Mockito.verify(mView, times(1)).setFixtures(fixtures);
+    }
+
+    @Test
+    public void testScenario() throws Exception {
+        ArrayList<Fixture> fixtures = new ArrayList<>();
+        RepositoryProvider.setFootballRepository(new TestFootballRepository(false, fixtures));
+        mPresenter.init(FixturesPresenter.WEEK);
+        Mockito.verify(mView).showLoadingIndicator();
+        Mockito.verify(mView).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView).setFixtures(fixtures);
+
+        mPresenter.showHalfYearFixtures();
+        Mockito.verify(mView).showLoadingIndicator();
+        Mockito.verify(mView,  times(2)).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView, times(2)).setFixtures(fixtures);
+
+        mPresenter.showWeekFixtures();
+        Mockito.verify(mView).showLoadingIndicator();
+        Mockito.verify(mView,  times(3)).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView, times(3)).setFixtures(fixtures);
+
+        mPresenter.showMonth();
+        Mockito.verify(mView).showLoadingIndicator();
+        Mockito.verify(mView,  times(4)).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView, times(4)).setFixtures(fixtures);
+
+        RepositoryProvider.setFootballRepository(new TestFootballRepository(true, fixtures));
+        mPresenter.refresh();
+        Mockito.verify(mView).showLoadingIndicator();
+        Mockito.verify(mView,  times(5)).hideLoadingIndicator();
+        Mockito.verify(mView).showError();
+        Mockito.verify(mView, times(4)).setFixtures(fixtures);
     }
 
     @After
