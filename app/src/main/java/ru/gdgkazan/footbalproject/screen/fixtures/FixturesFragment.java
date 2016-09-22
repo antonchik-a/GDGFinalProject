@@ -33,8 +33,6 @@ import ru.gdgkazan.footbalproject.widget.DividerItemDecoration;
  */
 public class FixturesFragment extends Fragment implements FixturesView, SwipeRefreshLayout.OnRefreshListener {
 
-    private static String COUNT_KEY = "count_key";
-
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
 
@@ -75,11 +73,8 @@ public class FixturesFragment extends Fragment implements FixturesView, SwipeRef
 
         mLifecycleHandler = LoaderLifecycleHandler.create(getActivity(), getLoaderManager());
         mFixturesPresenter = new FixturesPresenter(this, mLifecycleHandler);
-        if(savedInstanceState == null) {
-            mFixturesPresenter.init();
-        }else {
-            mFixturesPresenter.init(mCount);
-        }
+        mFixturesPresenter.init(savedInstanceState);
+
     }
 
     @Override
@@ -145,6 +140,6 @@ public class FixturesFragment extends Fragment implements FixturesView, SwipeRef
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(COUNT_KEY, mCount);
+        mFixturesPresenter.saveState(outState);
     }
 }

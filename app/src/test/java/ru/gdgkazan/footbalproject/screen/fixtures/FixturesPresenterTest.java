@@ -1,10 +1,13 @@
 package ru.gdgkazan.footbalproject.screen.fixtures;
 
+import android.os.Bundle;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
@@ -12,8 +15,6 @@ import java.util.ArrayList;
 import ru.arturvasilov.rxloader.LifecycleHandler;
 import ru.gdgkazan.footbalproject.model.content.Fixture;
 import ru.gdgkazan.footbalproject.repository.RepositoryProvider;
-import ru.gdgkazan.footbalproject.screen.team.TeamContract;
-import ru.gdgkazan.footbalproject.screen.team.TeamPresenter;
 import ru.gdgkazan.footbalproject.test.MockLifecycleHandler;
 import ru.gdgkazan.footbalproject.test.TestFootballRepository;
 import rx.Scheduler;
@@ -23,7 +24,6 @@ import rx.plugins.RxJavaHooks;
 import rx.schedulers.Schedulers;
 
 import static junit.framework.Assert.assertNotNull;
-import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.times;
 
 /**
@@ -62,7 +62,7 @@ public class FixturesPresenterTest {
     public void testSuccess() throws Exception {
         ArrayList<Fixture> fixtures = new ArrayList<>();
         RepositoryProvider.setFootballRepository(new TestFootballRepository(false, fixtures));
-        mPresenter.init();
+        mPresenter.init(null);
         Mockito.verify(mView).showLoadingIndicator();
         Mockito.verify(mView).hideLoadingIndicator();
         Mockito.verify(mView, times(0)).showError();
@@ -73,7 +73,7 @@ public class FixturesPresenterTest {
     public void testError() throws Exception {
         ArrayList<Fixture> fixtures = new ArrayList<>();
         RepositoryProvider.setFootballRepository(new TestFootballRepository(true, fixtures));
-        mPresenter.init();
+        mPresenter.init(null);
         Mockito.verify(mView).showLoadingIndicator();
         Mockito.verify(mView).hideLoadingIndicator();
         Mockito.verify(mView).showError();
@@ -84,7 +84,7 @@ public class FixturesPresenterTest {
     public void testReload() throws Exception {
         ArrayList<Fixture> fixtures = new ArrayList<>();
         RepositoryProvider.setFootballRepository(new TestFootballRepository(false, fixtures));
-        mPresenter.init();
+        mPresenter.init(null);
         Mockito.verify(mView).showLoadingIndicator();
         Mockito.verify(mView).hideLoadingIndicator();
         Mockito.verify(mView, times(0)).showError();
@@ -102,7 +102,7 @@ public class FixturesPresenterTest {
     public void testScenario() throws Exception {
         ArrayList<Fixture> fixtures = new ArrayList<>();
         RepositoryProvider.setFootballRepository(new TestFootballRepository(false, fixtures));
-        mPresenter.init(FixturesPresenter.WEEK);
+        mPresenter.init(null);
         Mockito.verify(mView).showLoadingIndicator();
         Mockito.verify(mView).hideLoadingIndicator();
         Mockito.verify(mView, times(0)).showError();
@@ -133,6 +133,81 @@ public class FixturesPresenterTest {
         Mockito.verify(mView).showError();
         Mockito.verify(mView, times(4)).setFixtures(fixtures);
     }
+
+
+    @Test
+    public void testReloadScenario() throws Exception {
+        ArrayList<Fixture> fixtures = new ArrayList<>();
+        RepositoryProvider.setFootballRepository(new TestFootballRepository(false, fixtures));
+        mPresenter.init(null);
+        Mockito.verify(mView).showLoadingIndicator();
+        Mockito.verify(mView).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView).setFixtures(fixtures);
+
+        mPresenter.showMonth();
+        Mockito.verify(mView).showLoadingIndicator();
+        Mockito.verify(mView).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView).setFixtures(fixtures);
+
+        mPresenter.showWeekFixtures();
+        Mockito.verify(mView).showLoadingIndicator();
+        Mockito.verify(mView,  times(2)).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView, times(2)).setFixtures(fixtures);
+
+        mPresenter.showWeekFixtures();
+        Mockito.verify(mView).showLoadingIndicator();
+        Mockito.verify(mView,  times(2)).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView, times(2)).setFixtures(fixtures);
+
+        mPresenter.showMonth();
+        Mockito.verify(mView).showLoadingIndicator();
+        Mockito.verify(mView,  times(3)).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView, times(3)).setFixtures(fixtures);
+
+        mPresenter.showMonth();
+        Mockito.verify(mView).showLoadingIndicator();
+        Mockito.verify(mView,  times(3)).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView, times(3)).setFixtures(fixtures);
+
+        RepositoryProvider.setFootballRepository(new TestFootballRepository(true, fixtures));
+        mPresenter.refresh();
+        Mockito.verify(mView).showLoadingIndicator();
+        Mockito.verify(mView,  times(4)).hideLoadingIndicator();
+        Mockito.verify(mView).showError();
+        Mockito.verify(mView, times(3)).setFixtures(fixtures);
+    }
+
+
+
+    @Test
+    public void testRotateScenario() throws Exception {
+        ArrayList<Fixture> fixtures = new ArrayList<>();
+        RepositoryProvider.setFootballRepository(new TestFootballRepository(false, fixtures));
+        mPresenter.init(null);
+        Mockito.verify(mView).showLoadingIndicator();
+        Mockito.verify(mView).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView).setFixtures(fixtures);
+
+        Bundle bundle = Mockito.mock(Bundle.class);
+        mPresenter.saveState(bundle);
+        Mockito.verify(bundle).putInt(FixturesPresenter.COUNT_KEY,FixturesPresenter.MONTH);
+
+        Mockito.when(bundle.getInt(FixturesPresenter.COUNT_KEY)).thenReturn(FixturesPresenter.HALF_YAER);
+        mPresenter.init(bundle);
+        Mockito.verify(mView, times(2)).showLoadingIndicator();
+        Mockito.verify(mView, times(2)).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView, times(2)).setFixtures(fixtures);
+    }
+
+
 
     @After
     public void tearDown() throws Exception {

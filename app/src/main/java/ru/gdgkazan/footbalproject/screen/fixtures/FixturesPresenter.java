@@ -1,5 +1,6 @@
 package ru.gdgkazan.footbalproject.screen.fixtures;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import java.util.Calendar;
@@ -16,6 +17,7 @@ import rx.schedulers.Schedulers;
  */
 public class FixturesPresenter {
 
+    public static String COUNT_KEY = "count_key";
 
     public static int WEEK = -7;
     public static int MONTH = -30;
@@ -31,14 +33,13 @@ public class FixturesPresenter {
         mLifecycleHandler = lifecycleHandler;
     }
 
-    public  void init(){
+    public  void init(Bundle bundle){
+        if(bundle != null){
+            mCount = bundle.getInt(COUNT_KEY, MONTH);
+        }
         load(false);
     }
 
-    public  void init(int count){
-        mCount = count;
-        load(false);
-    }
 
     public void refresh(){
         load(true);
@@ -73,18 +74,28 @@ public class FixturesPresenter {
     }
 
     public void showWeekFixtures(){
-        mCount = WEEK;
-        load(true);
+        if(mCount != WEEK) {
+            mCount = WEEK;
+            load(true);
+        }
     }
 
     public void showMonth(){
-        mCount = MONTH;
-        load(true);
+        if(mCount != MONTH) {
+            mCount = MONTH;
+            load(true);
+        }
     }
 
     public void showHalfYearFixtures(){
-        mCount = HALF_YAER;
-        load(true);
+        if(mCount != HALF_YAER) {
+            mCount = HALF_YAER;
+            load(true);
+        }
+    }
+
+    public void saveState(Bundle bundle){
+        bundle.putInt(COUNT_KEY, mCount);
     }
 
 }
