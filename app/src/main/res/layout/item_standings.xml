@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:expandable="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.andexert.expandablelayout.library.ExpandableLayout
-        android:id="@+id/itemStandings"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        expandable:el_headerLayout="@layout/item_standings_parent"
-        expandable:el_contentLayout="@layout/item_standings_child"/>
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/item_standings_parent"/>
+
+        <include
+            layout="@layout/item_standings_child"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

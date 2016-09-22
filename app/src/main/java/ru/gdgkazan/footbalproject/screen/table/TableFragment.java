@@ -94,7 +94,7 @@ public class TableFragment extends Fragment
 
     @Override
     public void onItemClick(@NonNull Standings standings) {
-        Toast.makeText(getActivity(), "Team name: " + standings.getTeamName(), Toast.LENGTH_SHORT).show();
+        //TODO: go to activity for more details
     }
 
     @Override
@@ -111,4 +111,5 @@ public class TableFragment extends Fragment
     public void onRefresh() {
         mPresenter.reload();
     }
+
 }

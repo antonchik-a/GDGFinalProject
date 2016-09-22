@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -17,6 +18,12 @@ import ru.gdgkazan.footbalproject.utils.CircleImageView;
  */
 
 public class StandingsHolder extends RecyclerView.ViewHolder {
+
+    @BindView(R.id.itemStandingsParent)
+    RelativeLayout mItemStandingsParent;
+
+    @BindView(R.id.itemStandingsChild)
+    RelativeLayout mItemStandingsChild;
 
     @BindView(R.id.standingsParentRank)
     TextView mStandingsParentRank;
@@ -81,6 +88,13 @@ public class StandingsHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(@NonNull Standings standings){
+        if(standings.getIsExpanded()){
+            mItemStandingsChild.setVisibility(View.VISIBLE);
+        }
+        else{
+            mItemStandingsChild.setVisibility(View.GONE);
+        }
+
         mStandingsParentRank.setText(String.valueOf(standings.getPosition()));
         mStandingsParentTeam.setText(standings.getTeamName());
         mStandingsParentWins.setText(String.valueOf(standings.getWins()));
