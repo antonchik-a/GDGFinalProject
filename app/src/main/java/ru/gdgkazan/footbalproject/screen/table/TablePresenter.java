@@ -45,7 +45,8 @@ public class TablePresenter implements TableContract.Presenter {
                 .doOnSubscribe(() -> {
                     if (!isReload) mView.showLoadingIndicator();
                 })
-                .doOnTerminate(mView::hideLoadingIndicator)
+                .doOnTerminate(isReload ? mView::hideSwipeRefreshing
+                                        : mView::hideLoadingIndicator)
                 .compose(isReload ? mLifeCycleHandler.reload(R.id.standings_list_request)
                                   : mLifeCycleHandler.load(R.id.standings_list_request))
                 .subscribe(mView::showTable, throwable -> mView.showError());

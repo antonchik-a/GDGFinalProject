@@ -21,6 +21,8 @@ public interface TableContract {
 
         void showToastMessage(String message);
 
+        void hideSwipeRefreshing();
+
     }
 
     interface Presenter {

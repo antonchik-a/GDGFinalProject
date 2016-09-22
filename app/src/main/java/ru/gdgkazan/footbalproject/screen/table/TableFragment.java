@@ -88,6 +88,11 @@ public class TableFragment extends Fragment
     }
 
     @Override
+    public void hideSwipeRefreshing() {
+        mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
     public void onItemClick(@NonNull Standings standings) {
         Toast.makeText(getActivity(), "Team name: " + standings.getTeamName(), Toast.LENGTH_SHORT).show();
     }
