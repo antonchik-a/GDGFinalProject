@@ -2,15 +2,21 @@
 <resources>
 
     <!-- main strings -->
+    <string name="app_name">Premier League</string>
+    <string name="not_available">н/д</string>
     <string name="fixtures">Матчи</string>
     <string name="results">Таблица</string>
     <string name="loading_error">Ошибка загрузки</string>
-    <string name="loading">Загрузка...</string>
+    <string name="loading">Загрузка…</string>
     <string name="error">Ошибка</string>
     <string name="ok">ОК</string>
 
     <!-- fixtures strings -->
     <string name="fixture_end">Матч завершен</string>
+
+    <!--team strings-->
+    <string name="player_age">Возраст: %d</string>
+    <string name="squad_market_value">Стоимость команды: %s</string>
 
     <!--STANDINGS_HEADER_STRINGS-->
     <string name="standings_header_team">Команда</string>

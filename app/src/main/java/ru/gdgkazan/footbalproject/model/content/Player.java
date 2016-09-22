@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 import io.realm.RealmObject;
 
 public class Player extends RealmObject {
@@ -20,7 +22,7 @@ public class Player extends RealmObject {
     private Integer mJerseyNumber;
 
     @SerializedName("dateOfBirth")
-    private String mDateOfBirth;
+    private Date mDateOfBirth;
 
     @SerializedName("nationality")
     private String mNationality;
@@ -94,7 +96,7 @@ public class Player extends RealmObject {
      *     The DateOfBirth
      */
     @NonNull
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return mDateOfBirth;
     }
 
@@ -103,7 +105,7 @@ public class Player extends RealmObject {
      * @param dateOfBirth
      *     The DateOfBirth
      */
-    public void setDateOfBirth(@NonNull String dateOfBirth) {
+    public void setDateOfBirth(@NonNull Date dateOfBirth) {
         this.mDateOfBirth = dateOfBirth;
     }
 
