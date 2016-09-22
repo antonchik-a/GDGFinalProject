@@ -33,11 +33,6 @@ public class TablePresenter implements TableContract.Presenter {
         getData(true);
     }
 
-    @Override
-    public void onClickStandings(@NonNull Standings standings) {
-        mView.showToastMessage("TODO: some action by clicking on item");
-    }
-
     public void getData(boolean isReload) {
         RepositoryProvider.provideFootballRepository().standingsList()
                 .subscribeOn(Schedulers.io())

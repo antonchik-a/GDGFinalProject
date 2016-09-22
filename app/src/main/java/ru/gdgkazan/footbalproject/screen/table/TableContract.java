@@ -31,8 +31,6 @@ public interface TableContract {
 
         void reload();
 
-        void onClickStandings(@NonNull Standings standings);
-
     }
 
 }
