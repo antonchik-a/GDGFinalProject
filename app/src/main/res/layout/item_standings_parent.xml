@@ -61,7 +61,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:textColor="@color/standings_text_white_color"
+                        android:textColor="@android:color/white"
                         android:textSize="12sp" />
                 </FrameLayout>
             </FrameLayout>
@@ -79,7 +79,7 @@
                     android:ellipsize="end"
                     android:layout_gravity="start|center"
                     android:lines="1"
-                    android:textColor="@color/standings_text_primary_color"
+                    android:textColor="@color/textPrimary"
                     android:textSize="16sp" />
             </FrameLayout>
         </LinearLayout>
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:layout_weight="1"
-                    android:textColor="@color/standings_text_secondary_color"
+                    android:textColor="@color/textSecondary"
                     android:textSize="12sp" />
 
                 <TextView
@@ -112,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:layout_weight="1"
-                    android:textColor="@color/standings_text_secondary_color"
+                    android:textColor="@color/textSecondary"
                     android:textSize="12sp" />
 
                 <TextView
@@ -121,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:layout_weight="1"
-                    android:textColor="@color/standings_text_secondary_color"
+                    android:textColor="@color/textSecondary"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -136,7 +136,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|center"
-                    android:textColor="@color/standings_text_primary_color"
+                    android:textColor="@color/textPrimary"
                     android:textSize="20sp" />
             </FrameLayout>
         </LinearLayout>
