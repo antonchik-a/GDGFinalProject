@@ -55,12 +55,14 @@ public class FixturesPresenterTest {
     @Test
     public void testCreated() throws Exception {
         assertNotNull(mPresenter);
+        assertNotNull(mView);
     }
 
 
     @Test
     public void testSuccess() throws Exception {
         ArrayList<Fixture> fixtures = new ArrayList<>();
+
         RepositoryProvider.setFootballRepository(new TestFootballRepository(false, fixtures));
         mPresenter.init(null);
         Mockito.verify(mView).showLoadingIndicator();
