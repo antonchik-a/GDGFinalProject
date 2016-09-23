@@ -22,11 +22,6 @@
     <color name="standings_positive_color">#2E7D32</color>
     <color name="standings_negative_color">#C62828</color>
 
-    <!--STANDINGS_TEXT-->
-    <color name="standings_text_primary_color">#212121</color>
-    <color name="standings_text_secondary_color">#757575</color>
-    <color name="standings_text_white_color">#FFFFFF</color>
-
     <!--STANDINGS_DIVIDER-->
     <color name="standings_divider_color">#BDBDBD</color>
     <color name="standings_divider_header_color">#757575</color>
