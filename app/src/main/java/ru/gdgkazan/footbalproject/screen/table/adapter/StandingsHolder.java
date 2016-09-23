@@ -12,6 +12,7 @@ import butterknife.ButterKnife;
 import ru.gdgkazan.footbalproject.R;
 import ru.gdgkazan.footbalproject.model.content.Standings;
 import ru.gdgkazan.footbalproject.utils.CircleImageView;
+import ru.gdgkazan.footbalproject.utils.Images;
 
 /**
  * Created by mikes on 21.09.16.
@@ -113,6 +114,7 @@ public class StandingsHolder extends RecyclerView.ViewHolder {
         mStandingsChildAwayDraws.setText(String.valueOf(standings.getStandingsDetailsAway().getDraws()));
         mStandingsChildAwayLosses.setText(String.valueOf(standings.getStandingsDetailsAway().getLosses()));
         mProgressBar.setProgress(getGoalsPercentage(standings.getGoals(), standings.getGoalsAgainst()));
+        Images.loadStandingsTeamLogo(mStandingsParentLogo, standings.getCrestUri());
     }
 
     private int getGoalsPercentage(int goals, int goalsAgainst){

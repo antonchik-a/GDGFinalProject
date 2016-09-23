@@ -27,5 +27,6 @@
     <string name="standings_away_block">В ГОСТЯХ</string>
     <string name="standings_goals_scored">Забитые голы</string>
     <string name="standings_goals_against">Пропущенные голы</string>
+    <string name="standings_more_details">ПОДРОБНАЯ ИНФОРМАЦИЯ</string>
 
 </resources>

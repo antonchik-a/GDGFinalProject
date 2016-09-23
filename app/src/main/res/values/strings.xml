@@ -31,5 +31,6 @@
     <string name="standings_away_block">AWAY</string>
     <string name="standings_goals_scored">Goals scored</string>
     <string name="standings_goals_against">Goals against</string>
+    <string name="standings_more_details">MORE DETAILS</string>
 
 </resources>

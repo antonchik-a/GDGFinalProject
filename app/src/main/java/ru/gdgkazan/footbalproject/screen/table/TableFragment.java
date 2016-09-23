@@ -1,5 +1,6 @@
 package ru.gdgkazan.footbalproject.screen.table;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -24,6 +25,7 @@ import ru.gdgkazan.footbalproject.model.content.Standings;
 import ru.gdgkazan.footbalproject.screen.loading.LoadingDialog;
 import ru.gdgkazan.footbalproject.screen.loading.LoadingView;
 import ru.gdgkazan.footbalproject.screen.table.adapter.StandingsAdapter;
+import ru.gdgkazan.footbalproject.screen.team.TeamActivity;
 import ru.gdgkazan.footbalproject.widget.DividerItemDecoration;
 
 /**
@@ -94,7 +96,11 @@ public class TableFragment extends Fragment
 
     @Override
     public void onItemClick(@NonNull Standings standings) {
-        //TODO: go to activity for more details
+        //TODO: go to activity by using method navigate in TeamActivity!!!
+        Intent intent = new Intent(getActivity(), TeamActivity.class);
+        intent.putExtra("extraTeamName", standings.getTeamName());
+        startActivity(intent);
+        //TODO: go to activity by using method navigate in TeamActivity!!!
     }
 
     @Override
