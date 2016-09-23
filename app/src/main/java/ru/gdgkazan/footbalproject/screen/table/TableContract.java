@@ -1,7 +1,5 @@
 package ru.gdgkazan.footbalproject.screen.table;
 
-import android.support.annotation.NonNull;
-
 import java.util.List;
 
 import ru.gdgkazan.footbalproject.model.content.Standings;
@@ -21,13 +19,27 @@ public interface TableContract {
 
         void showToastMessage(String message);
 
+        void hideSwipeRefreshing();
+
     }
 
     interface Presenter {
 
-        void init();
+        void load();
 
-        void onClickStandings(@NonNull Standings standings);
+        void reload();
+
+        void onClickSortByPointsFromAToZ();
+
+        void onClickSortByPointsFromZToA();
+
+        void onClickSortByScoredGoalsFromAToZ();
+
+        void onClickSortByScoredGoalsFromZToA();
+
+        void onClickSortByAgainstGoalsFromAToZ();
+
+        void onClickSortByAgainstGoalsFromZToA();
 
     }
 

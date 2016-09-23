@@ -5,6 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
+import android.widget.RelativeLayout;
 
 import java.util.List;
 
@@ -17,26 +20,28 @@ import ru.gdgkazan.footbalproject.model.content.Standings;
 
 public class StandingsAdapter extends RecyclerView.Adapter<StandingsHolder> {
 
-    private final List<Standings> mStandings;
+    private final List<Standings> mStandingsList;
 
     private final OnItemClick mOnItemClick;
 
-    private final View.OnClickListener mInternalListener = new View.OnClickListener() {
+    private final int DURATION_ANIMATION = 200;
+
+    private final View.OnClickListener mChildListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Standings standing = (Standings) view.getTag();
-            mOnItemClick.onItemClick(standing);
+            Standings standings = (Standings) view.getTag();
+            mOnItemClick.onItemClick(standings);
         }
     };
 
-    public StandingsAdapter(@NonNull List<Standings> standings, @NonNull OnItemClick onItemClick) {
-        mStandings = standings;
+    public StandingsAdapter(@NonNull List<Standings> standingsList, @NonNull OnItemClick onItemClick) {
+        mStandingsList = standingsList;
         mOnItemClick = onItemClick;
     }
 
     public void changeDataSet(@NonNull List<Standings> standings) {
-        mStandings.clear();
-        mStandings.addAll(standings);
+        mStandingsList.clear();
+        mStandingsList.addAll(standings);
         notifyDataSetChanged();
     }
 
@@ -49,20 +54,73 @@ public class StandingsAdapter extends RecyclerView.Adapter<StandingsHolder> {
 
     @Override
     public void onBindViewHolder(StandingsHolder holder, int position) {
-        Standings standing = mStandings.get(position);
-        holder.bind(standing);
-        holder.itemView.setTag(standing);
-        holder.itemView.setOnClickListener(mInternalListener);
+
+        Standings standings = mStandingsList.get(position);
+        holder.bind(standings);
+        holder.itemStandingsChild.setTag(standings);
+
+        holder.itemStandingsParent.setOnClickListener(view -> {
+            boolean isExpanded = mStandingsList.get(position).getIsExpanded();
+            mStandingsList.get(position).setIsOpened(!isExpanded);
+            if(!isExpanded){
+                expandChild(holder.itemStandingsChild);
+            }
+            else{
+                collapseChild(holder.itemStandingsChild);
+            }
+        });
+        holder.itemStandingsChild.setOnClickListener(mChildListener);
+
     }
 
     @Override
     public int getItemCount() {
-        return mStandings.size();
+        return mStandingsList.size();
+    }
+
+    private void expandChild(final View v) {
+
+        v.measure(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        final int targetHeight = v.getMeasuredHeight();
+        v.getLayoutParams().height = 0;
+        v.setVisibility(View.VISIBLE);
+
+        Animation animation = new Animation() {
+            @Override
+            protected void applyTransformation(float interpolatedTime, Transformation t) {
+                v.getLayoutParams().height = (interpolatedTime == 1) ? RelativeLayout.LayoutParams.WRAP_CONTENT : (int) (targetHeight * interpolatedTime);
+                v.requestLayout();
+            }
+        };
+
+        animation.setDuration(DURATION_ANIMATION);
+        v.startAnimation(animation);
+    }
+
+    private void collapseChild(final RelativeLayout v) {
+
+        final int initialHeight = v.getMeasuredHeight();
+
+        Animation animation = new Animation() {
+            @Override
+            protected void applyTransformation(float interpolatedTime, Transformation t) {
+                if(interpolatedTime == 1) {
+                    v.setVisibility(View.GONE);
+                }
+                else{
+                    v.getLayoutParams().height = initialHeight - (int)(initialHeight * interpolatedTime);
+                    v.requestLayout();
+                }
+            }
+        };
+
+        animation.setDuration(DURATION_ANIMATION);
+        v.startAnimation(animation);
     }
 
     public interface OnItemClick {
 
-        void onItemClick(@NonNull Standings standing);
+        void onItemClick(Standings standings);
 
     }
 
