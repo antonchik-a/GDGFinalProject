@@ -26,6 +26,7 @@ import ru.gdgkazan.footbalproject.R;
 import ru.gdgkazan.footbalproject.model.content.Fixture;
 import ru.gdgkazan.footbalproject.screen.loading.LoadingDialog;
 import ru.gdgkazan.footbalproject.screen.loading.LoadingView;
+import ru.gdgkazan.footbalproject.screen.search.SearchActivity;
 import ru.gdgkazan.footbalproject.widget.DividerItemDecoration;
 
 /**
@@ -117,7 +118,6 @@ public class FixturesFragment extends Fragment implements FixturesView, SwipeRef
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-
             case R.id.week:
                 mCount = FixturesPresenter.WEEK;
                 mFixturesPresenter.showWeekFixtures();
@@ -129,6 +129,9 @@ public class FixturesFragment extends Fragment implements FixturesView, SwipeRef
             case R.id.half_year:
                 mCount = FixturesPresenter.HALF_YAER;
                 mFixturesPresenter.showHalfYearFixtures();
+                return true;
+            case R.id.menu_search:
+                SearchActivity.startActivity(getActivity());
                 return true;
             default:
                 break;

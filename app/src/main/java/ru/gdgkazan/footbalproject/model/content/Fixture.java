@@ -31,7 +31,7 @@ public class Fixture extends RealmObject {
     private Result mResult;
 
     /**
-     * 
+     *
      * @return
      *     The Date
      */
@@ -41,7 +41,7 @@ public class Fixture extends RealmObject {
     }
 
     /**
-     * 
+     *
      * @param date
      *     The Date
      */
@@ -50,7 +50,7 @@ public class Fixture extends RealmObject {
     }
 
     /**
-     * 
+     *
      * @return
      *     The Status
      */
@@ -60,7 +60,7 @@ public class Fixture extends RealmObject {
     }
 
     /**
-     * 
+     *
      * @param status
      *     The Status
      */
@@ -69,7 +69,7 @@ public class Fixture extends RealmObject {
     }
 
     /**
-     * 
+     *
      * @return
      *     The Matchday
      */
@@ -79,7 +79,7 @@ public class Fixture extends RealmObject {
     }
 
     /**
-     * 
+     *
      * @param matchday
      *     The Matchday
      */
@@ -88,7 +88,7 @@ public class Fixture extends RealmObject {
     }
 
     /**
-     * 
+     *
      * @return
      *     The HomeTeamName
      */
@@ -98,7 +98,7 @@ public class Fixture extends RealmObject {
     }
 
     /**
-     * 
+     *
      * @param homeTeamName
      *     The HomeTeamName
      */
@@ -107,7 +107,7 @@ public class Fixture extends RealmObject {
     }
 
     /**
-     * 
+     *
      * @return
      *     The AwayTeamName
      */
@@ -117,7 +117,7 @@ public class Fixture extends RealmObject {
     }
 
     /**
-     * 
+     *
      * @param awayTeamName
      *     The AwayTeamName
      */
@@ -126,7 +126,7 @@ public class Fixture extends RealmObject {
     }
 
     /**
-     * 
+     *
      * @return
      *     The Result
      */
@@ -136,12 +136,30 @@ public class Fixture extends RealmObject {
     }
 
     /**
-     * 
+     *
      * @param result
      *     The Result
      */
     public void setResult(@Nullable Result result) {
         this.mResult = result;
+    }
+
+
+    public boolean hasQueryData(String query){
+        boolean result = false;
+
+        if(getAwayTeamName().toLowerCase().contains(query)) result = true;
+
+        if(getHomeTeamName().toLowerCase().contains(query)) result = true;
+
+        if(getResult() != null && (query.length() == 1 || query.length() == 2)){
+
+            if(String.valueOf(getResult().getGoalsAwayTeam()).equals(query)) result = true;
+
+            if(String.valueOf(getResult().getGoalsHomeTeam()).equals(query)) result = true;
+        }
+
+        return result;
     }
 
 }
