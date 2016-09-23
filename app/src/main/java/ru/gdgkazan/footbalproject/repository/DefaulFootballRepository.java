@@ -76,6 +76,12 @@ public class DefaulFootballRepository implements FootballRepository {
     }
 
     @Override
+    public Observable<List<Standings>> standingsListDatabase() {
+        Realm realm = Realm.getDefaultInstance();
+        return Observable.just(realm.copyFromRealm(realm.where(Standings.class).findAll()));
+    }
+
+    @Override
     public Observable<Team> team(String teamName) {
         return Observable.just(0)
                 .flatMap(integer -> {

@@ -21,10 +21,10 @@ import ru.gdgkazan.footbalproject.utils.Images;
 public class StandingsHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.itemStandingsParent)
-    RelativeLayout mItemStandingsParent;
+    RelativeLayout itemStandingsParent;
 
     @BindView(R.id.itemStandingsChild)
-    RelativeLayout mItemStandingsChild;
+    RelativeLayout itemStandingsChild;
 
     @BindView(R.id.standingsParentRank)
     TextView mStandingsParentRank;
@@ -90,10 +90,10 @@ public class StandingsHolder extends RecyclerView.ViewHolder {
 
     public void bind(@NonNull Standings standings){
         if(standings.getIsExpanded()){
-            mItemStandingsChild.setVisibility(View.VISIBLE);
+            itemStandingsChild.setVisibility(View.VISIBLE);
         }
         else{
-            mItemStandingsChild.setVisibility(View.GONE);
+            itemStandingsChild.setVisibility(View.GONE);
         }
 
         mStandingsParentRank.setText(String.valueOf(standings.getPosition()));

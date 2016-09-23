@@ -57,19 +57,19 @@ public class StandingsAdapter extends RecyclerView.Adapter<StandingsHolder> {
 
         Standings standings = mStandingsList.get(position);
         holder.bind(standings);
-        holder.mItemStandingsChild.setTag(standings);
+        holder.itemStandingsChild.setTag(standings);
 
-        holder.mItemStandingsParent.setOnClickListener(view -> {
+        holder.itemStandingsParent.setOnClickListener(view -> {
             boolean isExpanded = mStandingsList.get(position).getIsExpanded();
             mStandingsList.get(position).setIsOpened(!isExpanded);
             if(!isExpanded){
-                expandChild(holder.mItemStandingsChild);
+                expandChild(holder.itemStandingsChild);
             }
             else{
-                collapseChild(holder.mItemStandingsChild);
+                collapseChild(holder.itemStandingsChild);
             }
         });
-        holder.mItemStandingsChild.setOnClickListener(mChildListener);
+        holder.itemStandingsChild.setOnClickListener(mChildListener);
 
     }
 
