@@ -114,7 +114,7 @@ public class StandingsHolder extends RecyclerView.ViewHolder {
         mStandingsChildAwayDraws.setText(String.valueOf(standings.getStandingsDetailsAway().getDraws()));
         mStandingsChildAwayLosses.setText(String.valueOf(standings.getStandingsDetailsAway().getLosses()));
         mProgressBar.setProgress(getGoalsPercentage(standings.getGoals(), standings.getGoalsAgainst()));
-        Images.loadStandingsTeamLogo(mStandingsParentLogo, standings.getCrestUri());
+        Images.loadTeamLogo(mStandingsParentLogo, standings.getCrestUri(), true);
     }
 
     private int getGoalsPercentage(int goals, int goalsAgainst){
