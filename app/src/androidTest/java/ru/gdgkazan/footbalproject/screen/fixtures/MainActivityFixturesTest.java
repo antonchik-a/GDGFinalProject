@@ -36,13 +36,13 @@ public class MainActivityFixturesTest {
 
     @Test
     public void testRecyclerViewVisibility() throws Exception {
-        launchActivityWithTeamName();
+        launchActivity();
         onView(withId(R.id.recyclerView)).check(matches(isDisplayed()));
     }
 
     @Test
     public void testRecyclerViewScrolling() throws Exception {
-        launchActivityWithTeamName();
+        launchActivity();
         onView(isRoot()).perform(waitId(R.id.recyclerView, 4000));
         onView(withId(R.id.recyclerView))
                 .perform(scrollToPosition(0))
@@ -51,7 +51,7 @@ public class MainActivityFixturesTest {
                 .perform(swipeDown());
     }
 
-    private void launchActivityWithTeamName() {
+    private void launchActivity() {
         Context context = InstrumentationRegistry.getContext();
         Intent intent = new Intent(context, MainActivity.class);
         mActivityTestRule.launchActivity(intent);
