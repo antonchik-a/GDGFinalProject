@@ -90,7 +90,7 @@ public class SearchPresenterTest {
         Mockito.verify(mView).hideLoadingIndicator();
         Mockito.verify(mView, times(0)).showError();
         Mockito.verify(mView).showSearchData(fixtures);
-        Mockito.verify(mView).notFound();
+        Mockito.verify(mView).showError();
     }
 
     @Test
@@ -102,7 +102,7 @@ public class SearchPresenterTest {
         Mockito.verify(mView).showLoadingIndicator();
         Mockito.verify(mView).hideLoadingIndicator();
         Mockito.verify(mView, times(0)).showError();
-        Mockito.verify(mView).notFound();
+        Mockito.verify(mView).showError();
         Mockito.verify(mView).showSearchData(fixtures);
         Mockito.verify(mView, times(0)).hideKeyboard();
     }
@@ -118,7 +118,7 @@ public class SearchPresenterTest {
         Mockito.verify(mView).hideLoadingIndicator();
         Mockito.verify(mView, times(0)).showError();
         Mockito.verify(mView).showSearchData(fixtures);
-        Mockito.verify(mView,times(0)).notFound();
+        Mockito.verify(mView,times(0)).showError();
         Mockito.verify(mView).hideKeyboard();
     }
 
