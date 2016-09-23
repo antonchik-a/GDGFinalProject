@@ -21,7 +21,7 @@ android {
     }
     buildTypes {
         debug {
-            testCoverageEnabled = true
+            testCoverageEnabled true
         }
         release {
             minifyEnabled false
@@ -49,8 +49,7 @@ android {
 }
 
 apply from: '../versions.gradle'
-apply from: '../jacoco.gradle'
-
+//apply from: '../jacoco.gradle'
 
 dependencies {
     compile "com.android.support:support-v4:$supportVersion"
