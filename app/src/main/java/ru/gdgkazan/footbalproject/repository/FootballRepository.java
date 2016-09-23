@@ -16,8 +16,6 @@ public interface FootballRepository {
 
     Observable<List<Standings>> standingsList();
 
-    Observable<List<Standings>> standingsListDatabase();
-
     Observable<Team> team(String teamName);
 
 }

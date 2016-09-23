@@ -27,6 +27,7 @@ public class TablePresenter implements TableContract.Presenter {
     private final int SORT_BY_SCORED_GOALS_FROM_Z_TO_A = 231;
     private final int SORT_BY_AGAINST_GOALS_FROM_A_TO_Z = 312;
     private final int SORT_BY_AGAINST_GOALS_FROM_Z_TO_A = 321;
+    private final int SORT_NONE = 333;
 
     public TablePresenter(@NonNull TableContract.View view, @NonNull LifecycleHandler lifecycleHandler){
         mView = view;
@@ -35,42 +36,42 @@ public class TablePresenter implements TableContract.Presenter {
 
     @Override
     public void load() {
-        getData(false);
+        getData(false, SORT_NONE);
     }
 
     @Override
     public void reload() {
-        getData(true);
+        getData(true, SORT_NONE);
     }
 
     @Override
     public void onClickSortByPointsFromAToZ() {
-        getDataFromDB(SORT_BY_POINTS_FROM_A_TO_Z);
+        getData(true, SORT_BY_POINTS_FROM_A_TO_Z);
     }
 
     @Override
     public void onClickSortByPointsFromZToA() {
-        getDataFromDB(SORT_BY_POINTS_FROM_Z_TO_A);
+        getData(true, SORT_BY_POINTS_FROM_Z_TO_A);
     }
 
     @Override
     public void onClickSortByScoredGoalsFromAToZ() {
-        getDataFromDB(SORT_BY_SCORED_GOALS_FROM_A_TO_Z);
+        getData(true, SORT_BY_SCORED_GOALS_FROM_A_TO_Z);
     }
 
     @Override
     public void onClickSortByScoredGoalsFromZToA() {
-        getDataFromDB(SORT_BY_SCORED_GOALS_FROM_Z_TO_A);
+        getData(true, SORT_BY_SCORED_GOALS_FROM_Z_TO_A);
     }
 
     @Override
     public void onClickSortByAgainstGoalsFromAToZ() {
-        getDataFromDB(SORT_BY_AGAINST_GOALS_FROM_A_TO_Z);
+        getData(true, SORT_BY_AGAINST_GOALS_FROM_A_TO_Z);
     }
 
     @Override
     public void onClickSortByAgainstGoalsFromZToA() {
-        getDataFromDB(SORT_BY_AGAINST_GOALS_FROM_Z_TO_A);
+        getData(true, SORT_BY_AGAINST_GOALS_FROM_Z_TO_A);
     }
 
     private Comparator<Standings> sortByScoredGoalsFromAToZ = (standings1, standings2) -> {
@@ -115,22 +116,8 @@ public class TablePresenter implements TableContract.Presenter {
         return 1;
     };
 
-    private void getData(boolean isReload) {
+    private void getData(boolean isReload, int SORT_TYPE) {
         RepositoryProvider.provideFootballRepository().standingsList()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(() -> {
-                    if (!isReload) mView.showLoadingIndicator();
-                })
-                .doOnTerminate(isReload ? mView::hideSwipeRefreshing
-                                        : mView::hideLoadingIndicator)
-                .compose(isReload ? mLifeCycleHandler.reload(R.id.standings_list_request)
-                                  : mLifeCycleHandler.load(R.id.standings_list_request))
-                .subscribe(mView::showTable, throwable -> mView.showError());
-    }
-
-    private void getDataFromDB(int SORT_TYPE){
-        RepositoryProvider.provideFootballRepository().standingsListDatabase()
                 .map(standingsList -> {
                     switch(SORT_TYPE){
                         case SORT_BY_POINTS_FROM_A_TO_Z:
@@ -156,9 +143,13 @@ public class TablePresenter implements TableContract.Presenter {
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(mView::showLoadingIndicator)
-                .doOnTerminate(mView::hideLoadingIndicator)
-                .compose(mLifeCycleHandler.reload(R.id.standings_list_request))
+                .doOnSubscribe(() -> {
+                    if (!isReload) mView.showLoadingIndicator();
+                })
+                .doOnTerminate(isReload ? mView::hideSwipeRefreshing
+                                        : mView::hideLoadingIndicator)
+                .compose(isReload ? mLifeCycleHandler.reload(R.id.standings_list_request)
+                                  : mLifeCycleHandler.load(R.id.standings_list_request))
                 .subscribe(mView::showTable, throwable -> mView.showError());
     }
 
