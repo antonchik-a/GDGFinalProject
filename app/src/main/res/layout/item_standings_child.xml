@@ -16,8 +16,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/gradient_item_standings_child"/>
+                android:layout_height="match_parent"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,7 +33,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/standings_home_block"
-                        android:textColor="@color/standings_text_white_color"
+                        android:textColor="@color/textPrimary"
                         android:textSize="20sp"
                         android:textAllCaps="true"/>
                 </FrameLayout>
@@ -42,7 +41,7 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/standings_text_white_color"
+                    android:background="@color/textPrimary"
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="8dp"/>
 
@@ -56,7 +55,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/standings_away_block"
-                        android:textColor="@color/standings_text_white_color"
+                        android:textColor="@color/textPrimary"
                         android:textSize="20sp"
                         android:textAllCaps="true"/>
                 </FrameLayout>
@@ -98,7 +97,7 @@
                         android:gravity="center"
                         android:layout_weight="1"
                         android:text="@string/standings_wins"
-                        android:textColor="@color/standings_text_primary_color"
+                        android:textColor="@color/textPrimary"
                         android:textSize="12sp" />
 
                     <TextView
@@ -107,7 +106,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="@string/standings_draws"
-                        android:textColor="@color/standings_text_primary_color"
+                        android:textColor="@color/textPrimary"
                         android:textSize="12sp" />
 
                     <TextView
@@ -116,7 +115,7 @@
                         android:gravity="center"
                         android:layout_weight="1"
                         android:text="@string/standings_losses"
-                        android:textColor="@color/standings_text_primary_color"
+                        android:textColor="@color/textPrimary"
                         android:textSize="12sp" />
                 </LinearLayout>
 
@@ -131,7 +130,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:textColor="@color/standings_text_secondary_color"
+                        android:textColor="@color/textSecondary"
                         android:textSize="12sp" />
 
                     <TextView
@@ -140,7 +139,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:textColor="@color/standings_text_secondary_color"
+                        android:textColor="@color/textSecondary"
                         android:textSize="12sp" />
 
                     <TextView
@@ -149,7 +148,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:textColor="@color/standings_text_secondary_color"
+                        android:textColor="@color/textSecondary"
                         android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -288,7 +287,7 @@
                         android:gravity="center"
                         android:layout_weight="1"
                         android:text="@string/standings_wins"
-                        android:textColor="@color/standings_text_primary_color"
+                        android:textColor="@color/textPrimary"
                         android:textSize="12sp" />
 
                     <TextView
@@ -297,7 +296,7 @@
                         android:gravity="center"
                         android:layout_weight="1"
                         android:text="@string/standings_draws"
-                        android:textColor="@color/standings_text_primary_color"
+                        android:textColor="@color/textPrimary"
                         android:textSize="12sp" />
 
                     <TextView
@@ -306,7 +305,7 @@
                         android:gravity="center"
                         android:layout_weight="1"
                         android:text="@string/standings_losses"
-                        android:textColor="@color/standings_text_primary_color"
+                        android:textColor="@color/textPrimary"
                         android:textSize="12sp" />
                 </LinearLayout>
 
@@ -321,7 +320,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:textColor="@color/standings_text_secondary_color"
+                        android:textColor="@color/textSecondary"
                         android:textSize="12sp" />
 
                     <TextView
@@ -330,7 +329,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:textColor="@color/standings_text_secondary_color"
+                        android:textColor="@color/textSecondary"
                         android:textSize="12sp" />
 
                     <TextView
@@ -339,7 +338,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:textColor="@color/standings_text_secondary_color"
+                        android:textColor="@color/textSecondary"
                         android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
