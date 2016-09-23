@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 
 import ru.arturvasilov.rxloader.LifecycleHandler;
 import ru.gdgkazan.footbalproject.R;
-import ru.gdgkazan.footbalproject.model.content.Standings;
 import ru.gdgkazan.footbalproject.repository.RepositoryProvider;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -31,6 +30,36 @@ public class TablePresenter implements TableContract.Presenter {
     @Override
     public void reload() {
         getData(true);
+    }
+
+    @Override
+    public void onClickSortByPointsFromAToZ() {
+        mView.showToastMessage("points from a to z");
+    }
+
+    @Override
+    public void onClickSortByPointsFromZToA() {
+        mView.showToastMessage("points from z to a");
+    }
+
+    @Override
+    public void onClickSortByScoredGoalsFromAToZ() {
+        mView.showToastMessage("scored goals from a to z");
+    }
+
+    @Override
+    public void onClickSortByScoredGoalsFromZToA() {
+        mView.showToastMessage("scored goals from z to a");
+    }
+
+    @Override
+    public void onClickSortByAgainstGoalsFromAToZ() {
+        mView.showToastMessage("against goals from a to z");
+    }
+
+    @Override
+    public void onClickSortByAgainstGoalsFromZToA() {
+        mView.showToastMessage("against goals from z to a");
     }
 
     public void getData(boolean isReload) {

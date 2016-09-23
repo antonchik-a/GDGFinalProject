@@ -9,6 +9,9 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -52,6 +55,7 @@ public class TableFragment extends Fragment
 
         View view = inflater.inflate(R.layout.fragment_table, null);
         ButterKnife.bind(this, view);
+        setHasOptionsMenu(true);
 
         mLoadingView = LoadingDialog.view(getActivity().getSupportFragmentManager());
 
@@ -116,6 +120,38 @@ public class TableFragment extends Fragment
     @Override
     public void onRefresh() {
         mPresenter.reload();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.table_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.table_sort_by_points_a_z:
+                mPresenter.onClickSortByPointsFromAToZ();
+                return true;
+            case R.id.table_sort_by_points_z_a:
+                mPresenter.onClickSortByPointsFromZToA();
+                return true;
+            case R.id.table_sort_by_scored_goals_a_z:
+                mPresenter.onClickSortByScoredGoalsFromAToZ();
+                return true;
+            case R.id.table_sort_by_scored_goals_z_a:
+                mPresenter.onClickSortByScoredGoalsFromZToA();
+                return true;
+            case R.id.table_sort_by_against_goals_a_z:
+                mPresenter.onClickSortByAgainstGoalsFromAToZ();
+                return true;
+            case R.id.table_sort_by_against_goals_z_a:
+                mPresenter.onClickSortByAgainstGoalsFromZToA();
+                return true;
+            default:
+                return false;
+        }
     }
 
 }

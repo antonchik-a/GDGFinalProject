@@ -35,4 +35,12 @@
     <string name="standings_goals_against">Пропущенные голы</string>
     <string name="standings_more_details">ПОДРОБНАЯ ИНФОРМАЦИЯ</string>
 
+    <!--STANDINGS_MENU-->
+    <string name="standings_menu_sort_table">Сортировка таблицы</string>
+    <string name="standings_menu_by_points">По очкам</string>
+    <string name="standings_menu_by_scored_goals">По забитым голам</string>
+    <string name="standings_menu_by_against_goals">По пропущенным голам</string>
+    <string name="standings_menu_sorting_a_z">А - Я</string>
+    <string name="standings_menu_sorting_z_a">Я - А</string>
+
 </resources>
