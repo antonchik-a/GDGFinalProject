@@ -81,7 +81,6 @@ public class TeamActivityTest {
     @Test
     public void testDataError() throws Exception {
         launchActivityWithTeamName(INCORRECT_TEAM_NAME);
-        SystemClock.sleep(2000);
         onView(allOf(withId(android.support.design.R.id.snackbar_text), withText(R.string.loading_error)))
                 .check(matches(isDisplayed()));
     }

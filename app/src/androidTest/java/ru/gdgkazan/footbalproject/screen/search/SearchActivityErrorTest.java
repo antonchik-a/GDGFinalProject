@@ -28,6 +28,7 @@ import static org.hamcrest.Matchers.allOf;
  */
 @RunWith(AndroidJUnit4.class)
 public class SearchActivityErrorTest {
+    private static final String NORMAL_QUERY = "Cheals";
 
     @Rule
     public final ActivityTestRule<SearchActivity> mActivityTestRule
@@ -45,12 +46,11 @@ public class SearchActivityErrorTest {
     }
 
     @Test
-    public void testQueryError() throws Exception {
+    public void testErrorQuery() throws Exception {
         onView(withId(R.id.search_query))
-                .perform(typeText(SearchActivityTest.NORMAL_QUERY));
+                .perform(typeText(NORMAL_QUERY));
         SystemClock.sleep(3000);
         onView(allOf(withId(android.support.design.R.id.snackbar_text), withText(R.string.search_empty)))
                 .check(matches(isDisplayed()));
-        MockingInterceptor.shouldIntercept = false;
     }
 }
