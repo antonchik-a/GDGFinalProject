@@ -2,6 +2,7 @@ package ru.gdgkazan.footbalproject.screen.team;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.SystemClock;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
@@ -16,12 +17,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import ru.gdgkazan.footbalproject.R;
-import ru.gdgkazan.footbalproject.screen.main.MainActivity;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.swipeDown;
-import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
@@ -82,7 +81,7 @@ public class TeamActivityTest {
     @Test
     public void testDataError() throws Exception {
         launchActivityWithTeamName(INCORRECT_TEAM_NAME);
-
+        SystemClock.sleep(2000);
         onView(allOf(withId(android.support.design.R.id.snackbar_text), withText(R.string.loading_error)))
                 .check(matches(isDisplayed()));
     }
