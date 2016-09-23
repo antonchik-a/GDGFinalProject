@@ -93,7 +93,7 @@ public class FixturesPresenterTest {
         RepositoryProvider.setFootballRepository(new TestFootballRepository(true, fixtures));
         mPresenter.refresh();
         Mockito.verify(mView, times(1)).showLoadingIndicator();
-        Mockito.verify(mView,  times(2)).hideLoadingIndicator();
+        Mockito.verify(mView, times(2)).hideLoadingIndicator();
         Mockito.verify(mView).showError();
         Mockito.verify(mView, times(1)).setFixtures(fixtures);
     }
@@ -110,26 +110,26 @@ public class FixturesPresenterTest {
 
         mPresenter.showHalfYearFixtures();
         Mockito.verify(mView).showLoadingIndicator();
-        Mockito.verify(mView,  times(2)).hideLoadingIndicator();
+        Mockito.verify(mView, times(2)).hideLoadingIndicator();
         Mockito.verify(mView, times(0)).showError();
         Mockito.verify(mView, times(2)).setFixtures(fixtures);
 
         mPresenter.showWeekFixtures();
         Mockito.verify(mView).showLoadingIndicator();
-        Mockito.verify(mView,  times(3)).hideLoadingIndicator();
+        Mockito.verify(mView, times(3)).hideLoadingIndicator();
         Mockito.verify(mView, times(0)).showError();
         Mockito.verify(mView, times(3)).setFixtures(fixtures);
 
         mPresenter.showMonth();
         Mockito.verify(mView).showLoadingIndicator();
-        Mockito.verify(mView,  times(4)).hideLoadingIndicator();
+        Mockito.verify(mView, times(4)).hideLoadingIndicator();
         Mockito.verify(mView, times(0)).showError();
         Mockito.verify(mView, times(4)).setFixtures(fixtures);
 
         RepositoryProvider.setFootballRepository(new TestFootballRepository(true, fixtures));
         mPresenter.refresh();
         Mockito.verify(mView).showLoadingIndicator();
-        Mockito.verify(mView,  times(5)).hideLoadingIndicator();
+        Mockito.verify(mView, times(5)).hideLoadingIndicator();
         Mockito.verify(mView).showError();
         Mockito.verify(mView, times(4)).setFixtures(fixtures);
     }
@@ -147,42 +147,43 @@ public class FixturesPresenterTest {
 
         mPresenter.showMonth();
         Mockito.verify(mView).showLoadingIndicator();
-        Mockito.verify(mView).hideLoadingIndicator();
-        Mockito.verify(mView, times(0)).showError();
-        Mockito.verify(mView).setFixtures(fixtures);
-
-        mPresenter.showWeekFixtures();
-        Mockito.verify(mView).showLoadingIndicator();
-        Mockito.verify(mView,  times(2)).hideLoadingIndicator();
-        Mockito.verify(mView, times(0)).showError();
-        Mockito.verify(mView, times(2)).setFixtures(fixtures);
-
-        mPresenter.showWeekFixtures();
-        Mockito.verify(mView).showLoadingIndicator();
-        Mockito.verify(mView,  times(2)).hideLoadingIndicator();
+        Mockito.verify(mView, times(2)).hideLoadingIndicator();
         Mockito.verify(mView, times(0)).showError();
         Mockito.verify(mView, times(2)).setFixtures(fixtures);
 
         mPresenter.showMonth();
         Mockito.verify(mView).showLoadingIndicator();
-        Mockito.verify(mView,  times(3)).hideLoadingIndicator();
+        Mockito.verify(mView, times(2)).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView, times(2)).setFixtures(fixtures);
+
+        mPresenter.showWeekFixtures();
+        Mockito.verify(mView).showLoadingIndicator();
+        Mockito.verify(mView, times(3)).hideLoadingIndicator();
         Mockito.verify(mView, times(0)).showError();
         Mockito.verify(mView, times(3)).setFixtures(fixtures);
 
-        mPresenter.showMonth();
+        mPresenter.showWeekFixtures();
         Mockito.verify(mView).showLoadingIndicator();
-        Mockito.verify(mView,  times(3)).hideLoadingIndicator();
+        Mockito.verify(mView, times(3)).hideLoadingIndicator();
         Mockito.verify(mView, times(0)).showError();
         Mockito.verify(mView, times(3)).setFixtures(fixtures);
+
+        mPresenter.showHalfYearFixtures();
+        Mockito.verify(mView).showLoadingIndicator();
+        Mockito.verify(mView, times(4)).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView, times(4)).setFixtures(fixtures);
 
         RepositoryProvider.setFootballRepository(new TestFootballRepository(true, fixtures));
         mPresenter.refresh();
         Mockito.verify(mView).showLoadingIndicator();
-        Mockito.verify(mView,  times(4)).hideLoadingIndicator();
+        Mockito.verify(mView, times(5)).hideLoadingIndicator();
         Mockito.verify(mView).showError();
-        Mockito.verify(mView, times(3)).setFixtures(fixtures);
-    }
+        Mockito.verify(mView, times(4)).setFixtures(fixtures);
 
+
+    }
 
 
     @Test
@@ -197,16 +198,15 @@ public class FixturesPresenterTest {
 
         Bundle bundle = Mockito.mock(Bundle.class);
         mPresenter.saveState(bundle);
-        Mockito.verify(bundle).putInt(FixturesPresenter.COUNT_KEY,FixturesPresenter.MONTH);
+        Mockito.verify(bundle).putInt(FixturesPresenter.COUNT_KEY, FixturesPresenter.WEEK);
 
-        Mockito.when(bundle.getInt(FixturesPresenter.COUNT_KEY)).thenReturn(FixturesPresenter.HALF_YAER);
+        Mockito.when(bundle.getInt(FixturesPresenter.COUNT_KEY)).thenReturn(FixturesPresenter.MONTH);
         mPresenter.init(bundle);
         Mockito.verify(mView, times(2)).showLoadingIndicator();
         Mockito.verify(mView, times(2)).hideLoadingIndicator();
         Mockito.verify(mView, times(0)).showError();
         Mockito.verify(mView, times(2)).setFixtures(fixtures);
     }
-
 
 
     @After
