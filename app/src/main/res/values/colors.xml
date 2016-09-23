@@ -34,5 +34,5 @@
     <!--STANDINGS_BACKGROUND-->
     <color name="standings_background_white">#FFFFFF</color>
     <color name="standings_background_header">#EEEEEE</color>
-    <color name="standings_background_item_select">#EEEEEE</color>
+    <color name="standings_background_item_select">#E0E0E0</color>
 </resources>

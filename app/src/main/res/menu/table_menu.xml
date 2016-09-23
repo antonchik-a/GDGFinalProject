@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/week"
+        android:icon="@drawable/icon_table_sort"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:title="@string/standings_menu_sort_table">
+
+        <menu>
+
+            <item
+                android:id="@+id/table_sort_by_points"
+                android:title="@string/standings_menu_by_points">
+
+                <menu>
+
+                    <item
+                        android:id="@+id/table_sort_by_points_a_z"
+                        android:title="@string/standings_menu_sorting_a_z">
+                    </item>
+
+                    <item
+                        android:id="@+id/table_sort_by_points_z_a"
+                        android:title="@string/standings_menu_sorting_z_a">
+                    </item>
+
+                </menu>
+
+            </item>
+
+            <item
+                android:id="@+id/table_sort_by_scored_goals"
+                android:title="@string/standings_menu_by_scored_goals">
+
+                <menu>
+
+                    <item
+                        android:id="@+id/table_sort_by_scored_goals_a_z"
+                        android:title="@string/standings_menu_sorting_a_z">
+                    </item>
+
+                    <item
+                        android:id="@+id/table_sort_by_scored_goals_z_a"
+                        android:title="@string/standings_menu_sorting_z_a">
+                    </item>
+
+                </menu>
+
+            </item>
+
+            <item
+                android:id="@+id/table_sort_by_against_goals"
+                android:title="@string/standings_menu_by_against_goals">
+
+                <menu>
+
+                    <item
+                        android:id="@+id/table_sort_by_against_goals_a_z"
+                        android:title="@string/standings_menu_sorting_a_z">
+                    </item>
+
+                    <item
+                        android:id="@+id/table_sort_by_against_goals_z_a"
+                        android:title="@string/standings_menu_sorting_z_a">
+                    </item>
+
+                </menu>
+
+            </item>
+
+        </menu>
+
+    </item>
+
+</menu>

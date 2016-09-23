@@ -10,6 +10,8 @@ import io.realm.RealmObject;
 
 public class Standings extends RealmObject {
 
+    private Boolean mIsExpanded = false;
+
     @SerializedName("position")
     private Integer mPosition;
 
@@ -164,6 +166,15 @@ public class Standings extends RealmObject {
 
     public void setStandingsDetailsAway(@NonNull StandingsDetails standingsDetailsAway){
         mStandingsDetailsAway = standingsDetailsAway;
+    }
+
+    @NonNull
+    public Boolean getIsExpanded(){
+        return mIsExpanded;
+    }
+
+    public void setIsOpened(@NonNull Boolean isExpanded){
+        mIsExpanded = isExpanded;
     }
 
 }
