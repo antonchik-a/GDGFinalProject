@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -82,7 +83,6 @@ public class TeamActivity extends AppCompatActivity implements TeamContract.View
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
         String teamName = getIntent().getStringExtra(EXTRA_TEAM);
-        //teamName = "Chelsea FC";
         mLifecycleHandler = LoaderLifecycleHandler.create(this, getSupportLoaderManager());
         mPresenter = new TeamPresenter(this, mLifecycleHandler);
         mPresenter.init(teamName);
@@ -90,7 +90,7 @@ public class TeamActivity extends AppCompatActivity implements TeamContract.View
 
     @Override
     public void showTeam(@NonNull Team team) {
-        Images.loadTeamLogo(logoImageView, team);
+        Images.loadTeamLogo(logoImageView, team.getCrestUrl(), false);
         mCollapsingToolbar.setTitle(team.getName());
         mMarketValueView.setText(getString(R.string.squad_market_value, team.getSquadMarketValue()));
         mPlayersAdapter.setData(team.getPlayers());
@@ -117,5 +117,16 @@ public class TeamActivity extends AppCompatActivity implements TeamContract.View
     @Override
     public void onRefresh() {
         mPresenter.reload();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
