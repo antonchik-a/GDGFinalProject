@@ -46,7 +46,12 @@ public class DefaulFootballRepository implements FootballRepository {
                 .onErrorResumeNext(throwable -> {
                     Realm realm = Realm.getDefaultInstance();
                     RealmResults<Fixture> fixtureRealmResults = realm.where(Fixture.class).findAll();
-                    return Observable.just(realm.copyFromRealm(fixtureRealmResults));
+
+                    if(fixtureRealmResults.size() > 0) {
+                        return Observable.just(realm.copyFromRealm(fixtureRealmResults));
+                    }else {
+                        return Observable.error(new NoSuchElementException());
+                    }
                 });
     }
 

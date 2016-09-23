@@ -9,10 +9,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import io.realm.Realm;
 import ru.gdgkazan.footbalproject.api.MockingInterceptor;
+import ru.gdgkazan.footbalproject.model.content.Fixture;
 import ru.gdgkazan.footbalproject.model.content.Player;
 import ru.gdgkazan.footbalproject.model.content.Team;
 import ru.gdgkazan.footbalproject.test.RxSchedulersTestRule;
@@ -22,7 +24,7 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 
 /**
- * @author Sergei Riabov 2016
+ * @author Sergei Riabov and Co :) 2016
  */
 
 @RunWith(AndroidJUnit4.class)
@@ -36,6 +38,34 @@ public class FootballRepositoryTest {
     @Before
     public void setUp() throws Exception {
         mRepository = new DefaulFootballRepository();
+    }
+
+
+    @Test
+    public void testGetFixtures() throws Exception {
+        MockingInterceptor.shouldIntercept = false;
+        List<Fixture> fixtures = mRepository.fixtures().toBlocking().first();
+        assertEquals(true, fixtures.size() > 0);
+    }
+
+    @Test
+    public void testEmptyFixtures() throws Exception {
+        MockingInterceptor.shouldIntercept = true;
+        TestSubscriber<List<Fixture>> testSubscriber = new TestSubscriber<>();
+        mRepository.fixtures().subscribe(testSubscriber);
+        testSubscriber.assertError(NoSuchElementException.class);
+    }
+
+    @Test
+    public void testFixturesSaved() throws Exception {
+        MockingInterceptor.shouldIntercept = false;
+        List<Fixture> fixtures = mRepository.fixtures().toBlocking().first();
+
+        int savedCount = Realm.getDefaultInstance()
+                .where(Fixture.class)
+                .findAll()
+                .size();
+        Assert.assertEquals(true, savedCount > 0);
     }
 
     @Test
@@ -96,5 +126,6 @@ public class FootballRepositoryTest {
         MockingInterceptor.shouldIntercept = false;
         Realm.getDefaultInstance().executeTransaction(realm -> realm.delete(Team.class));
         Realm.getDefaultInstance().executeTransaction(realm -> realm.delete(Player.class));
+        Realm.getDefaultInstance().executeTransaction(realm -> realm.delete(Fixture.class));
     }
 }
