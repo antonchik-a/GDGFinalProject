@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -100,11 +101,7 @@ public class TableFragment extends Fragment
 
     @Override
     public void onItemClick(@NonNull Standings standings) {
-        //TODO: go to activity by using method navigate in TeamActivity!!!
-        Intent intent = new Intent(getActivity(), TeamActivity.class);
-        intent.putExtra("extraTeamName", standings.getTeamName());
-        startActivity(intent);
-        //TODO: go to activity by using method navigate in TeamActivity!!!
+        TeamActivity.navigate((AppCompatActivity) getActivity(), standings.getTeamName());
     }
 
     @Override
