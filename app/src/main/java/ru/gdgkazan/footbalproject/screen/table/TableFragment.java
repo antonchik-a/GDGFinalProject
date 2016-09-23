@@ -1,5 +1,6 @@
 package ru.gdgkazan.footbalproject.screen.table;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,8 +8,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -22,10 +25,10 @@ import ru.arturvasilov.rxloader.LifecycleHandler;
 import ru.arturvasilov.rxloader.LoaderLifecycleHandler;
 import ru.gdgkazan.footbalproject.R;
 import ru.gdgkazan.footbalproject.model.content.Standings;
-import ru.gdgkazan.footbalproject.screen.fixtures.FixturesPresenter;
 import ru.gdgkazan.footbalproject.screen.loading.LoadingDialog;
 import ru.gdgkazan.footbalproject.screen.loading.LoadingView;
 import ru.gdgkazan.footbalproject.screen.table.adapter.StandingsAdapter;
+import ru.gdgkazan.footbalproject.screen.team.TeamActivity;
 import ru.gdgkazan.footbalproject.widget.DividerItemDecoration;
 
 /**
@@ -52,6 +55,7 @@ public class TableFragment extends Fragment
 
         View view = inflater.inflate(R.layout.fragment_table, null);
         ButterKnife.bind(this, view);
+        setHasOptionsMenu(true);
 
         mLoadingView = LoadingDialog.view(getActivity().getSupportFragmentManager());
 
@@ -69,7 +73,7 @@ public class TableFragment extends Fragment
 
         LifecycleHandler mLifeCycleHandler = LoaderLifecycleHandler.create(getActivity(), getLoaderManager());
         mPresenter = new TablePresenter(this, mLifeCycleHandler);
-        mPresenter.init();
+        mPresenter.load();
 
         return view;
     }
@@ -77,7 +81,6 @@ public class TableFragment extends Fragment
     @Override
     public void showTable(List<Standings> standingsList) {
         mAdapter.changeDataSet(standingsList);
-        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -91,8 +94,17 @@ public class TableFragment extends Fragment
     }
 
     @Override
+    public void hideSwipeRefreshing() {
+        mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
     public void onItemClick(@NonNull Standings standings) {
-        Toast.makeText(getActivity(), "Team name: " + standings.getTeamName(), Toast.LENGTH_SHORT).show();
+        //TODO: go to activity by using method navigate in TeamActivity!!!
+        Intent intent = new Intent(getActivity(), TeamActivity.class);
+        intent.putExtra("extraTeamName", standings.getTeamName());
+        startActivity(intent);
+        //TODO: go to activity by using method navigate in TeamActivity!!!
     }
 
     @Override
@@ -107,6 +119,39 @@ public class TableFragment extends Fragment
 
     @Override
     public void onRefresh() {
-        mPresenter.init();
+        mPresenter.reload();
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.table_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.table_sort_by_points_a_z:
+                mPresenter.onClickSortByPointsFromAToZ();
+                return true;
+            case R.id.table_sort_by_points_z_a:
+                mPresenter.onClickSortByPointsFromZToA();
+                return true;
+            case R.id.table_sort_by_scored_goals_a_z:
+                mPresenter.onClickSortByScoredGoalsFromAToZ();
+                return true;
+            case R.id.table_sort_by_scored_goals_z_a:
+                mPresenter.onClickSortByScoredGoalsFromZToA();
+                return true;
+            case R.id.table_sort_by_against_goals_a_z:
+                mPresenter.onClickSortByAgainstGoalsFromAToZ();
+                return true;
+            case R.id.table_sort_by_against_goals_z_a:
+                mPresenter.onClickSortByAgainstGoalsFromZToA();
+                return true;
+            default:
+                return false;
+        }
+    }
+
 }

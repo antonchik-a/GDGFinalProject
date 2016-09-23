@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -11,12 +12,19 @@ import butterknife.ButterKnife;
 import ru.gdgkazan.footbalproject.R;
 import ru.gdgkazan.footbalproject.model.content.Standings;
 import ru.gdgkazan.footbalproject.utils.CircleImageView;
+import ru.gdgkazan.footbalproject.utils.Images;
 
 /**
  * Created by mikes on 21.09.16.
  */
 
 public class StandingsHolder extends RecyclerView.ViewHolder {
+
+    @BindView(R.id.itemStandingsParent)
+    RelativeLayout mItemStandingsParent;
+
+    @BindView(R.id.itemStandingsChild)
+    RelativeLayout mItemStandingsChild;
 
     @BindView(R.id.standingsParentRank)
     TextView mStandingsParentRank;
@@ -81,6 +89,13 @@ public class StandingsHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(@NonNull Standings standings){
+        if(standings.getIsExpanded()){
+            mItemStandingsChild.setVisibility(View.VISIBLE);
+        }
+        else{
+            mItemStandingsChild.setVisibility(View.GONE);
+        }
+
         mStandingsParentRank.setText(String.valueOf(standings.getPosition()));
         mStandingsParentTeam.setText(standings.getTeamName());
         mStandingsParentWins.setText(String.valueOf(standings.getWins()));
@@ -99,6 +114,7 @@ public class StandingsHolder extends RecyclerView.ViewHolder {
         mStandingsChildAwayDraws.setText(String.valueOf(standings.getStandingsDetailsAway().getDraws()));
         mStandingsChildAwayLosses.setText(String.valueOf(standings.getStandingsDetailsAway().getLosses()));
         mProgressBar.setProgress(getGoalsPercentage(standings.getGoals(), standings.getGoalsAgainst()));
+        Images.loadStandingsTeamLogo(mStandingsParentLogo, standings.getCrestUri());
     }
 
     private int getGoalsPercentage(int goals, int goalsAgainst){

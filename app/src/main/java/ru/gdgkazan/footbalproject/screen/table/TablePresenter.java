@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 
 import ru.arturvasilov.rxloader.LifecycleHandler;
 import ru.gdgkazan.footbalproject.R;
-import ru.gdgkazan.footbalproject.model.content.Standings;
 import ru.gdgkazan.footbalproject.repository.RepositoryProvider;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -24,19 +23,57 @@ public class TablePresenter implements TableContract.Presenter {
     }
 
     @Override
-    public void init() {
-        RepositoryProvider.provideFootballRepository().standingsList()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(mView::showLoadingIndicator)
-                .doOnTerminate(mView::hideLoadingIndicator)
-                .compose(mLifeCycleHandler.reload(R.id.standings_list_request))
-                .subscribe(mView::showTable, throwable -> mView.showError());
+    public void load() {
+        getData(false);
     }
 
     @Override
-    public void onClickStandings(@NonNull Standings standings) {
-        mView.showToastMessage("TODO: some action by clicking on item");
+    public void reload() {
+        getData(true);
+    }
+
+    @Override
+    public void onClickSortByPointsFromAToZ() {
+        mView.showToastMessage("points from a to z");
+    }
+
+    @Override
+    public void onClickSortByPointsFromZToA() {
+        mView.showToastMessage("points from z to a");
+    }
+
+    @Override
+    public void onClickSortByScoredGoalsFromAToZ() {
+        mView.showToastMessage("scored goals from a to z");
+    }
+
+    @Override
+    public void onClickSortByScoredGoalsFromZToA() {
+        mView.showToastMessage("scored goals from z to a");
+    }
+
+    @Override
+    public void onClickSortByAgainstGoalsFromAToZ() {
+        mView.showToastMessage("against goals from a to z");
+    }
+
+    @Override
+    public void onClickSortByAgainstGoalsFromZToA() {
+        mView.showToastMessage("against goals from z to a");
+    }
+
+    public void getData(boolean isReload) {
+        RepositoryProvider.provideFootballRepository().standingsList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(() -> {
+                    if (!isReload) mView.showLoadingIndicator();
+                })
+                .doOnTerminate(isReload ? mView::hideSwipeRefreshing
+                                        : mView::hideLoadingIndicator)
+                .compose(isReload ? mLifeCycleHandler.reload(R.id.standings_list_request)
+                                  : mLifeCycleHandler.load(R.id.standings_list_request))
+                .subscribe(mView::showTable, throwable -> mView.showError());
     }
 
 }
