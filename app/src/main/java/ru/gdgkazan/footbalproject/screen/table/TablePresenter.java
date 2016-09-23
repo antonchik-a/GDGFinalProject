@@ -28,6 +28,7 @@ public class TablePresenter implements TableContract.Presenter {
     private final int SORT_BY_AGAINST_GOALS_FROM_A_TO_Z = 312;
     private final int SORT_BY_AGAINST_GOALS_FROM_Z_TO_A = 321;
     private final int SORT_NONE = 333;
+    private int sortType = SORT_NONE;
 
     public TablePresenter(@NonNull TableContract.View view, @NonNull LifecycleHandler lifecycleHandler){
         mView = view;
@@ -36,42 +37,48 @@ public class TablePresenter implements TableContract.Presenter {
 
     @Override
     public void load() {
-        getData(false, SORT_NONE);
+        getData(false, sortType);
     }
 
     @Override
     public void reload() {
-        getData(true, SORT_NONE);
+        getData(true, sortType);
     }
 
     @Override
     public void onClickSortByPointsFromAToZ() {
-        getData(true, SORT_BY_POINTS_FROM_A_TO_Z);
+        sortType = SORT_BY_POINTS_FROM_A_TO_Z;
+        load();
     }
 
     @Override
     public void onClickSortByPointsFromZToA() {
-        getData(true, SORT_BY_POINTS_FROM_Z_TO_A);
+        sortType = SORT_BY_POINTS_FROM_Z_TO_A;
+        load();
     }
 
     @Override
     public void onClickSortByScoredGoalsFromAToZ() {
-        getData(true, SORT_BY_SCORED_GOALS_FROM_A_TO_Z);
+        sortType = SORT_BY_SCORED_GOALS_FROM_A_TO_Z;
+        load();
     }
 
     @Override
     public void onClickSortByScoredGoalsFromZToA() {
-        getData(true, SORT_BY_SCORED_GOALS_FROM_Z_TO_A);
+        sortType = SORT_BY_SCORED_GOALS_FROM_Z_TO_A;
+        load();
     }
 
     @Override
     public void onClickSortByAgainstGoalsFromAToZ() {
-        getData(true, SORT_BY_AGAINST_GOALS_FROM_A_TO_Z);
+        sortType = SORT_BY_AGAINST_GOALS_FROM_A_TO_Z;
+        load();
     }
 
     @Override
     public void onClickSortByAgainstGoalsFromZToA() {
-        getData(true, SORT_BY_AGAINST_GOALS_FROM_Z_TO_A);
+        sortType = SORT_BY_AGAINST_GOALS_FROM_Z_TO_A;
+        load();
     }
 
     private Comparator<Standings> sortByScoredGoalsFromAToZ = (standings1, standings2) -> {
@@ -118,6 +125,8 @@ public class TablePresenter implements TableContract.Presenter {
 
     private void getData(boolean isReload, int SORT_TYPE) {
         RepositoryProvider.provideFootballRepository().standingsList()
+                .compose(isReload ? mLifeCycleHandler.reload(R.id.standings_list_request)
+                                  : mLifeCycleHandler.load(R.id.standings_list_request))
                 .map(standingsList -> {
                     switch(SORT_TYPE){
                         case SORT_BY_POINTS_FROM_A_TO_Z:
@@ -148,8 +157,6 @@ public class TablePresenter implements TableContract.Presenter {
                 })
                 .doOnTerminate(isReload ? mView::hideSwipeRefreshing
                                         : mView::hideLoadingIndicator)
-                .compose(isReload ? mLifeCycleHandler.reload(R.id.standings_list_request)
-                                  : mLifeCycleHandler.load(R.id.standings_list_request))
                 .subscribe(mView::showTable, throwable -> mView.showError());
     }
 
