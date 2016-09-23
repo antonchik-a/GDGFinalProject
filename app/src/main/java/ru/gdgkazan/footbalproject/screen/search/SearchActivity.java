@@ -100,7 +100,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView {
 
     @Override
     public void showError() {
-        Snackbar.make(mSearchRecyclerView, getResources().getString(R.string.search_empty), Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(mSearchRecyclerView, getResources().getString(R.string.search_empty), Snackbar.LENGTH_LONG).show();
     }
 
     @Override
