@@ -175,18 +175,6 @@ public class TablePresenterTest {
     @Test
     public void onClickSortByScoredGoalsFromAToZ() throws Exception {
         List<Standings> standingsList = new ArrayList<>();
-        Standings standings1 = new Standings();
-        standings1.setGoals(2);
-        Standings standings2 = new Standings();
-        standings1.setGoals(3);
-        Standings standings3 = new Standings();
-        standings1.setGoals(1);
-        standingsList.add(standings1);
-        standingsList.add(standings2);
-        standingsList.add(standings3);
-
-
-
         RepositoryProvider.setFootballRepository(new TestFootballRepository(false, standingsList));
         mPresenter.onClickSortByScoredGoalsFromAToZ();
         Mockito.verify(mView).showLoadingIndicator();
@@ -213,7 +201,7 @@ public class TablePresenterTest {
         mPresenter.onClickSortByAgainstGoalsFromAToZ();
         Mockito.verify(mView).showLoadingIndicator();
         Mockito.verify(mView).hideLoadingIndicator();
-        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView).showError();
         Mockito.verify(mView, times(0)).showTable(standingsList);
     }
 
