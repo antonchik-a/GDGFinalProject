@@ -47,11 +47,11 @@ public class FixtureHolder extends RecyclerView.ViewHolder {
             mResultText.setTextColor(mResultText.getContext().getResources().getColor(R.color.textSecondary));
         }
 
-        if(Calendar.getInstance().getTime().after(fixture.getDate())){
-            mTimeText.setText(mTimeText.getContext().getResources().getString(R.string.fixture_end));
-        }else {
+//        if(Calendar.getInstance().getTime().after(fixture.getDate())){
+//            mTimeText.setText(mTimeText.getContext().getResources().getString(R.string.fixture_end));
+//        }else {
             mTimeText.setText(getStringDate(fixture.getDate()));
-        }
+        //}
     }
 
     @NonNull
