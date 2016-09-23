@@ -16,6 +16,7 @@ public class TestFootballRepository implements FootballRepository {
 
     private boolean returnError = true;
     private ArrayList<Fixture> mFixtures;
+    private List<Standings> mStandingsList;
 
     public TestFootballRepository(boolean returnError) {
         this.returnError = returnError;
@@ -26,6 +27,11 @@ public class TestFootballRepository implements FootballRepository {
         mFixtures = fixtures;
     }
 
+    public TestFootballRepository(boolean returnError, List<Standings> standingsList){
+        this.returnError = returnError;
+        mStandingsList = standingsList;
+    }
+
     @Override
     public Observable<List<Fixture>> fixtures() {
         if(returnError) return Observable.error(new Exception());
@@ -34,7 +40,10 @@ public class TestFootballRepository implements FootballRepository {
 
     @Override
     public Observable<List<Standings>> standingsList() {
-        return Observable.empty();
+        if(returnError){
+            return Observable.error(new Exception());
+        }
+        return Observable.just(mStandingsList);
     }
 
     @Override
