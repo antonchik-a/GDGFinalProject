@@ -16,14 +16,18 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import ru.gdgkazan.footbalproject.R;
+import ru.gdgkazan.footbalproject.screen.main.MainActivity;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.swipeDown;
+import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayingAtLeast;
+import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
@@ -49,6 +53,13 @@ public class TeamActivityTest {
         TeamActivity.navigate(mActivityTestRule.getActivity(), CORRECT_TEAM_NAME);
         Intents.intended(hasComponent(TeamActivity.class.getName()));
         Intents.release();
+    }
+
+    @Test
+    public void testUpButton() throws Exception {
+        launchActivityWithTeamName(CORRECT_TEAM_NAME);
+        onView(withContentDescription(R.string.abc_action_bar_up_description))
+                .perform(click());
     }
 
     @Test

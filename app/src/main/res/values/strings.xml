@@ -31,11 +31,11 @@
     <string name="standings_losses">L</string>
 
     <!--STANDINGS_ITEM_CHILD_STRINGS-->
-    <string name="standings_home_block">HOME</string>
-    <string name="standings_away_block">AWAY</string>
+    <string name="standings_home_block">Home</string>
+    <string name="standings_away_block">Away</string>
     <string name="standings_goals_scored">Goals scored</string>
     <string name="standings_goals_against">Goals against</string>
-    <string name="standings_more_details">MORE DETAILS</string>
+    <string name="standings_more_details">More details</string>
 
     <!--STANDINGS_MENU-->
     <string name="standings_menu_sort_table">Sort table</string>

@@ -35,7 +35,8 @@
                         android:layout_gravity="center"
                         android:text="@string/standings_home_block"
                         android:textColor="@color/standings_text_white_color"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:textAllCaps="true"/>
                 </FrameLayout>
 
                 <View
@@ -56,7 +57,8 @@
                         android:layout_gravity="center"
                         android:text="@string/standings_away_block"
                         android:textColor="@color/standings_text_white_color"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:textAllCaps="true"/>
                 </FrameLayout>
             </LinearLayout>
 
@@ -357,10 +359,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:layout_gravity="end"
-            android:text="MORE DETAILS"
+            android:text="@string/standings_more_details"
             android:textColor="@color/colorAccent"
             android:textSize="14sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textAllCaps="true"/>
 
     </LinearLayout>
 </RelativeLayout>

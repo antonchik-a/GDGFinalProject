@@ -13,7 +13,9 @@
 
     <!-- fixtures strings -->
     <string name="fixture_end">Матч завершен</string>
-
+    <string name="week">Неделя</string>
+    <string name="half_year">Полгода</string>
+    <string name="month">Месяц</string>
     <!--team strings-->
     <string name="player_age">Возраст: %d</string>
     <string name="squad_market_value">Стоимость команды: %s</string>
@@ -29,11 +31,11 @@
     <string name="standings_losses">П</string>
 
     <!--STANDINGS_ITEM_CHILD_STRINGS-->
-    <string name="standings_home_block">ДОМА</string>
-    <string name="standings_away_block">В ГОСТЯХ</string>
+    <string name="standings_home_block">Дома</string>
+    <string name="standings_away_block">В гостях</string>
     <string name="standings_goals_scored">Забитые голы</string>
     <string name="standings_goals_against">Пропущенные голы</string>
-    <string name="standings_more_details">ПОДРОБНАЯ ИНФОРМАЦИЯ</string>
+    <string name="standings_more_details">Подробнее</string>
 
     <!--STANDINGS_MENU-->
     <string name="standings_menu_sort_table">Сортировка таблицы</string>
