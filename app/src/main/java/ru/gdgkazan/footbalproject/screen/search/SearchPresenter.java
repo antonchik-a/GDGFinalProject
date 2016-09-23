@@ -67,7 +67,7 @@ public class SearchPresenter {
 
     private void showData(List<Fixture> fixtures) {
         if (fixtures.size() == 0) {
-            mView.notFound();
+            mView.showError();
         } else {
             mView.hideKeyboard();
         }
