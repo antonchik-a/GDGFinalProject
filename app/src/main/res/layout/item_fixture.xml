@@ -19,12 +19,13 @@
 
             <TextView
                 android:id="@+id/homeTitle"
+                android:padding="@dimen/padding_small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left|center_vertical|center_horizontal"
                 android:text="Chelsea"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@android:color/black"/>
+                android:textColor="@color/textPrimary"/>
         </FrameLayout>
 
         <FrameLayout
@@ -50,12 +51,13 @@
 
             <TextView
                 android:id="@+id/awayTitle"
+                android:padding="@dimen/padding_small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center|center_horizontal|right"
                 android:text="Arsenal"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@android:color/black"/>
+                android:textColor="@color/textPrimary"/>
         </FrameLayout>
     </LinearLayout>
 

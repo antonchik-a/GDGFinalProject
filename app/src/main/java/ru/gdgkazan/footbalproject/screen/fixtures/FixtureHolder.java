@@ -41,10 +41,10 @@ public class FixtureHolder extends RecyclerView.ViewHolder {
 
         if(fixture.getResult() != null && fixture.getResult().getGoalsHomeTeam() != null && fixture.getResult().getGoalsAwayTeam() != null) {
             mResultText.setText(fixture.getResult().toString());
-            mResultText.setAlpha(0.87f);
+            mResultText.setTextColor(mResultText.getContext().getResources().getColor(R.color.textPrimary));
         }else {
             mResultText.setText("0 : 0");
-            mResultText.setAlpha(0.54f);
+            mResultText.setTextColor(mResultText.getContext().getResources().getColor(R.color.textSecondary));
         }
 
         if(Calendar.getInstance().getTime().after(fixture.getDate())){
