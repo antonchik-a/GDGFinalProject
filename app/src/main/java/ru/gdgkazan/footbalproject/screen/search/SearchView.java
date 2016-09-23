@@ -15,6 +15,8 @@ public interface SearchView extends LoadingView {
 
     void clearSearchResult();
 
+    void notFound();
+
     void showError();
 
     void setQuery(String query);
