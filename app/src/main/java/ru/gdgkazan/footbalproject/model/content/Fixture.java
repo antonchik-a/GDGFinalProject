@@ -162,4 +162,23 @@ public class Fixture extends RealmObject {
         return result;
     }
 
+    public static Fixture getFixtureWithResult(){
+        Fixture fixture = new Fixture();
+        fixture.setAwayTeamName("Chelsea");
+        fixture.setHomeTeamName("Arsenal");
+        Result result = new Result();
+        result.setGoalsAwayTeam(3);
+        result.setGoalsHomeTeam(2);
+        fixture.setResult(result);
+
+        return fixture;
+    }
+
+    public static Fixture getFixtureWithoutResult(){
+        Fixture fixture = new Fixture();
+        fixture.setAwayTeamName("Chelsea");
+        fixture.setHomeTeamName("Arsenal");
+        return fixture;
+    }
+
 }
