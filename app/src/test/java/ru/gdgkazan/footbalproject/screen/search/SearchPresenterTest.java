@@ -62,7 +62,10 @@ public class SearchPresenterTest {
     @Test
     public void testQuerySearch() throws Exception {
         ArrayList<Fixture> fixtures = new ArrayList<>();
-
+        Fixture fixture = new Fixture();
+        fixture.setHomeTeamName("test");
+        fixture.setAwayTeamName("1111");
+        fixtures.add(fixture);
         RepositoryProvider.setFootballRepository(new TestFootballRepository(false, fixtures));
         mPresenter.onQueryChanged("test");
         Mockito.verify(mView).hideLoadingIndicator();
@@ -83,12 +86,10 @@ public class SearchPresenterTest {
     @Test
     public void testSuccessEmpty() throws Exception {
         ArrayList<Fixture> fixtures = new ArrayList<>();
-
         RepositoryProvider.setFootballRepository(new TestFootballRepository(false, fixtures));
         mPresenter.onQueryChanged("test");
         Mockito.verify(mView).showLoadingIndicator();
         Mockito.verify(mView).hideLoadingIndicator();
-        Mockito.verify(mView, times(0)).showError();
         Mockito.verify(mView).showSearchData(fixtures);
         Mockito.verify(mView).showError();
     }
@@ -96,12 +97,10 @@ public class SearchPresenterTest {
     @Test
     public void testHideKeyboard() throws Exception {
         ArrayList<Fixture> fixtures = new ArrayList<>();
-
         RepositoryProvider.setFootballRepository(new TestFootballRepository(false, fixtures));
         mPresenter.onQueryChanged("test");
         Mockito.verify(mView).showLoadingIndicator();
         Mockito.verify(mView).hideLoadingIndicator();
-        Mockito.verify(mView, times(0)).showError();
         Mockito.verify(mView).showError();
         Mockito.verify(mView).showSearchData(fixtures);
         Mockito.verify(mView, times(0)).hideKeyboard();
