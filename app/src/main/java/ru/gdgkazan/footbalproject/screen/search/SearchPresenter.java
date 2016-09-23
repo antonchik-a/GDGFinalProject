@@ -30,13 +30,10 @@ public class SearchPresenter {
     public SearchPresenter(@NonNull SearchView searchView, @NonNull LifecycleHandler lifecycleHandler) {
         mLifecycleHandler = lifecycleHandler;
         mView = searchView;
-    }
-
-    public void init() {
         mQuery = "";
     }
 
-    private void searchFixtures(String query) {
+    public void searchFixtures(String query) {
         RepositoryProvider.provideFootballRepository()
                 .fixtures()
                 .compose(mLifecycleHandler.load(R.id.fixtures_request))

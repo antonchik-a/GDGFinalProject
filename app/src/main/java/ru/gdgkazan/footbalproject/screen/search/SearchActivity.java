@@ -84,7 +84,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView {
 
         LifecycleHandler lifecycleHandler = LoaderLifecycleHandler.create(this, getSupportLoaderManager());
         mPresenter = new SearchPresenter(this, lifecycleHandler);
-        mPresenter.init();
     }
 
     @Override
