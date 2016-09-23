@@ -100,13 +100,8 @@ public class SearchActivity extends AppCompatActivity implements SearchView {
     }
 
     @Override
-    public void notFound() {
-        Toast.makeText(this, getResources().getString(R.string.search_empty), Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     public void showError() {
-        Toast.makeText(this, getResources().getString(R.string.loading_error), Toast.LENGTH_SHORT).show();
+        Snackbar.make(mSearchRecyclerView, getResources().getString(R.string.search_empty), Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
