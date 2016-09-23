@@ -22,7 +22,7 @@ public class FixturesPresenter {
     public static int WEEK = -7;
     public static int MONTH = -30;
     public static int HALF_YAER = -182;
-    private int mCount = MONTH;
+    private int mCount = WEEK;
     final static  int MAX_COUNT = 50;
     private FixturesView mView;
     private LifecycleHandler mLifecycleHandler;

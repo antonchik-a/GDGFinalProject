@@ -22,7 +22,7 @@
                 android:padding="@dimen/padding_small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left|center_vertical|center_horizontal"
+                android:gravity="center_vertical|center_horizontal"
                 android:text="Chelsea"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/textPrimary"/>
@@ -54,7 +54,7 @@
                 android:padding="@dimen/padding_small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center|center_horizontal|right"
+                android:gravity="center|center_horizontal"
                 android:text="Arsenal"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/textPrimary"/>
