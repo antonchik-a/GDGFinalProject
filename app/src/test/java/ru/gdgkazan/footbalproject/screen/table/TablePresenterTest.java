@@ -80,42 +80,6 @@ public class TablePresenterTest {
     }
 
     @Test
-    public void testLoadSuccessThenReloadSuccess() throws Exception {
-        List<Standings> standingsList = new ArrayList<>();
-        RepositoryProvider.setFootballRepository(new TestFootballRepository(false, standingsList));
-        mPresenter.load();
-        Mockito.verify(mView).showLoadingIndicator();
-        Mockito.verify(mView).hideLoadingIndicator();
-        Mockito.verify(mView, times(0)).showError();
-        Mockito.verify(mView).showTable(standingsList);
-
-        mPresenter.reload();
-        Mockito.verify(mView, times(1)).showLoadingIndicator();
-        Mockito.verify(mView, times(1)).hideLoadingIndicator();
-        Mockito.verify(mView).hideSwipeRefreshing();
-        Mockito.verify(mView, times(0)).showError();
-        Mockito.verify(mView, times(2)).showTable(standingsList);
-    }
-
-    @Test
-    public void testLoadErrorThenReloadError() throws Exception {
-        List<Standings> standingsList = new ArrayList<>();
-        RepositoryProvider.setFootballRepository(new TestFootballRepository(true, standingsList));
-        mPresenter.load();
-        Mockito.verify(mView).showLoadingIndicator();
-        Mockito.verify(mView).hideLoadingIndicator();
-        Mockito.verify(mView).showError();
-        Mockito.verify(mView, times(0)).showTable(standingsList);
-
-        mPresenter.reload();
-        Mockito.verify(mView, times(1)).showLoadingIndicator();
-        Mockito.verify(mView, times(1)).hideLoadingIndicator();
-        Mockito.verify(mView).hideSwipeRefreshing();
-        Mockito.verify(mView, times(2)).showError();
-        Mockito.verify(mView, times(0)).showTable(standingsList);
-    }
-
-    @Test
     public void testReloadSuccess() throws Exception {
         List<Standings> standingsList = new ArrayList<>();
         RepositoryProvider.setFootballRepository(new TestFootballRepository(false, standingsList));
@@ -140,18 +104,81 @@ public class TablePresenterTest {
     }
 
     @Test
-    public void onClickSortByPointsFromAToZ() throws Exception {
+    public void testLoadSuccessThenReloadSuccess() throws Exception {
         List<Standings> standingsList = new ArrayList<>();
         RepositoryProvider.setFootballRepository(new TestFootballRepository(false, standingsList));
-        mPresenter.onClickSortByPointsFromAToZ();
+        mPresenter.load();
         Mockito.verify(mView).showLoadingIndicator();
         Mockito.verify(mView).hideLoadingIndicator();
         Mockito.verify(mView, times(0)).showError();
         Mockito.verify(mView).showTable(standingsList);
+
+        mPresenter.reload();
+        Mockito.verify(mView, times(1)).showLoadingIndicator();
+        Mockito.verify(mView, times(1)).hideLoadingIndicator();
+        Mockito.verify(mView).hideSwipeRefreshing();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView, times(2)).showTable(standingsList);
     }
 
     @Test
-    public void onClickSortByPointsFromAToZSecondType() throws Exception {
+    public void testLoadSuccessThenReloadError() throws Exception {
+        List<Standings> standingsList = new ArrayList<>();
+        RepositoryProvider.setFootballRepository(new TestFootballRepository(false, standingsList));
+        mPresenter.load();
+        Mockito.verify(mView).showLoadingIndicator();
+        Mockito.verify(mView).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView).showTable(standingsList);
+
+        RepositoryProvider.setFootballRepository(new TestFootballRepository(true, standingsList));
+        mPresenter.reload();
+        Mockito.verify(mView, times(1)).showLoadingIndicator();
+        Mockito.verify(mView, times(1)).hideLoadingIndicator();
+        Mockito.verify(mView).hideSwipeRefreshing();
+        Mockito.verify(mView, times(1)).showError();
+        Mockito.verify(mView, times(1)).showTable(standingsList);
+    }
+
+    @Test
+    public void testLoadErrorThenReloadError() throws Exception {
+        List<Standings> standingsList = new ArrayList<>();
+        RepositoryProvider.setFootballRepository(new TestFootballRepository(true, standingsList));
+        mPresenter.load();
+        Mockito.verify(mView).showLoadingIndicator();
+        Mockito.verify(mView).hideLoadingIndicator();
+        Mockito.verify(mView).showError();
+        Mockito.verify(mView, times(0)).showTable(standingsList);
+
+        mPresenter.reload();
+        Mockito.verify(mView, times(1)).showLoadingIndicator();
+        Mockito.verify(mView, times(1)).hideLoadingIndicator();
+        Mockito.verify(mView).hideSwipeRefreshing();
+        Mockito.verify(mView, times(2)).showError();
+        Mockito.verify(mView, times(0)).showTable(standingsList);
+    }
+
+    @Test
+    public void testLoadErrorThenReloadSuccess() throws Exception {
+        List<Standings> standingsList = new ArrayList<>();
+        RepositoryProvider.setFootballRepository(new TestFootballRepository(true, standingsList));
+        mPresenter.load();
+        Mockito.verify(mView).showLoadingIndicator();
+        Mockito.verify(mView).hideLoadingIndicator();
+        Mockito.verify(mView).showError();
+        Mockito.verify(mView, times(0)).showTable(standingsList);
+
+        RepositoryProvider.setFootballRepository(new TestFootballRepository(false, standingsList));
+        mPresenter.reload();
+        Mockito.verify(mView, times(1)).showLoadingIndicator();
+        Mockito.verify(mView, times(1)).hideLoadingIndicator();
+        Mockito.verify(mView).hideSwipeRefreshing();
+        Mockito.verify(mView, times(1)).showError();
+        Mockito.verify(mView, times(1)).showTable(standingsList);
+    }
+
+    @Test
+    public void onClickSortByPointsFromAToZ() throws Exception {
         List<Standings> standingsList = new ArrayList<>();
         RepositoryProvider.setFootballRepository(new TestFootballRepository(false, standingsList));
         mPresenter.onClickSortByPointsFromAToZ();
@@ -186,34 +213,90 @@ public class TablePresenterTest {
     @Test
     public void onClickSortByScoredGoalsFromZToA() throws Exception {
         List<Standings> standingsList = new ArrayList<>();
-        RepositoryProvider.setFootballRepository(new TestFootballRepository(true, standingsList));
+        RepositoryProvider.setFootballRepository(new TestFootballRepository(false, standingsList));
         mPresenter.onClickSortByScoredGoalsFromZToA();
         Mockito.verify(mView).showLoadingIndicator();
         Mockito.verify(mView).hideLoadingIndicator();
-        Mockito.verify(mView).showError();
-        Mockito.verify(mView, times(0)).showTable(standingsList);
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView).showTable(standingsList);
     }
 
     @Test
     public void onClickSortByAgainstGoalsFromAToZ() throws Exception {
         List<Standings> standingsList = new ArrayList<>();
-        RepositoryProvider.setFootballRepository(new TestFootballRepository(true, standingsList));
+        RepositoryProvider.setFootballRepository(new TestFootballRepository(false, standingsList));
         mPresenter.onClickSortByAgainstGoalsFromAToZ();
         Mockito.verify(mView).showLoadingIndicator();
         Mockito.verify(mView).hideLoadingIndicator();
-        Mockito.verify(mView).showError();
-        Mockito.verify(mView, times(0)).showTable(standingsList);
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView).showTable(standingsList);
     }
 
     @Test
     public void onClickSortByAgainstGoalsFromZToA() throws Exception {
         List<Standings> standingsList = new ArrayList<>();
-        RepositoryProvider.setFootballRepository(new TestFootballRepository(true, standingsList));
+        RepositoryProvider.setFootballRepository(new TestFootballRepository(false, standingsList));
         mPresenter.onClickSortByAgainstGoalsFromZToA();
         Mockito.verify(mView).showLoadingIndicator();
         Mockito.verify(mView).hideLoadingIndicator();
-        Mockito.verify(mView).showError();
-        Mockito.verify(mView, times(0)).showTable(standingsList);
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView).showTable(standingsList);
+    }
+
+    @Test
+    public void testLoadScenario() throws Exception {
+        List<Standings> standingsList = new ArrayList<>();
+        RepositoryProvider.setFootballRepository(new TestFootballRepository(false, standingsList));
+        mPresenter.load();
+        Mockito.verify(mView).showLoadingIndicator();
+        Mockito.verify(mView).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView).showTable(standingsList);
+
+        mPresenter.onClickSortByPointsFromAToZ();
+        Mockito.verify(mView, times(2)).showLoadingIndicator();
+        Mockito.verify(mView, times(2)).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView, times(2)).showTable(standingsList);
+
+        mPresenter.onClickSortByPointsFromZToA();
+        Mockito.verify(mView, times(3)).showLoadingIndicator();
+        Mockito.verify(mView, times(3)).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView, times(3)).showTable(standingsList);
+
+        mPresenter.onClickSortByScoredGoalsFromAToZ();
+        Mockito.verify(mView, times(4)).showLoadingIndicator();
+        Mockito.verify(mView, times(4)).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView, times(4)).showTable(standingsList);
+
+        mPresenter.onClickSortByScoredGoalsFromZToA();
+        Mockito.verify(mView, times(5)).showLoadingIndicator();
+        Mockito.verify(mView, times(5)).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView, times(5)).showTable(standingsList);
+
+        mPresenter.onClickSortByAgainstGoalsFromAToZ();
+        Mockito.verify(mView, times(6)).showLoadingIndicator();
+        Mockito.verify(mView, times(6)).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView, times(6)).showTable(standingsList);
+
+        mPresenter.onClickSortByAgainstGoalsFromZToA();
+        Mockito.verify(mView, times(7)).showLoadingIndicator();
+        Mockito.verify(mView, times(7)).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView, times(7)).showTable(standingsList);
+
+        mPresenter.reload();
+        Mockito.verify(mView, times(7)).showLoadingIndicator();
+        Mockito.verify(mView, times(7)).hideLoadingIndicator();
+        Mockito.verify(mView, times(0)).showError();
+        Mockito.verify(mView).hideSwipeRefreshing();
+        Mockito.verify(mView, times(8)).showTable(standingsList);
+
+        //click on menu items
     }
 
     @After
